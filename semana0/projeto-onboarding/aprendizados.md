@@ -1,0 +1,2 @@
+# Aprendizados da semana
+Nessa semana de onboarding na **Labenu**, aprendi vários comandos no terminal, como tudo funciona no terminal, VSCode e com o git, tive um pouco de dificuldade por ser a primeira vez, mas estou conseguindo.
