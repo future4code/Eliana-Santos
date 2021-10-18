@@ -18,19 +18,21 @@ function retornaArrayInvertido(array) {
 
 // EXERCÍCIO 03
 function retornaArrayOrdenado(array) {
-    array.sort((a,b) => a -b );
-   return array
+    array.sort((a, b) => a - b);
+    return array
 
 }
 
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
-
+    const numerosPares = array.filter((array) => array % 2 === 0)
+    return numerosPares
 }
+
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
-
+  
 }
 
 // EXERCÍCIO 06
