@@ -32,8 +32,8 @@ function retornaNumerosPares(array) {
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
-    const numerosPares = array.filter((array) => array % 2 === 0).map((array)=> array ** 2)
-   return numerosPares
+    const numerosPares = array.filter((array) => array % 2 === 0).map((array) => array ** 2)
+    return numerosPares
 }
 
 // EXERCÍCIO 06
@@ -52,9 +52,9 @@ function retornaNPrimeirosPares(n) {
     for (let i = 0; numerosPares.length < n; i++) {
         if (i % 2 == 0) {
             numerosPares.push(i)
-           
+
         }
-    }return numerosPares;
+    } return numerosPares;
 
 }
 
@@ -62,23 +62,33 @@ function retornaNPrimeirosPares(n) {
 // EXERCÍCIO 09
 function classificaTriangulo(ladoA, ladoB, ladoC) {
 
+    a = ladoA
+    b = ladoB
+    c = ladoC
+
+    if (a === b && b === c) {
+        return "Equilátero"
+    } if (a === b || b === c || c === a) {
+        return "Isósceles"
+    } else {
+        return "Escaleno"
+    }
 }
 
 // EXERCÍCIO 10
 function retornaSegundoMaiorESegundoMenor(array) {
-    const arrayOrdenado = array.sort((a,b) => a-b)
-    const  segundoMaiorValor = arrayOrdenado[arrayOrdenado.length - 2]
+    const arrayOrdenado = array.sort((a, b) => a - b)
+    const segundoMaiorValor = arrayOrdenado[arrayOrdenado.length - 2]
     const segundoMenorValor = arrayOrdenado[1]
-    
-    const arrayResultado = [segundoMaiorValor,segundoMenorValor]
-    
+
+    const arrayResultado = [segundoMaiorValor, segundoMenorValor]
+
     return arrayResultado
 }
 
 // EXERCÍCIO 11
 function retornaChamadaDeFilme(filme) {
-
-}
+ 
 
 // EXERCÍCIO 12
 function retornaPessoaAnonimizada(pessoa) {
@@ -97,12 +107,12 @@ function retornaPessoasNaoAutorizadas(pessoas) {
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
-return contas.map((conta)=> {
-    let soma = conta.compras.reduce((acc,cur)=> acc + cur, 0)
-    let saldo = conta.saldoTotal
-    return {...conta, saldoTotal: saldo - soma, compras: []}
+    return contas.map((conta) => {
+        let soma = conta.compras.reduce((acc, cur) => acc + cur, 0)
+        let saldo = conta.saldoTotal
+        return { ...conta, saldoTotal: saldo - soma, compras: [] }
 
-})
+    })
 }
 
 // EXERCÍCIO 15A
@@ -113,8 +123,7 @@ function retornaArrayOrdenadoAlfabeticamente(consultas) {
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
     return consultas.sort((primeira, segunda) => {
-        return new Date(primeira.dataDaConsulta.split("/").reverse()).getTime() - 
-        new Date(segunda.dataDaConsulta.split("/").reverse()).getTime()
+        return new Date(primeira.dataDaConsulta.split("/").reverse()).getTime() -
+            new Date(segunda.dataDaConsulta.split("/").reverse()).getTime()
     })
-
 }
