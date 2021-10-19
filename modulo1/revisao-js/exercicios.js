@@ -43,9 +43,20 @@ function retornaMaiorNumero(array) {
 
 // EXERCÍCIO 07
 function retornaObjetoEntreDoisNumeros(num1, num2) {
+    maiorNumero = num1 > num2 ? num1 : num2;
+    menorNumero = num1 < num2 ? num1 : num2;
 
+    maiorDivisivelPorMenor = maiorNumero % menorNumero === 0;
+    diferenca = maiorNumero - menorNumero;
+
+    return {
+        maiorNumero: maiorNumero,
+        maiorDivisivelPorMenor: maiorDivisivelPorMenor,
+        diferenca: diferenca
+    }
 
 }
+
 // EXERCÍCIO 08
 function retornaNPrimeirosPares(n) {
     let numerosPares = []
@@ -94,10 +105,10 @@ function retornaChamadaDeFilme(filme) {
 
 // EXERCÍCIO 12
 function retornaPessoaAnonimizada(pessoa) {
-     pessoaAnonima = {
+    pessoaAnonima = {
         ...pessoa,
         nome: "ANÔNIMO"
-        
+
     }
     return pessoaAnonima
 }
