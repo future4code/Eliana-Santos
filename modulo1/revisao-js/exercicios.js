@@ -115,12 +115,13 @@ function retornaPessoaAnonimizada(pessoa) {
 
 // EXERCÍCIO 13A
 function retornaPessoasAutorizadas(pessoas) {
-
+    return pessoas.filter((pessoa) => pessoa.altura > 1.5 && pessoa.idade > 14 && pessoa.idade < 60 )
 }
+
 
 // EXERCÍCIO 13B
 function retornaPessoasNaoAutorizadas(pessoas) {
-
+ 
 }
 
 // EXERCÍCIO 14
@@ -135,6 +136,7 @@ function retornaContasComSaldoAtualizado(contas) {
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
+
 
 }
 
