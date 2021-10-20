@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+
+   background-image: url(img/2124254-rosa-abstrato-papel-aquarela-fundo-textura-grátis-foto.jpg);
+}
+#header{
+    margin: 0;
+	color: rgb(70, 14, 56);
+    background-color: rgb(255, 234, 238);
+	text-align: center;
+}
+   .topnav {
+        background-color: rgb(255, 234, 238);
+        overflow: hidden;
+      }
+      .topnav a {
+        float: left;
+        color: #e27c9e;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      .topnav a:hover {
+        background-color:rgba(228, 199, 214, 0.993);
+        color: white;
+      }
