@@ -7,6 +7,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 h2 {
@@ -70,11 +71,6 @@ div>p:first-child {
 
 }
 
-/* #break{
-    text-align: center;
-    padding: 15px 0px;
-} */
-
 #container-de-descricao>ol {
     padding: 15px 0px;
     
@@ -111,11 +107,15 @@ div>p:first-child {
 div:nth-child(2),
 div:last-child {
     text-align: center;
-}
+} 
 
 table {
+    margin-left: auto;
+    margin-right: 310px;
     width: 60%;
     text-align: center;
+    margin-top: 60px;;
+    
 }
 img { 
     width: 66px;
@@ -136,6 +136,9 @@ td button{
 }
 
 #back-button {
+    position:absolute;
+    top: 600px;
+    left: 900px;
     background-color: white;
     width: 100px;
     height: 20px;
@@ -143,8 +146,13 @@ td button{
     border-radius: 5px;
     font-size: 10px;
     color: black;
+   
+    
+
+    
 }
 
 #back-button:hover {
     background-color: #635a3d
+
 }
