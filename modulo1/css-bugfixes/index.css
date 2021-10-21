@@ -39,7 +39,7 @@ div>p:first-child {
     background-color: #ffaf43;
     width: 250px;
     height: 40px;
-    border-radius: 5px;
+
     font-size: 20px;
     color: white;
 }
@@ -91,6 +91,8 @@ div>p:first-child {
 }
 .botao-amarelo{
     position:static;
+    border: none;
+    border-radius: 5px;
 
 }
 #padding{
@@ -107,6 +109,7 @@ div>p:first-child {
 div:nth-child(2),
 div:last-child {
     text-align: center;
+    font-family: 'Roboto', sans-serif;
 } 
 
 table {
@@ -125,8 +128,9 @@ td button{
     background-color: #fadf63;
     width: 150px;
     height: 30px;
-    border-radius: 5px;
+    border: none;
     color: black;
+    border-radius: 5px;
 }
 
 
