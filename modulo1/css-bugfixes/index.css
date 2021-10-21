@@ -70,11 +70,11 @@ div>p:first-child {
     padding: 15px 0px;
 
 }
-#container-breaki{
-    
-}
 
-
+/* #break{
+    text-align: center;
+    padding: 15px 0px;
+} */
 
 #container-de-descricao>ol {
     padding: 15px 0px;
@@ -82,7 +82,10 @@ div>p:first-child {
 }
 
 #container-para-comprar {
+    padding: 40px 20px;
     background-color: #e7eb90;
+    text-align: center;
+
 }
 
 #container-para-comprar>p {
@@ -93,8 +96,12 @@ div>p:first-child {
 }
 .botao-amarelo{
     position:static;
-}
 
+}
+#padding{
+    text-align: center;
+    padding: 30px;
+}
 
 /**
   *
