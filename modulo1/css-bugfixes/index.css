@@ -21,8 +21,10 @@ input {
     width: 500px;
 }
 
-button:focus {
+button:focus{
     color: white;
+    background-color: #ffaf43;
+       
 }
 
 img {
