@@ -69,11 +69,14 @@ div img {
 #container-de-descricao {
     background-color: #2274a5;
     color: white;
-    padding: 15px 0px;  
-
- 
+    padding: 15px 0px;
 
 }
+#container-breaki{
+    
+}
+
+
 
 #container-de-descricao>ol {
     padding: 15px 0px;
@@ -108,6 +111,7 @@ div:last-child {
 
 table {
     width: 60%;
+    text-align: center;
 }
 
 td button {
