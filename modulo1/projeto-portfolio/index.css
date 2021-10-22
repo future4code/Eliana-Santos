@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+    
+}
+#header{
+    margin: 0;
+	color: rgb(70, 14, 56);
+    background-color: rgb(255, 234, 238);
+	text-align: center;
+}
+.card {
+   
+    color: black;
+    text-align: center;
+    margin-top: 34px;
+    
+
+    
+  }
+  
+  .title {
+    color: #6B5B5D;
+    font-size: 18px;
+  }
+  
+  button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #EECACE;
+    text-align: center;
+    cursor: pointer;
+    width: 10%;
+    font-size: 18px;
+  }
+  
+a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  }
+  
+  button:hover, a:hover {
+    opacity: 0.7;
+  }
+
+.card>img{
+    border-radius: 1000px;
+}
+
+.subtitulo{
+    color: black;
+}
+footer{
+    position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      color: rgb(70, 14, 56);
+      text-align: center;
+}
+
+.topnav {
+    background-color: rgb(255, 234, 238);
+    overflow: hidden;
+    height: 48px;
+  }
+
+  .topnav a {
+    float: left;
+    color: #e27c9e;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  .topnav a:hover {
+    background-color:rgba(228, 199, 214, 0.993);
+    color: white;
+  }
+.container{
+    height: 10em;
+    position: relative 
+}
+.container {
+    text-align: justify;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    /* background: yellow; */
+    position: absolute;
+    top: 63%;
+    left: 50%;
+    margin-right: 10%;
+    transform: translate(-50%, -50%) 
+    
+    
+}
+div h1{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.container1{
+    position: absolute;
+    left: 363px;
+    margin: 56px;
+}
+
