@@ -10,48 +10,161 @@
 </head>
 
 <body>
-    <header>
-         <main>
+
+    <main>
         <div class="topnav">
-            <!-- <a class="active" href="Sobre Mim">Sobre Mim</a>
-            <a href="Portifolio">Portfolio</a>
-            <a href="Contato">Contato</a>
-            <div>
+            <a href="#Sobre">Sobre</a>
+            <a href="#Projetos">Projetos</a>
+            <a href="#Contato">Contato</a>
+            <!-- <div>
                 <p class="container1">Projetando e Codificando mudanças</p>
-            </div>
-            -->
-            
+            </div> -->
+
         </div>
     </main>
+    <section id="Sobre">
+        <div class="card">
+            <img src="img/pp (1).jpeg" alt="Eliana">
 
-    </header>
-    <div class="card">
-        <img src="img/pp (1).jpeg" alt="ELiana" width="200">
-        <h1>Eliana Cristina</h1>
-        <p class="title"> Estudante de Web Full Stack </p>
-        <p class="subtitulo">Labenu</p>
-        <div>
-            <p class="container">Sou formada em Direito pela Universidade Salgado de OLiveira, tenho pós graduação em Direito Civil e Empresarial, tive experiência na área júridica por 3 anos, mas atualmente fazendo migraça para área de tecnologia através do curso de Web Full Stack da Labenu, e tenho experiência através do curso da Labenu nas linguagens de JS, HTML e CSS.</p>
-        
+            <h1>Eliana Cristina</h1>
+            <p class="title"> Estudante de Web Full Stack </p>
+            <p class="subtitulo">Labenu</p>
+
+            <p class="p-sobre">Sou formada em Direito pela Universidade Salgado de Oliveira, sou pós-graduanda em
+                Direito Civil e Empresarial, tenho experiência na área júridica por 3 anos, mas atualmente estou fazendo
+                migração para área de tecnologia através do curso de Web Full Stack da Labenu, e tenho experiência
+                através do curso da Labenu nas tecnologia de JS, HTML e CSS.</p>
         </div>
-        <table>
-            
-        </table>
 
-        
-       
-                   
+    </section>
+    <div class="instituicoes">
+        <div>
+            <h2>Instituições de Ensino</h2>
+        </div>
+
+        <div class="container-flips">
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="img/avatar-universo.png" alt="universidade salgado de Oliveira">
+                    </div>
+                    <div class="flip-card-back">
+                        <h2>Graduação</h2>
+                        <p>Bacharel em Direito</p>
+                        <p>2020/2</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="img/damasio.png" alt="damasio educacional">
+                    </div>
+                    <div class="flip-card-back">
+                        <h2>Pós graduação</h2>
+                        <p>Direito Civil e Empresarial</p>
+                        <p>2021/2</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="img/Logo_Labenu_vertical.png" alt="Labenu">
+                    </div>
+                    <div class="flip-card-back">
+                        <h2>Curso Tecnologia</h2>
+                        <p>Web Full Stack</p>
+                        <p>2022/1</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <footer>
-        <p>Redes Sociais </p>
-        <a href="https://www.instagram.com/ellianacris/" target="_blank"><i class="instagram"><img
-            src="https://image.flaticon.com/icons/png/512/25/25425.png" width=25 /></i></a>
-<a href="https://www.linkedin.com/in/eliana-cristina1/" target="_blank"><i class="linkedin"><img
-            src="img/linkedin.png" width=50 /></i></i></a>
-<a href="https://github.com/elianacris" target="_blank"><i class="fa fa-dribbble"><img src="img/github.png"
-            width=30 /></i></i></a>
-           
-    </footer>
+    <section id="Projetos">
+
+        <div class="projeto">
+
+            <div class="projeto-titulo">
+                <h2>Projeto</h2>
+            </div>
+
+            <div class="projeto-card">
+                <a href="http://127.0.0.1:5500/modulo1/html-sistema-loja/index.html" target="_blank"><img
+                        src="img/projeto.png" alt="Projeto site-loja"></a>
+            </div>
+
+
+            <div class="projeto-descricao">
+
+                <h4>Descrição: Projeto site-loja</h4>
+                <p>No projeto foi criado uma loja virtual - onde contém o controle de estoque da loja, relação dos
+                    funcionários,
+                    adicionar produto, quando você passa o mousse e clica na barra onde contém os nomes você já é
+                    redirecionado
+                    para a página desejada,foram usadas as tecnologia HTML, CSS e JS.</p>
+
+            </div>
+
+
+
+        </div>
+    </section>
+    <section id="Contato">
+        <div class="contato">
+            <h2>Contato</h2>
+        </div>
+
+        <form>
+            <table>
+
+                <tr>
+                    <td><label>
+                            <p>Nome</p>
+                        </label></td>
+                    <td><input name="nome" id="nome" type="text" size="33" maxlength="1000"></td>
+                </tr>
+                <tr>
+                    <td><label>
+                            <p>E-mail</p>
+                        </label></td>
+                    <td><input name="email" id="email" type="text" size="33" maxlength="1000" </tr>
+                <tr>
+                    <td><label>
+                            <p>Mensagem</p>
+                        </label>
+                    </td>
+                    <td><textarea name="mensagem" id="mensagem" cols="30" rows="9">
+    </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input name="submit" type="submit" value="Enviar" class="botao">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <div class="redessociais">
+
+            <p>Redes Sociais </p>
+            <a href="https://www.instagram.com/ellianacris/" target="_blank"><i class="instagram"><img
+                        src="https://image.flaticon.com/icons/png/512/25/25425.png" width=28 /></i></a>
+            <a href="https://www.linkedin.com/in/eliana-cristina1/" target="_blank"><i class="linkedin"><img
+                        src="img/linkedin.png" width=50 /></i></i></a>
+            <a href="https://github.com/elianacris" target="_blank"><i class="fa fa-dribbble"><img src="img/github.png"
+                        width=30 /></i></i></a>
+
+        </div>
+
+
+
+
+
+    </section>
+    <footer></footer>
 
 </body>
 
