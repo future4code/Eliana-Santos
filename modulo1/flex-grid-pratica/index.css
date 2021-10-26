@@ -56,3 +56,13 @@ main {
     height: 300 px;
 }
 
+footer {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: coral;
+    align-items: center;
+    justify-content: space-around;
+    height: 60px;
+}
