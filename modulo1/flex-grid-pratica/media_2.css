@@ -14,6 +14,7 @@ header {
 header, footer {
     grid-column: 1/-1;
 }
+
 .titulo {
     padding: 10px;
 }
@@ -41,27 +42,12 @@ header, footer {
     }
 }
 
-main {
-    display: grid;
-    grid-template-columns: repeat(4, 2fr);
-    gap: 20px;
-    margin: 20px;
+.video_paisagem{
+    padding: 24px;
 }
 
-.card-produto {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 2px 2px 5px black;
-    text-align: center;
-    height: 300 px;
-}
-
-.card-produto>a {
-    width: 100%;
-    display: flex;
-    align-items: stretch;
-    flex-direction: column;
+video {
+    margin-top: 8px;
 }
 
 footer {
