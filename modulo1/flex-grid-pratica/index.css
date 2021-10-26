@@ -37,3 +37,22 @@ header, footer {
       border: 1px solid #ccc;
     }
   }
+main {
+    display: grid;
+    grid-template-columns: repeat(4, 2fr);
+    gap: 20px;
+    margin: 20px;
+    /* esse width impede que o scroll apareça,
+     limitando o tamanho do main a 80% 
+     do seu container*/
+}
+
+.card-produto {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 2px 2px 5px black;
+    text-align: center;
+    height: 300 px;
+}
+
