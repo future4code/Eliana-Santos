@@ -47,8 +47,11 @@ header {
 }
 
 video {
+    max-width: 80%;
     margin-top: 10px;
     width: 100vh;
+    margin:auto
+    
 }
 
 footer {

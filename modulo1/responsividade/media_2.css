@@ -24,7 +24,7 @@ header {
     padding: 6px;
     border: none;
     margin-top: 8px;
-    margin-right: 16px;
+    margin-right: 16px !important;
     font-size: 17px;
 }
 
@@ -46,6 +46,7 @@ header {
 
 video {
     margin: auto;
+    max-width: 80%;
     display: block;
 }
 
