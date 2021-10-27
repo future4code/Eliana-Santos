@@ -5,10 +5,14 @@
 
 header {
     display: flex;
+    overflow: hidden;
     background-color: coral;
-    height: 50px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
-    align-items: baseline;
 }
 
 header, footer {
@@ -65,7 +69,7 @@ main {
 
 footer {
     display: flex;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     background-color: coral;
