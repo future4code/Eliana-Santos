@@ -4,22 +4,22 @@ import axios from "axios";
 const PokeCard = (props) =>{
   const [pokemon, setPokemon] = useState({})
 
-  const pegaPokemon = ()=> {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${props.pokemon}`)
-      .then(response => {
-        setPokemon(response.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
   useEffect(()=>{
-    pegaPokemon()
+
+    const pegaPokemon = ()=> {
+      axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${props.pokemon}`)
+        .then((response) => {
+          setPokemon(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+     pegaPokemon()
   },[props.pokemon])
+  
 
-
- 
   return (
     <div>
       <p>{pokemon.name}</p>
