@@ -45,12 +45,12 @@ function App() {
   }
 
   const matchProfile = (id, choice) => {
-    axios.post(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/darvas/choose-person`,
-      {
-        "id": id,
-        "choice": choice
-      })
-      .then((res) => {
+    const body = {
+      id: id,
+      choice: choice
+  }
+    axios.post('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/darvas/choose-person', body, 
+       ).then((res) => {
         setDate(res.data);
       })
       .catch((erro) => {
@@ -59,7 +59,7 @@ function App() {
   }
 
   const cleanProfiles = () => {
-    axios.put('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/:aluno/clear')
+    axios.put('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/darvas/clear')
       .then((res) => {
         console.log('Clear profiles success!')
       })
@@ -72,10 +72,11 @@ function App() {
     getProfile();
   }
 
-  const onClickMatch = (id) => {
+  const onClickMatch = (id, choice) => {
     console.log(data.profile)
-    //matchProfile(id, true) 
+    matchProfile(id,choice) 
   }
+
 
 
   return (
@@ -83,7 +84,7 @@ function App() {
       <Card>
         <div>
           <div>
-            <button>Ver Match</button>
+            <button >Ver Match</button>
           </div>
           <img width="240" src={data.profile.photo} alt="imagens" />
           <div><strong>{data.profile.name}</strong>,{data.profile.age}
