@@ -1,22 +1,52 @@
 import React from "react";
-import {Button} from '@material-ui/core'
+import { Button } from '@material-ui/core'
+import { useHistory } from "react-router";
+import { BodyListTrips, ButtonsTrips, CardTrips, MainCard } from "../styled/listTripsStyled";
 
 
 export default function ListTripsPages() {
+    const history = useHistory()
+
+    const goBack = () => {
+        history.goBack('/')
+    }
+
+    const goToRegister = () => {
+        history.push('/trips/application')
+    }
 
     return (
-        <di>
-            <p>Lista de Viagens</p>
-            <di>
-                <p>Nome:</p>
-                <p>Descrição:</p>
-                <p>Planeta:</p>
-                <p>Duração: </p>
-                <p>Data:</p>
-            </di>
-            <Button variant='outlined'>Voltar</Button>
-            <Button variant='outlined'>Inscrever-se</Button>
+        <BodyListTrips>
+            <CardTrips>
+                <ButtonsTrips>
+                    <Button
+                        onClick={goBack}
+                        variant='outlined'
+                    >Voltar
+                    </Button>
+                    <Button
+                        onClick={goToRegister}
+                        variant='outlined'
+                    >Inscrever-se
+                    </Button>
 
-        </di>
+                </ButtonsTrips>
+                <div>
+                    
+                    <h1>Lista de Viagens</h1>
+
+                    <MainCard>
+                        <p>Nome:</p>
+                        <p>Descrição:</p>
+                        <p>Planeta:</p>
+                        <p>Duração: </p>
+                        <p>Data:</p>
+                    </MainCard>
+
+                </div>
+
+            </CardTrips>
+
+        </BodyListTrips>
     )
 }
