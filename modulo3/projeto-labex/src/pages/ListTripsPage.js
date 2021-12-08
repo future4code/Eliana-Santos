@@ -32,7 +32,7 @@ export default function ListTripsPages() {
 
                 </ButtonsTrips>
                 <div>
-                    
+
                     <h1>Lista de Viagens</h1>
 
                     <MainCard>
