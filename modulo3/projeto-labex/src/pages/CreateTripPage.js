@@ -1,15 +1,43 @@
-import { Button} from "@material-ui/core";
-import React from "react";
+import { Button } from "@material-ui/core";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import { URL_BASE } from "../constants/url";
 import { BodyCard, Form, TitleText } from "../styled/createTripStyled";
 
 
-
-export default function CreateeTripPage() {
+export default function CreateTripPage() {
+    const [createTrip, setCreateTrip] = useState({})
     const history = useHistory()
     const goBack = () => {
         history.goBack()
     }
+
+    const creatTrip = () => {
+        const body = {
+            name: "",
+            planet: "",
+            date: "",
+            description: "",
+            durationInDays: 0
+        }
+        const token = localStorage.getItem('token')
+        axios.post(`${URL_BASE}/trips`, body, {
+            headers:{
+                auth: token
+            }
+        }).then((response) =>{
+            setCreateTrip(response.data)
+        }).catch((error)=>{
+            console.log(error)
+        })
+    } 
+    useEffect(() => {
+        creatTrip();
+    }, []);
+
+    
+
 
     return (
         <BodyCard>
@@ -74,6 +102,7 @@ export default function CreateeTripPage() {
                     <Button
                         variant='outlined'
                         type="submit"
+                        onClick={createTrip}
                     >Criar
                     </Button>
                 </div>

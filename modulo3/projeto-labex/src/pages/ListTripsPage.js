@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from '@material-ui/core'
 import { useHistory } from "react-router";
 import { BodyListTrips, ButtonsTrips, CardTrips, MainCard } from "../styled/listTripsStyled";
-
+import axios from "axios";
+import { URL_BASE } from "../constants/url";
 
 export default function ListTripsPages() {
+    const [trips, setTrips] = useState([])
     const history = useHistory()
-
     const goBack = () => {
         history.goBack('/')
     }
@@ -15,9 +16,42 @@ export default function ListTripsPages() {
         history.push('/trips/application')
     }
 
+    const getTrips = () => {
+        axios.get(`${URL_BASE}/trips`)
+            .then((response) => {
+                setTrips(response.data.trips);
+            }).catch((error) => {
+                console.log(error)
+            })
+    }
+
+    useEffect(() => {
+        getTrips();
+    }, []);
+
     return (
         <BodyListTrips>
             <CardTrips>
+                <div>
+
+                    <h1>Lista de Viagens</h1>
+
+                    {
+                        trips.map(trip => {
+
+                            return < MainCard >
+                                <p>Nome: {trip.name}</p>
+                                <p>Descrição: {trip.description}</p>
+                                <p>Planeta: {trip.planet}</p>
+                                <p>Duração: {trip.durationInDays} </p>
+                                <p>Data: {trip.date}</p>
+                            </MainCard>
+
+                        })
+                    }
+
+                </div>
+
                 <ButtonsTrips>
                     <Button
                         onClick={goBack}
@@ -31,22 +65,9 @@ export default function ListTripsPages() {
                     </Button>
 
                 </ButtonsTrips>
-                <div>
-
-                    <h1>Lista de Viagens</h1>
-
-                    <MainCard>
-                        <p>Nome:</p>
-                        <p>Descrição:</p>
-                        <p>Planeta:</p>
-                        <p>Duração: </p>
-                        <p>Data:</p>
-                    </MainCard>
-
-                </div>
 
             </CardTrips>
 
-        </BodyListTrips>
+        </BodyListTrips >
     )
 }

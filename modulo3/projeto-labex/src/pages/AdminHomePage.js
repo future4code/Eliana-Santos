@@ -1,10 +1,13 @@
 import { Button } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { BodyAdm, ButtonsAdm, CardTrip, MainAdm, TextAdm } from "../styled/adminHomeStyled";
 import DeleteIcon from '@material-ui/icons/Delete';
+import axios from "axios";
+import { URL_BASE } from "../constants/url";
 
 export default function AdminHomePage() {
+    const [trips, setTrips] = useState([])
     const history = useHistory()
     const goToHome = () => {
         history.push("/")
@@ -15,6 +18,20 @@ export default function AdminHomePage() {
     const goToDetails = () => {
         history.push("/admin/trips/:id")
     }
+
+
+    const getTrips = () => {
+        axios.get(`${URL_BASE}/trips`)
+            .then((response) => {
+                setTrips(response.data.trips);
+            }).catch((error) => {
+                console.log(error)
+            })
+    }
+
+    useEffect(() => {
+        getTrips();
+    }, []);
     return (
         <BodyAdm>
             <MainAdm>
@@ -50,10 +67,14 @@ export default function AdminHomePage() {
 
                 </ButtonsAdm>
 
-                <CardTrip>
-                    Viagem
-                    <Button><DeleteIcon /></Button>
-                </CardTrip>
+                {trips.map(trip => {
+                    return <CardTrip onClick={goToDetails}>
+                        {trip.name}
+                        <Button><DeleteIcon /></Button>
+                    </CardTrip>
+
+                })
+                }
             </MainAdm>
 
         </BodyAdm>

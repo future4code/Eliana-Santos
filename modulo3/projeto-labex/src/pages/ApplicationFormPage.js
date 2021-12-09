@@ -1,15 +1,29 @@
 import { Button } from "@material-ui/core";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { BodyApplication, ButtonsCreate, CardCreate, Form, TitleText } from "../styled/applicationFormStyled";
 
 
 export default function ApplicationFormPage() {
+    const [countries, setCoutries] = useState([])
     const history = useHistory()
     const goBack = () => {
         history.goBack("/trips/list")
     }
 
+    const getCountries = () => {
+        axios.get('https://servicodados.ibge.gov.br/api/v1/paises')
+            .then((response) => {
+                setCoutries(response.data)
+            }).catch((error) => {
+                console.log(error)
+            })
+    }
+
+    useEffect(() => {
+        getCountries();
+    }, []);
 
     return (
         <BodyApplication>
@@ -52,7 +66,9 @@ export default function ApplicationFormPage() {
                     />
                     <select placeholder="País" name="coutry" requerid>
                         <option disabled selected>Escolha um país</option>
-
+                        {countries.map((country) => {
+                            return <option value={country.nome.abreviado} >{country.nome.abreviado}</option>
+                        })}
                     </select>
 
                     <ButtonsCreate>
