@@ -8,7 +8,6 @@ import { URL_BASE } from "../constants/url";
 import useProtectedPage from "../hooks/useProtectedPage";
 
 export default function AdminHomePage() {
-    const { id } = useParams();
     const [trips, setTrips] = useState([])
     useProtectedPage()
     const history = useHistory()
@@ -46,7 +45,7 @@ export default function AdminHomePage() {
                 console.log(error)
             })
     }
-    const deletTrip = () => {
+    const deletTrip = (id) => {
         const token = localStorage.getItem('token')
         axios.delete(`${URL_BASE}/trips/${id}`, {
             headers: {
@@ -54,6 +53,7 @@ export default function AdminHomePage() {
             }
         }).then((res) => {
             alert("Viagem deletada com sucesso!")
+            history.go(0)
 
         }).catch((error) => {
             console.log(error)
@@ -101,7 +101,7 @@ export default function AdminHomePage() {
                 {trips.map(trip => {
                     return <CardTrip >
                         <Button onClick={() => goToDetails(trip.id)}>{trip.name}</Button>
-                        <Button ><DeleteIcon onClick={() => deletTrip()}/></Button>
+                        <Button ><DeleteIcon onClick={() => deletTrip(trip.id)} /></Button>
                     </CardTrip>
                 })
                 }
