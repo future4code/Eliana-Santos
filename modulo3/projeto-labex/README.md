@@ -1,6 +1,9 @@
 # Projeto Labex 
 
 Linguagem utilizada: React.js
+No projeto foram utilizados o Router para definir as rotas entre as páginas, 
+houve validação do login, cadastro de candidatos em um formulário com os inputs obrigatórios, utilização da API para deletar,
+cadastrar viagens, aprovar candidatos. 
 
 Design: Material e styled components 
 
@@ -11,3 +14,4 @@ Design: Material e styled components
 email: ellianacris@hotmail.com
 senha:964507
 ## Link Surge
+[Labex](https://understood-box.surge.sh/)

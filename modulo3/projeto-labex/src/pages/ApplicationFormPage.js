@@ -107,7 +107,7 @@ export default function ApplicationFormPage() {
                         value={form.profession}
                         onChange={onChange}
                         required
-                        pattern="^.{10,}"
+                        pattern="^.{3,}"
                         title="O nome deve ter no mínimo 10 caracteres"
                     />
                     <select
