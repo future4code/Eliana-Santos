@@ -1,6 +1,6 @@
 import { Button } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { BodyAdm, ButtonsAdm, CardTrip, MainAdm, TextAdm } from "../styled/adminHomeStyled";
 import DeleteIcon from '@material-ui/icons/Delete';
 import axios from "axios";
@@ -8,19 +8,21 @@ import { URL_BASE } from "../constants/url";
 import useProtectedPage from "../hooks/useProtectedPage";
 
 export default function AdminHomePage() {
+    const { id } = useParams();
     const [trips, setTrips] = useState([])
     useProtectedPage()
     const history = useHistory()
     const goToHome = () => {
         history.push("/")
     }
+
     const goToCreate = () => {
         history.push("/admin/trips/create")
     }
+
     const goToDetails = (id) => {
         history.push(`/admin/trips/${id}`)
     }
-
 
     useEffect(() => {
         const token = localStorage.getItem('token')
@@ -36,8 +38,6 @@ export default function AdminHomePage() {
             })
     }, [])
 
-
-
     const getTrips = () => {
         axios.get(`${URL_BASE}/trips`)
             .then((response) => {
@@ -45,6 +45,19 @@ export default function AdminHomePage() {
             }).catch((error) => {
                 console.log(error)
             })
+    }
+    const deletTrip = () => {
+        const token = localStorage.getItem('token')
+        axios.delete(`${URL_BASE}/trips/${id}`, {
+            headers: {
+                auth: token
+            }
+        }).then((res) => {
+            alert("Viagem deletada com sucesso!")
+
+        }).catch((error) => {
+            console.log(error)
+        })
     }
 
     useEffect(() => {
@@ -86,11 +99,10 @@ export default function AdminHomePage() {
                 </ButtonsAdm>
 
                 {trips.map(trip => {
-                    return <CardTrip onClick={() => goToDetails(trip.id)}>
-                        {trip.name}
-                        <Button><DeleteIcon /></Button>
+                    return <CardTrip >
+                        <Button onClick={() => goToDetails(trip.id)}>{trip.name}</Button>
+                        <Button ><DeleteIcon onClick={() => deletTrip()}/></Button>
                     </CardTrip>
-
                 })
                 }
             </MainAdm>

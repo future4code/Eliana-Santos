@@ -1,56 +1,45 @@
 import { Button } from "@material-ui/core";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useHistory } from "react-router";
 import { URL_BASE } from "../constants/url";
 import useForm from "../hooks/useForm";
 import { BodyCard, Form, TitleText } from "../styled/createTripStyled";
 
+const initialForm = {
+    name: "",
+    planet: "",
+    date: "",
+    description: "",
+    durationInDays: 0
+}
 
 export default function CreateTripPage() {
-    const { form, onChange, cleanFields } = useForm({
-        name: "",
-        age: 0,
-        date: "",
-        description: "",
-        durationInDays: 0,
-        planet: ""
-    })
-    const [createTrip, setCreateTrip] = useState({})
     const history = useHistory()
+    const { form, onChange, cleanFields } = useForm(initialForm)
+
     const goBack = () => {
         history.goBack()
     }
 
     const creatTrip = () => {
-        const body = {
-            name: "",
-            planet: "",
-            date: "",
-            description: "",
-            durationInDays: 0
-        }
         const token = localStorage.getItem('token')
-        axios.post(`${URL_BASE}/trips`, body, {
+        axios.post(`${URL_BASE}/trips`, form, {
             headers: {
                 auth: token
             }
         }).then((response) => {
-            setCreateTrip(response.data)
+            alert("Viagem criada com sucesso!")
+            cleanFields()
         }).catch((error) => {
             console.log(error)
         })
     }
-    useEffect(() => {
-        creatTrip();
-    }, []);
 
     const register = (event) => {
         event.preventDefault()
-
+        creatTrip()
     }
-
-
 
     return (
         <BodyCard>
@@ -64,13 +53,18 @@ export default function CreateTripPage() {
                 <input
                     placeholder="Nome"
                     name="name"
+                    value={form.name}
                     title="O nome da viagem deve ter no mínimo 5 caracteres"
-                    pattern="^.{5,}$" />
+                    pattern="^.{5,}$"
+                    required
+                    onChange={onChange} />
 
                 <select
                     placeholder="Planeta"
                     name="planet"
-                    requerid>
+                    value={form.planet}
+                    onChange={onChange}
+                    required>
                     <option disabled selected >Escolha um Planeta</option>
                     <option value="Mercúrio">Mercúrio</option>
                     <option value="Vênus">Vênus</option>
@@ -87,23 +81,29 @@ export default function CreateTripPage() {
                     placeholder="Data"
                     type="date"
                     name="date"
-                    requerid
-                    min="2021-12-07" />
+                    value={form.date}
+                    required
+                    min="2021-12-07"
+                    onChange={onChange} />
 
                 <input
                     placeholder="Descrição"
                     name="description"
-                    requerid
+                    value={form.description}
+                    required
                     pattern="^.{30,}$"
                     title="O nome deve ter no mínimo 30 caracteres"
+                    onChange={onChange}
                 />
 
                 <input
                     placeholder="Duração de dias"
                     type="number"
                     name="durationInDays"
-                    requerid
+                    value={form.durationInDays}
+                    required
                     min="50"
+                    onChange={onChange}
 
                 />
                 <div>
@@ -115,13 +115,10 @@ export default function CreateTripPage() {
                     <Button
                         variant='outlined'
                         type="submit"
-                        onClick={createTrip}
                     >Criar
                     </Button>
                 </div>
             </Form>
-
-
         </BodyCard>
     )
 }

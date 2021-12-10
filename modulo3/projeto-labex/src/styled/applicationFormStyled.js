@@ -24,7 +24,7 @@ export const TitleText = styled.div`
     color:slategray;
     margin-bottom: 20px;
 `
-export const Form = styled.div`
+export const Form = styled.form`
     display: flex;
     flex-direction: column;
     -webkit-box-align: center;
