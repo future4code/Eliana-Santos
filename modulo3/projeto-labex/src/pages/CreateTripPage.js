@@ -3,10 +3,19 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { URL_BASE } from "../constants/url";
+import useForm from "../hooks/useForm";
 import { BodyCard, Form, TitleText } from "../styled/createTripStyled";
 
 
 export default function CreateTripPage() {
+    const { form, onChange, cleanFields } = useForm({
+        name: "",
+        age: 0,
+        date: "",
+        description: "",
+        durationInDays: 0,
+        planet: ""
+    })
     const [createTrip, setCreateTrip] = useState({})
     const history = useHistory()
     const goBack = () => {
@@ -23,20 +32,24 @@ export default function CreateTripPage() {
         }
         const token = localStorage.getItem('token')
         axios.post(`${URL_BASE}/trips`, body, {
-            headers:{
+            headers: {
                 auth: token
             }
-        }).then((response) =>{
+        }).then((response) => {
             setCreateTrip(response.data)
-        }).catch((error)=>{
+        }).catch((error) => {
             console.log(error)
         })
-    } 
+    }
     useEffect(() => {
         creatTrip();
     }, []);
 
-    
+    const register = (event) => {
+        event.preventDefault()
+
+    }
+
 
 
     return (
@@ -46,7 +59,7 @@ export default function CreateTripPage() {
                 <h1>Criar Viagem</h1>
             </TitleText>
 
-            <Form>
+            <Form onSubmit={register}>
 
                 <input
                     placeholder="Nome"

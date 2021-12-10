@@ -34,9 +34,12 @@ export const CardTrip = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 460px;
+    font-size: 20px;
+    color: slategray;
+    font-weight: bolder;
     :hover{
-    background-color: lightskyblue;
-    color: white;
+    background-color: lightgray;
+    color: gray;
 }
 `
 export const TextAdm = styled.div`

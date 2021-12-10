@@ -5,9 +5,11 @@ import { BodyAdm, ButtonsAdm, CardTrip, MainAdm, TextAdm } from "../styled/admin
 import DeleteIcon from '@material-ui/icons/Delete';
 import axios from "axios";
 import { URL_BASE } from "../constants/url";
+import useProtectedPage from "../hooks/useProtectedPage";
 
 export default function AdminHomePage() {
     const [trips, setTrips] = useState([])
+    useProtectedPage()
     const history = useHistory()
     const goToHome = () => {
         history.push("/")
@@ -15,9 +17,25 @@ export default function AdminHomePage() {
     const goToCreate = () => {
         history.push("/admin/trips/create")
     }
-    const goToDetails = () => {
-        history.push("/admin/trips/:id")
+    const goToDetails = (id) => {
+        history.push(`/admin/trips/${id}`)
     }
+
+
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        axios.get(`${URL_BASE}/trip/list`, {
+            headers: {
+                auth: token
+            }
+        })
+            .then((res) => {
+
+            }).catch((error) => {
+
+            })
+    }, [])
+
 
 
     const getTrips = () => {
@@ -68,7 +86,7 @@ export default function AdminHomePage() {
                 </ButtonsAdm>
 
                 {trips.map(trip => {
-                    return <CardTrip onClick={goToDetails}>
+                    return <CardTrip onClick={() => goToDetails(trip.id)}>
                         {trip.name}
                         <Button><DeleteIcon /></Button>
                     </CardTrip>

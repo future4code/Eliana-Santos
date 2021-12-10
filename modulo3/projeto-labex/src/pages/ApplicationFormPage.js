@@ -3,11 +3,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { BodyApplication, ButtonsCreate, CardCreate, Form, TitleText } from "../styled/applicationFormStyled";
-
+import useRequestData from '../hooks/useRequestData'
+import { URL_BASE } from '../constants/url'
 
 export default function ApplicationFormPage() {
     const [countries, setCoutries] = useState([])
     const history = useHistory()
+    const trips = useRequestData(`${URL_BASE}/trips`, []).trips || []
+
     const goBack = () => {
         history.goBack("/trips/list")
     }
@@ -24,6 +27,7 @@ export default function ApplicationFormPage() {
     useEffect(() => {
         getCountries();
     }, []);
+    
 
     return (
         <BodyApplication>
@@ -34,34 +38,38 @@ export default function ApplicationFormPage() {
                 <Form>
                     <select>
                         <option disabled selected>Escolha uma viagem</option>
+                        {
+                            trips.map(trip => {
+                                return <option value={trip.id}>{trip.name}</option>
+                            })
+                        }
                     </select>
                     <input
                         placeholder="Nome"
                         name="name"
                         title="O nome da viagem deve ter no mínimo 5 caracteres"
-                        pattern="^.{5,}$" />
+                        pattern="^.{5,}" />
 
                     <input
                         placeholder="Idade"
                         type="number"
                         name="age"
-                        requerid
+                        required
                         min="18"
                     />
 
                     <input
                         placeholder="Texto de Candidatura"
                         name="applicationText"
-                        requerid
-                        pattern="^.{30,}$"
+                        required
+                        pattern="^.{30,}"
                         title="O nome deve ter no mínimo 30 caracteres"
                     />
-
                     <input
                         placeholder="Profissão"
                         name="profession"
-                        requerid
-                        pattern="^.{10,}$"
+                        required
+                        pattern="^.{10,}"
                         title="O nome deve ter no mínimo 10 caracteres"
                     />
                     <select placeholder="País" name="coutry" requerid>

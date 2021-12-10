@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 export const BodyDetail = styled.div`
-    margin: 30px 0px;
-    padding: 0px;
     width: 100vw;
     min-height: 100vh;
     display: flex;
@@ -10,6 +8,12 @@ export const BodyDetail = styled.div`
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    h1{
+    color: slategray;
+    font-weight: bolder;
+    }
 `
 export const CardDetail = styled.div`
     display: flex;
@@ -22,5 +26,11 @@ export const MainDetail = styled.div`
     margin: 10px 0px;
     max-width: 500px;
     width: 100%;
+    p{
+        font-size: 20px;
+        color: slategray;
+        font-weight: bolder;
+        
+    }
 
 `

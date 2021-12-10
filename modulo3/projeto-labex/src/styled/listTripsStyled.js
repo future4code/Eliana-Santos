@@ -35,7 +35,7 @@ p{
     gap:5px;
     font-size: 20px;
     color: slategray;
-    font-weight: bold;
+    font-weight: bolder;
 }
 `
     export const ButtonsTrips = styled.div`

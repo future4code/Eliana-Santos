@@ -24,6 +24,7 @@ input{
     text-align: center;
     font-size: 20px;
     margin-bottom: 20px;
+    
     `
     export const ButtonsLogin = styled.div`
     display:flex;

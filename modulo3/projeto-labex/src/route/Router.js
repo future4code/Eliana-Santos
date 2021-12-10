@@ -37,7 +37,7 @@ export const Router = () => {
   
   
           <Route exact path={"/admin/trips/:id"}>
-            <TripsDetailsPage />
+            <TripsDetailsPage  />
           </Route>
           
           <Route>

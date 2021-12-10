@@ -2,12 +2,10 @@ import React from "react";
 import { createGlobalStyle } from 'styled-components';
 import { Router } from "./route/Router";
 
-
 const GlobalStyle = createGlobalStyle`
 *{
   margin: 0;
   padding: 0;
- 
 }
 body {
   margin: 0;
@@ -17,7 +15,6 @@ body {
   
 }
 `
-
 function App() {
   return (
     <div>
@@ -27,5 +24,4 @@ function App() {
 
   )
 }
-
 export default App;
