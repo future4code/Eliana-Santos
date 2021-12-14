@@ -1,8 +1,13 @@
-/* import React from "react";
+import React from "react";
+import useProtectedPage from "../../hooks/useProtectedPage";
 
 const PostPage = () =>{
-   
-    return
+    useProtectedPage()
+    return(
+        <div>
+
+        </div>
+    )
 
 }
-export default PostPage; */
+export default PostPage; 
