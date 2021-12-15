@@ -6,20 +6,21 @@ import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import { Divider } from '@mui/material'
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
+
 const PostCard = (props) => {
 
   return (
     <RecipeCardContainer onClick={props.onClick}>
       <CardActionArea>
         <PostHeader>
-          <p>{props.title}</p>
+          <p>{props.data.username}</p>
         </PostHeader>
 
         <Divider />
 
         <RecipeCardContent>
           <Typography align={'center'}>
-            {props.body}
+            <p>{props.data.body}</p>
           </Typography>
         </RecipeCardContent>
 

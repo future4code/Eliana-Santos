@@ -1,22 +1,27 @@
 import React from "react";
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import FeedPage from "../pages/FeedPage/FeedPage";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import PostPage from "../pages/PostPage/PostPage";
 import SignUpPage from "../pages/SignUpPage/SingUpPage";
 
-const Router = ({setRightButtonText}) => {
+const Router = ({ setRightButtonText }) => {
 
     return (
 
         <Switch>
 
+            <Route exact path='/' >
+                <Redirect to='/login'/>
+            </Route>
+
+
             <Route exact path='/login' >
-                <LoginPage  setRightButtonText={setRightButtonText} />
+                <LoginPage setRightButtonText={setRightButtonText} />
             </Route>
 
             <Route exact path='/signup'>
-                <SignUpPage setRightButtonText={setRightButtonText}  />
+                <SignUpPage setRightButtonText={setRightButtonText} />
             </Route>
 
             <Route exact path='/feed/:id'>
