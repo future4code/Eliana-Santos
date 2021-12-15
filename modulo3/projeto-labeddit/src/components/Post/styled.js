@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import { style } from '@mui/system'
 import { TextField } from '@mui/material'
 
-export const RecipeCardContainer = styled(Card)`
+export const CardContainer = styled(Card)`
   width: 80%;
   margin: 10px;
   border-radius: 10px;
@@ -12,7 +11,7 @@ export const RecipeCardContainer = styled(Card)`
   
 `
 
-export const RecipeCardContent = styled(CardContent)`
+export const CardText = styled(CardContent)`
     display: flex;
     align-items: center;
     justify-content: center;

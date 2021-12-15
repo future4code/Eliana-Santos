@@ -1,16 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CardActionArea from '@mui/material/CardActionArea'
 import Typography from '@mui/material/Typography'
-import { RecipeCardContainer, RecipeCardContent, PostHeader, PostFooter, ArrowIcon } from './styled'
+import { CardContainer, CardText, PostHeader, PostFooter, ArrowIcon } from './styled'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
-import { Divider } from '@mui/material'
+import { Button, Divider } from '@mui/material'
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 
 const PostCard = (props) => {
+  const [curtido, setCurtido] = useState(false)
+  const [numeroCurtidas, setCurtidas] = useState(0)
+
+  const onClickCurtida = () => {
+    if (curtido) {
+      setCurtido(!curtido)
+      setCurtidas(numeroCurtidas - 1)
+    } else {
+      setCurtido(!curtido)
+      setCurtidas(numeroCurtidas + 1)
+
+    }
+  };
+
+
 
   return (
-    <RecipeCardContainer onClick={props.onClick}>
+    <CardContainer onClick={props.onClick} >
       <CardActionArea>
         <PostHeader>
           <p>{props.data.username}</p>
@@ -18,35 +33,40 @@ const PostCard = (props) => {
 
         <Divider />
 
-        <RecipeCardContent>
+        <CardText>
           <Typography align={'center'}>
             <p>{props.data.body}</p>
           </Typography>
-        </RecipeCardContent>
+        </CardText>
 
         <Divider />
 
         <PostFooter>
           <ArrowIcon>
-            <ArrowCircleDownIcon
-            /*           icone={iconeCurtida}
-                      onClickIcone={onClickCurtida}
-                    valorContador={numeroCurtidas} */
-            />
-            <p>0</p>
+            <Button onClick={onClickCurtida}
+              valorContador={numeroCurtidas}>
+              <ArrowCircleDownIcon />
+            </Button>
+            {numeroCurtidas ? numeroCurtidas : -1}
+            <Button onClick={onClickCurtida}
+              valorContador={numeroCurtidas}>
+              <ArrowCircleUpIcon
+              />
 
-            <ArrowCircleUpIcon />
+            </Button>
 
           </ArrowIcon>
+          <Button>
 
-          <ModeCommentOutlinedIcon
-          /* icone={iconeComentario}
-          onClickIcone={onClickComentario}
-        valorContador={numeroComentarios} */
-          />
+            <ModeCommentOutlinedIcon
+            /* icone={iconeComentario}
+            onClickIcone={onClickComentario}
+          valorContador={numeroComentarios} */
+            />
+          </Button>
         </PostFooter>
       </CardActionArea>
-    </RecipeCardContainer>
+    </CardContainer>
   )
 }
 

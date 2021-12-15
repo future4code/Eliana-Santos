@@ -1,70 +1,9 @@
-# Getting Started with Create React App
+### Projeto LabEddit 
+[WIREFRAME](https://viewer.diagrams.net/?tags=%7B%7D&highlight=FF4403&edit=_blank&layers=1&nav=1#R7Zzdd6o4EMD%2Fln3wsR7CR4BHP2iv57TaI3b33r5RjcoWiYuxtfvXb4CAQqJ4K6B260NLRhLgl5nJzIS2oXQWm7vAWc4f8AR5DVmabBpKtyHTj6HSX6HkI5ZAA8aCWeBOYhHYCmz3X8SEEpOu3QlaZU4kGHvEXWaFY%2Bz7aEwyMicI8Hv2tCn2slddOjPECeyx4%2FHSv9wJmcdSQ9a38h%2FInc2TKwNoxt8snORk9iSruTPB7zsixWoonQBjEh8tNh3khfASLnG%2F2z3fpjcWIJ8c02HYWzyun2eT18EvcjfUXkb9bveGTcab463ZA7ObJR8Jgfe5S5C9dMZh%2B53OckNpz8nCoy1AD53VMuY%2BdTeIXqq9IgF%2BRR3s4SAaQJlOVVVS6Df8HbOHeEMBQZsdEXuCO4QXiAQf9BT27U2Kk%2BmTarL2%2B3Z2FIPJ5jszkwodphGzdPAtNHrAuP0GQ6AWQwzw2p%2BEeLoSBVGAdOp6nojfhZJVKwOrcWDvB3cDDi4diroDVAx2P8B9yOsCC%2Bvkqpoirr3%2BFWotLEYLpDrZ6tKX0Fldb2oZsprOkzU1HqyuVQUWcGCth1bv%2FoDSglPolkERKFn11CUeoixST6Uy9ZQ5irbV%2F9G6KopqjRQ3zz2zDf2Xmy7p%2F2M8Bk%2FtR3TDqyLzn9BZhGj8l9UyffgKQykOogD1Xq5yErekyslRVSUocp2wIqy8bp7HdZ6EVYEwgxXA%2BhynkKpyDr95GsKcZip1uk0hQz7Cr8Frlsvw7E4zGXjXkic012ZNHJA5nmHf8ayttJ2NQLfn3GO8ZBj%2FRoR8sMKBsyY4Czm%2BZnihwyDpfeF1MEYHHgCKgQfIc4j7lh1fRI91fcQuvXI6UaaUC2H13AQQJ5ghwnrl5iC9jc9PC18BuG09W0MqKsoJjlHxpOYh1HfdakFLqtgdq3Iukk1z2N0cIUmJdi1BrsoSdA75AcplZl4p8LOGDxVRNb5C9JCvFQioVlUqEEe66pU7bbCH94le%2Bwac12sDPgXpNzpKw1CoxkuPA9t%2B6tGDzqA%2FaoW%2FW92WPRpaN7ZVpUO%2FjT68hVAhtNplBTY58kAQ2ACBjVTmzpMyZb02gjYu%2Bblz%2FCscqilrrNndsKGjxkfS8OkDp73CRtxNS5rbblEr6fc5gzxYgYgNpPDEEyz3tEn94nERdWBqLjDSRcXTWgMjwEdG%2FcHDqS6ryjSLK05BQbpfb56lwWtfss1KlmyQn6qtoGDRbgWB87Fz2jI8YXXgSnJeKUxld7ziDumtbRUhvolygwh%2BH4hTnYsqWer5XFngsequWZ5t87fMZO4EsFVxvZS93xO5wkKuteZz8hG1hwsz%2BSxBUzm%2FyfOVhqs0%2BU%2BDrYqr8LWEqzN5IBdy1YwasSp8qYCVA8JSwa3VGw2iSsED%2FWk%2FdSzbHvxxmj4fzb3MugBNw%2FMlGciBB7LA2cLKyMscecvuDK0%2Fw5KMbT01okrNqHDbuKR0p0L4eq5sqQl2mxRdwF6rjD2%2F7Rmybg1rolumSzFymq2Z6ds5O3xFr%2BZVlqlrvGqPrJ%2BRJ%2BkOUr3OkY7hJa%2FRZuogoVeZOKt56mIcz5359HhMGaGAq54swyEXm1n40nFzgcev62VzjH3iuD4KVs0giEKUdsDyVenw1NGOO3IYfZicDQB02g4n0R07XovdGwlzY6HGcMoQfsJ7oKe5%2FmwUJdXUPZRjfEYu25R55ZBFxgfyRevy1IO3vif7KSpQg2GPX9LPqxn5ed6nD%2Fs1KLknD03Jdprvo1bXyCmEj%2F2o5IJW9Jq7z3yULhwwR15DijQgiU3qqalqolw5v%2FZJ36JIJMVBmdUfpWZjX7DdJP7y9%2BymyHcyUynfMNgwUlPP1sDBcZ4zSVVO3UWUpWyykOZAyRh4Ol2hSnYQNb7AwqlXsuDdOy%2FIe8Qrl7g4VKEXTAhe7F0RDyjWi7Nyx805cgJSXTT1GU0wmwqQFFU1ZF0zoJxLjoEKm%2BH%2BCDR1qKsqMEQrbNPMDKEIFlyzyfpDSYUaAFWVKDS%2BzPMdnp0rPINGRpdMwftHdYdnfAXrOzyrMjzTryI8E20HnTsMulTRd3hWSni2xzC%2Bw7OkKPm%2FCc8Oa8LXCs%2Bg4G%2FZcoXhnG%2Fh5v4aasLZF4SB6C9h6i0KQ75qWejDrwF0zknKJr%2FzIQRd2Z4T5Ot%2FXwJ0TqNl4TYHqFOj%2BZJaDPoqNzr0ZH1NAQte7lWgAPAnNjpoc%2FvPN%2BJle%2FsvTBTrPw%3D%3D)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Link Surge 
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Imagens
+![image](https://user-images.githubusercontent.com/89935565/145908394-35c529d8-e272-4002-9236-ce991909cf3f.png)
+![image](https://user-images.githubusercontent.com/89935565/145908455-8404d1d6-8376-4124-b18c-d9de88d6e71f.png)

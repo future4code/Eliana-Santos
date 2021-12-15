@@ -9,7 +9,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 
 const SignUpForm = ({ setRightButtonText }) => {
   const history = useHistory()
-  const [form, onChange, clear] = useForm({ name: '', email: '', password: '' })
+  const [form, onChange, clear] = useForm({ username: "", email: "", password: ""})
   const [isLoading, setIsLoading] = useState(false)
 
   const onSubmitForm = (event) => {
@@ -17,13 +17,14 @@ const SignUpForm = ({ setRightButtonText }) => {
     signUp(form, clear, history, setRightButtonText, setIsLoading)
   }
 
+
   return (
     <form onSubmit={onSubmitForm}>
       <SignUpFormContainer>
         <InputsContainer>
           <TextField
-            value={form.name}
-            name={'name'}
+            value={form.username}
+            name={'username'}
             onChange={onChange}
             label={'Nome'}
             variant={'outlined'}
@@ -53,6 +54,9 @@ const SignUpForm = ({ setRightButtonText }) => {
             fullWidth
             required
             margin={'normal'}
+            pattern="^.{8,}"
+            max={10}
+            title="O nome deve ter no mínimo 10 caracteres"
           />
         </InputsContainer>
         <Button

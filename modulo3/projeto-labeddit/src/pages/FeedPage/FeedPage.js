@@ -7,15 +7,16 @@ import useRequest from '../../hooks/useRequest'
 import { goToPost } from "../../router/coordinator";
 import PostCard from "../../components/Post/PostCard";
 import PostCreate from "../../components/Post/PostCreate";
+import Loading from "../../components/Loading/Loading";
 
 const FeedPage = () => {
   useProtectedPage()
   const history = useHistory()
   const posts = useRequest([], `${BASE_URL}/posts`)
 
-  const onClickCard = (id) => {
+   const onClickCard = (id) => {
     goToPost(history, id)
-  }
+  } 
 
   const feedCards = posts.map((post) => {
     return (
@@ -30,7 +31,7 @@ const FeedPage = () => {
   return (
     <PostListContainer>
       <PostCreate />
-      {feedCards/* .length > 0 ? recipeCards : <Loading /> */}
+      {feedCards.length > 0 ? feedCards : <Loading /> }
 
     </PostListContainer>
   )
