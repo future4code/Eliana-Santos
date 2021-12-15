@@ -29,6 +29,8 @@ const PostCreate = () => {
         createPost();
     }
 
+
+
     return (
         <PostCreateCard>
             <form onSubmit={onSubmitForm}>

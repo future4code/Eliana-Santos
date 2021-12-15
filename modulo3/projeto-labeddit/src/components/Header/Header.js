@@ -24,13 +24,16 @@ const Header = ({ rightButtonText, setRightButtonText }) => {
             goToLogin(history)
         }
     }
+    const goToHome = () => {
+        history.push("/")
+      } 
 
     return (
 
         <AppBar position="static">
             <ToobarStyled>
 
-                <Button color="inherit">LabEddit</Button>
+                <Button onClick={goToHome} color="inherit">LabEddit</Button>
                 <Button onClick={rightButtonAction} color="inherit">{rightButtonText}</Button>
             </ToobarStyled>
         </AppBar>
