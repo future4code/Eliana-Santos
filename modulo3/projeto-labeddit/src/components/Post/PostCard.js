@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import CardActionArea from '@mui/material/CardActionArea'
 import Typography from '@mui/material/Typography'
 import { CardContainer, CardText, PostHeader, PostFooter, ArrowIcon } from './styled'
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
@@ -8,6 +7,7 @@ import { Button, Divider } from '@mui/material'
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 import { goToPost } from '../../router/coordinator';
 import { useHistory } from 'react-router-dom';
+
 
 const PostCard = (props) => {
   const [curtido, setCurtido] = useState(false)
@@ -24,13 +24,24 @@ const PostCard = (props) => {
 
     }
   };
-  const onClickCard = (id) => {
+  const onClickComment = (id) => {
     goToPost(history, id)
   } 
+/*   
+  const votePost = () =>{
+    axios.put(`${BASE_URL}/posts//votes`,{
+      headers:{
+        Authorization: localStorage.getItem('token')
+      }
+    }).then((res) =>{
 
+    }).catch((error)=>{
+
+    })
+  } */
   return (
-    <CardContainer onClick={props.onClick} >
-      <CardActionArea>
+    <CardContainer >
+     
         <PostHeader>
           <p>{props.data.username}</p>
         </PostHeader>
@@ -64,11 +75,11 @@ const PostCard = (props) => {
 
             <ModeCommentOutlinedIcon
            
-            onClick={() => onClickCard()}
+            onClick={() => onClickComment(props.data.id)}
+            
             />
           </Button>
         </PostFooter>
-      </CardActionArea>
     </CardContainer>
   )
 }

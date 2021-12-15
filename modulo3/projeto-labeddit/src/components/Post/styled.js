@@ -4,11 +4,11 @@ import CardContent from '@mui/material/CardContent'
 import { TextField } from '@mui/material'
 
 export const CardContainer = styled(Card)`
-  width: 80%;
-  margin: 10px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px 0 #FF4403;
-  
+    width: 80%;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px 0 #FF4403;
+   
 `
 
 export const CardText = styled(CardContent)`
@@ -38,14 +38,14 @@ export const ArrowIcon = styled.div`
     gap: 10px;
 `
 export const PostCreateCard = styled(Card)`
-box-shadow: 0 2px 5px 0 #FF4403;
+    box-shadow: 0 2px 5px 0 #FF4403;
 
 `
 export const CreateText = styled(TextField)`
-  width: 100%;
+    width: 100%;
 `
 export const Footer = styled.div`
- height: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     padding: 0 10px;

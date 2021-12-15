@@ -29,33 +29,32 @@ const PostCreate = () => {
         createPost();
     }
 
-
-
     return (
         <PostCreateCard>
-            <form onSubmit={onSubmitForm}>
+            
+                <form onSubmit={onSubmitForm}>
 
-                <CreateText
-                    name='body'
-                    fullWidth 
-                    multiline
-                    rows="5"
-                    size='small'
-                    required
-                    type='text'
-                />
-
-                <Footer>
-                    <Button
-                        variant='text'
+                    <CreateText
+                        name='body'
                         fullWidth
-                        value={Post}
-                        onClick={() => createPost()}
-                        onChange={onChange}>
-                        Postar
-                    </Button>
-                </Footer>
-            </form>
+                        multiline
+                        rows="5"
+                        size='small'
+                        required
+                        type='text'
+                    />
+
+                    <Footer>
+                        <Button
+                            variant='text'
+                            fullWidth
+                            value={Post}
+                            onClick={() => createPost()}
+                            onChange={onChange}>
+                            Postar
+                        </Button>
+                    </Footer>
+                </form>
 
         </PostCreateCard>
     )

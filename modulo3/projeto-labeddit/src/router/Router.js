@@ -8,13 +8,10 @@ import SignUpPage from "../pages/SignUpPage/SingUpPage";
 const Router = ({ setRightButtonText }) => {
 
     return (
-
         <Switch>
-
             <Route exact path='/' >
-                <Redirect to='/login'/>
+                <Redirect to={localStorage.getItem('token') ? '/feed' : '/login'} />
             </Route>
-
 
             <Route exact path='/login' >
                 <LoginPage setRightButtonText={setRightButtonText} />
@@ -24,7 +21,7 @@ const Router = ({ setRightButtonText }) => {
                 <SignUpPage setRightButtonText={setRightButtonText} />
             </Route>
 
-            <Route exact path='/feed/:id'>
+            <Route exact path='/feed'>
                 <FeedPage />
             </Route>
 

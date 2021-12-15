@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import { BASE_URL } from "../../constants/url";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import { PostListContainer, } from "./styled";
@@ -27,7 +26,6 @@ const FeedPage = () => {
     <PostListContainer>
       <PostCreate />
       {feedCards.length > 0 ? feedCards : <Loading /> }
-
     </PostListContainer>
   )
 }
