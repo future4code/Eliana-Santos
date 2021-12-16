@@ -7,79 +7,102 @@ import { Button, Divider } from '@mui/material'
 import ModeCommentOutlinedIcon from '@mui/icons-material/ModeCommentOutlined';
 import { goToPost } from '../../router/coordinator';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import { BASE_URL } from '../../constants/url';
+
+
+/* dy: "Testando"
+commentCount: "2"
+createdAt: "2021-12-16T19:41:26.552Z"
+id: "58d1f3a3-7b68-4835-891e-5f4aa27bf288"
+title: "Teste número 4"
+userId: "1ac8bc59-fc8c-4e23-bc19-9852272537b6"
+userVote: null
+username: "Marcelo"
+voteSum: "3" */
 
 
 const PostCard = (props) => {
-  const [curtido, setCurtido] = useState(false)
-  const [numeroCurtidas, setCurtidas] = useState(0)
-  const history = useHistory()
+  const history = useHistory();
 
-  const onClickCurtida = () => {
-    if (curtido) {
-      setCurtido(!curtido)
-      setCurtidas(numeroCurtidas - 1)
-    } else {
-      setCurtido(!curtido)
-      setCurtidas(numeroCurtidas + 1)
+  const [post, setPost] = useState(props.data)
 
-    }
-  };
   const onClickComment = (id) => {
     goToPost(history, id)
-  } 
-/*   
-  const votePost = () =>{
-    axios.put(`${BASE_URL}/posts//votes`,{
-      headers:{
+  }
+
+  const setVote = (like) => {
+
+    const body = {
+      direction: like ? 1 : -1
+    }
+
+    axios.post(`${BASE_URL}/posts/${props.data.id}/votes`, body, {
+      headers: {
         Authorization: localStorage.getItem('token')
       }
-    }).then((res) =>{
-
-    }).catch((error)=>{
-
+    }).then((res) => {
+      setPost({
+        ...post,
+        voteSum: like ? Number(post.voteSum += 1) : Number(post.voteSum -= 1)
+      })
+    }).catch((error) => {
+      alert(error.response.message)
     })
-  } */
+  }
+
+  /*   const votePost = () => {
+      const body = {
+        direction: value
+      }
+      axios.put(`${BASE_URL}/posts/${props.data.id}/votes`, body, {
+        headers: {
+          Authorization: localStorage.getItem('token')
+        }
+      }).then((res) => {
+        console.log(res)
+        setvalue(res.data)
+      }).catch((error) => {
+        alert(error.response.message)
+      })
+    } */
+
   return (
     <CardContainer >
-     
-        <PostHeader>
-          <p>{props.data.username}</p>
-        </PostHeader>
 
-        <Divider />
+      <PostHeader>
+        <p>{post.username}</p>
+        <p>{post.title}</p>
+      </PostHeader>
 
-        <CardText>
-          <Typography align={'center'}>
-            <p>{props.data.body}</p>
-          </Typography>
-        </CardText>
+      <Divider />
 
-        <Divider />
+      <CardText>
+        <Typography align={'center'}>
+          <p>{post.body}</p>
+        </Typography>
+      </CardText>
 
-        <PostFooter>
-          <ArrowIcon>
-            <Button onClick={onClickCurtida}
-              valorContador={numeroCurtidas}>
-              <ArrowCircleDownIcon />
-            </Button>
-            {numeroCurtidas ? numeroCurtidas : -1}
-            <Button onClick={onClickCurtida}
-              valorContador={numeroCurtidas}>
-              <ArrowCircleUpIcon
-              />
+      <Divider />
 
-            </Button>
-
-          </ArrowIcon>
-          <Button>
-
-            <ModeCommentOutlinedIcon
-           
-            onClick={() => onClickComment(props.data.id)}
-            
-            />
+      <PostFooter>
+        <ArrowIcon>
+          <Button onClick={() => setVote(false)} >
+            <ArrowCircleDownIcon />
           </Button>
-        </PostFooter>
+
+          <p>{post.voteSum}</p>
+
+          <Button onClick={() => setVote(true)} >
+            <ArrowCircleUpIcon />
+          </Button>
+
+        </ArrowIcon>
+        <Button>
+
+          <ModeCommentOutlinedIcon onClick={() => onClickComment(post.id)} />
+        </Button>
+      </PostFooter>
     </CardContainer>
   )
 }

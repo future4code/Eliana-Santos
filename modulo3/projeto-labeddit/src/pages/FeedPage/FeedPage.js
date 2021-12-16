@@ -12,7 +12,6 @@ const FeedPage = () => {
  
   const posts = useRequest([], `${BASE_URL}/posts`)
 
-
   const feedCards = posts.map((post) => {
     return (
       <PostCard
@@ -21,6 +20,8 @@ const FeedPage = () => {
       />
     )
   })
+
+
 
   return (
     <PostListContainer>

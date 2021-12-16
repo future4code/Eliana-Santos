@@ -22,6 +22,9 @@ export const PostHeader = styled.div`
     display: flex;
     align-items: center;
     padding-left: 10px;
+    justify-content: space-between;
+    padding: 10px;
+
 `
 export const PostFooter = styled.div`
     height: 40px;
