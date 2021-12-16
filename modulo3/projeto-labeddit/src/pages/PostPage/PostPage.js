@@ -7,17 +7,17 @@ import useProtectedPage from "../../hooks/useProtectedPage";
 import useRequest from "../../hooks/useRequest";
 import { PostListContainer } from "../FeedPage/styled";
 
-const PostPage = (props) => {
+const PostPage = () => {
     useProtectedPage()
     const params = useParams()
     const posts = useRequest([], `${BASE_URL}/posts/${params.id}/comments`)
    
 
-    const cardPost = posts.map((data) => {
+    const cardPost = posts.map((post) => {
     return (
       <PostCard
-        key={posts.post_id}
-        data={posts.id}
+        key={post.postId}
+        data={post}
       />
     )
   }) 
@@ -26,8 +26,7 @@ const PostPage = (props) => {
         <div>
             <PostListContainer>
                {cardPost}
-                <PostComments
-                />
+                <PostComments />
             </PostListContainer> 
         </div>
     )
