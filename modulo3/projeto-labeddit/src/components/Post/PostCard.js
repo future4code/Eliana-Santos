@@ -11,17 +11,6 @@ import axios from 'axios';
 import { BASE_URL } from '../../constants/url';
 
 
-/* dy: "Testando"
-commentCount: "2"
-createdAt: "2021-12-16T19:41:26.552Z"
-id: "58d1f3a3-7b68-4835-891e-5f4aa27bf288"
-title: "Teste número 4"
-userId: "1ac8bc59-fc8c-4e23-bc19-9852272537b6"
-userVote: null
-username: "Marcelo"
-voteSum: "3" */
-
-
 const PostCard = (props) => {
   const history = useHistory();
 
