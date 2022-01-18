@@ -1,0 +1,11 @@
+{
+  "name": "exercicio-3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "exercicio3.js",
+  "scripts": {
+    "start": "node ./exercicio3.js"
+  },
+  "author": "eliana cristina",
+  "license": "ISC"
+}
