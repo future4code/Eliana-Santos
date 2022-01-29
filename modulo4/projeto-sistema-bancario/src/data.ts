@@ -1,22 +1,23 @@
-enum TypeOfTransaction {
+export enum TypeOfTransaction {
     PAGAMENTOCREDITO = "PAGAMENTO CREDITO",
     PAGAMENTODEBITO = "PAGAMENTO DEBITO",
     TRANSFERENCIABANCARIA = "TRANSFERENCIA BANCARIA",
-    PIX = "PIX"
+    PIX = "PIX",
+    DEPOSITO = "DEPOSITO"
 }
 
-type Account = {
+export type Account = {
     id: number,
     balance: number,
-    bankStatement: BankStatement
+    bankStatement: BankStatement[]
 }
 
-type BankStatement = {
+export type BankStatement = {
     value: number
     transactionDate: string,
     description: TypeOfTransaction
 }
-type User = {
+export type User = {
     id: number;
     name: string;
     cpf: string;
@@ -29,15 +30,17 @@ export let users: User[] = [
         id: 1,
         name: "Alice",
         cpf: "102.555.555-88",
-        birthDate: "15/15/2004",
+        birthDate: "15/15/2003",
         account: {
             id: 1,
             balance: 800,
-            bankStatement: {
-                value: 100,
-                transactionDate: "15/02/2021",
-                description: TypeOfTransaction.PAGAMENTOCREDITO
-            }
+            bankStatement: [
+                {
+                    value: 100,
+                    transactionDate: "15/02/2021",
+                    description: TypeOfTransaction.PAGAMENTOCREDITO
+                }
+            ]
         }
 
     },
@@ -49,11 +52,13 @@ export let users: User[] = [
         account: {
             id: 2,
             balance: 500,
-            bankStatement: {
-                value: 20,
-                transactionDate: "14/09/2021",
-                description: TypeOfTransaction.PAGAMENTODEBITO
-            }
+            bankStatement: [
+                {
+                    value: 20,
+                    transactionDate: "14/09/2021",
+                    description: TypeOfTransaction.PAGAMENTODEBITO
+                }
+            ]
         }
     },
     {
@@ -64,11 +69,13 @@ export let users: User[] = [
         account: {
             id: 3,
             balance: 200,
-            bankStatement: {
-                value: 50,
-                transactionDate: "07/10/2021",
-                description: TypeOfTransaction.PIX
-            }
+            bankStatement: [
+                {
+                    value: 50,
+                    transactionDate: "07/10/2021",
+                    description: TypeOfTransaction.PIX
+                }
+            ]
         }
     }
 ];

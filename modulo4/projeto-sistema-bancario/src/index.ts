@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import { users } from "./data";
+import { TypeOfTransaction, users } from "./data";
 import { calcAge, convertToDate } from "./util";
 
 const app = express();
@@ -17,6 +17,30 @@ app.get("/users", (req: Request, res: Response) => {
 
 });
 
+app.get("/bankStatement", (req: Request, res: Response) => {
+  let errorCode: number = 400;
+  try {
+    const cpf = req.query.cpf as string
+    const user = users.find((user) => user.cpf === cpf);
+
+    if (!user) {
+      errorCode = 404;
+      throw new Error("CPF não encontrado")
+    }
+
+    const name = req.query.name as string;
+
+    if (user.name !== name) {
+      errorCode = 404;
+      throw new Error("Nome não encontrado")
+    }
+
+    res.status(200).send(user.account.bankStatement);
+  } catch (error: any) {
+    res.status(errorCode).send({ message: error.message });
+  }
+});
+
 app.post('/users', (req: Request, res: Response) => {
   let errorCode: number = 400
   try {
@@ -26,115 +50,86 @@ app.post('/users', (req: Request, res: Response) => {
       errorCode = 422;
       throw new Error("Campos não preenchidos corretamente");
     }
-console.log(calcAge(convertToDate(birthDate)))
-    if (calcAge(convertToDate(birthDate)) >= 18 ) {
+
+    if (calcAge(convertToDate(birthDate)) < 18) {
       errorCode = 422
-      throw new Error("A idade não é permitida. Usuário tem que possui idade igual ou maior que 18 anos");
+      throw new Error("A idade não é permitida. Usuário tem que ser maior de 18 anos");
     }
+
+    const isCpf = users.find(user => user.cpf === req.body.cpf);
+    if (isCpf) {
+      throw new Error("CPF já cadastrado")
+    }
+
+    const id = Date.now();
 
     if (req.body) {
       users.push({
-        id: Date.now().toString(),
-        ...req.body
+        id: id,
+        name: req.body.name,
+        cpf: req.body.cpf,
+        birthDate: req.body.bithDate,
+        account: {
+          id: id,
+          balance: 0,
+          bankStatement: []
+        }
       })
       res.send(users).status(201)
     } else {
-      throw new Error("Informe os dados do produto corretamente")
+      throw new Error("Informe os dados corretamente")
     }
   } catch (error: any) {
     res.status(errorCode).send({ message: error.message })
   }
 })
 
-
-
-// app.get("/users/:id", (req: Request, res: Response) => {
-//   let errorCode: number = 400;
-//   try {
-//     const id: number = Number(req.params.id);
-
-//     if (isNaN(id)) {
-//       errorCode = 422; 
-//       throw new Error("Invalid value for id. Please send a number.");
-//     }
-
-//     const user = users.find((user) => {
-//       return user.id === id;
-//     });
-
-//     if (!user) {
-//       errorCode = 404;
-//       throw new Error("User not found.");
-//     }
-
-//     res.status(200).send(user);
-//   } catch (error: any) {
-//     res.status(errorCode).send({ message: error.message });
-//   }
-// });
-
-// app.post("/users", (req: Request, res: Response) => {
-//   let errorCode: number = 400;
-//   try {
-//     const { id, name, email, type, age } = req.body;
-
-//     if (!id || !name || !email || !type || !age) {
-//       errorCode = 422;
-//       throw new Error("Please check the fields!");
-//     }
-
-//     const newUser: user = {
-//       id,
-//       name,
-//       email,
-//       type,
-//       age,
-//     };
-
-//     users.push(newUser);
-
-//     res.status(201).send({ message: "User created successefully" });
-//   } catch (error: any) {
-//     res.status(errorCode).send({ messagem: error.message });
-//   }
-// });
-
-// app.patch("/users", (req: Request, res: Response) => {
-//   let errorCode: number = 400;
-//   try {
-//     const { id, name, email, type, age } = req.body;
-
-//     if (!id || !name || !email || !type || !age) {
-//       errorCode = 422;
-//       throw new Error("Please check the fields!");
-//     }
-
-//     const newUser: user = {
-//       id,
-//       name,
-//       email,
-//       type,
-//       age,
-//     };
-
-//     users.push(newUser);
-
-//     res.status(201).send({ message: "User updated successefully" });
-//   } catch (error: any) {
-//     res.status(errorCode).send({ messagem: error.message });
-//   }
-// });
-
-app.post("/users/signup", (req: Request, res: Response) => {
-
+app.post('/deposit', (req: Request, res: Response) => {
+  let errorCode: number = 400
   try {
+    const { cpf, name, value } = req.body;
 
-    const { email, password } = req.body
+    if (!cpf || !name || !value) {
+      errorCode = 422;
+      throw new Error("Campos não preenchidos corretamente");
+    }
+
+    const user = users.find((user) => user.cpf === cpf);
+
+    if (!user) {
+      errorCode = 404;
+      throw new Error("CPF não encontrado")
+    }
+
+    if (user.name !== name) {
+      errorCode = 404;
+      throw new Error("Nome não encontrado")
+    }
 
 
-    // implementar cadastro de usuário
-    res.status(200).send({ email, password })
+    if (Number(value) <= 0) {
+      errorCode = 422;
+      throw new Error("Valor a ser depositado dever ser maior que 0");
+    }
+
+    if (user) {
+
+      let data = new Date();
+      let dataFormatada = ((data.getDate())) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
+
+      user.account.bankStatement.push({
+        value: value,
+        transactionDate: dataFormatada,
+        description: TypeOfTransaction.DEPOSITO
+      });
+
+      user.account.balance = user.account.balance + value;
+
+      res.send(users).status(201);
+    } else {
+      throw new Error("Informe os dados corretamente")
+    }
   } catch (error: any) {
-    res.status(400).send({ message: error.message })
+    res.status(errorCode).send({ message: error.message })
   }
-})
+});
