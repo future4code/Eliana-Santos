@@ -41,7 +41,7 @@ const insertUsers = () => connection("labecommerce_products")
 
 const insertProducts = () => connection("labecommerce_products")
    .insert(products)
-   .then(() => { console.log("Receitas criadas") })
+   .then(() => { console.log("Produto criado") })
    .catch(printError)
 
 const closeConnection = () => { connection.destroy() }
