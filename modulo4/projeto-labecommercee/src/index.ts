@@ -3,7 +3,7 @@ import cors from "cors";
 import { AddressInfo } from "net";
 import createUsers from './endpoints/createUsers'
 import getUsers from "./endpoints/getUsers";
-import createProducts from "./endpoints/createProducts";
+import createProducts from "./endpoints/createPurchases.ts";
 import getProducts from "./endpoints/getProducts";
 import createPurchases from "./endpoints/createPurchases";
 import getUserPurchases from "./endpoints/getUserPurchases";
