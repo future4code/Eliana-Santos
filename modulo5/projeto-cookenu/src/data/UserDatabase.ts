@@ -18,7 +18,7 @@ export class UserDatabase extends BaseDatabase {
     }
     public async findUserByEmail(email: string): Promise<User> {
         try {
-            const user = await BaseDatabase.connection('User')
+            const user = await BaseDatabase.connection('UserCookenu')
                 .select("*")
                 .where({ email })
             return user[0] && User.toUserModel(user[0])
@@ -27,16 +27,17 @@ export class UserDatabase extends BaseDatabase {
         }
     }
 
-    public async get(): Promise<User[]> {
+    public async getUser(): Promise<User[]> {
         try {
             const users = await BaseDatabase.connection('UserCookenu')
-                .select('id', 'name', 'email', 'role')
+                .select('id', 'name', 'email')
 
-            return users.map(user => User.toUserModel(user))
+            return users.find(user => User.toUserModel(user))
 
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
 
     }
+
 }

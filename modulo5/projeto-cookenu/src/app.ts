@@ -7,11 +7,11 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-const serve = app.listen(process.env.PORT||3003, ()=>{
-    if(serve){
+const serve = app.listen(process.env.PORT || 3003, () => {
+    if (serve) {
         const address = serve.address() as AddressInfo;
         console.log(`Serve is running in http://${address.port}`)
-    }else{
+    } else {
         console.error('Failure upon starting serve.')
     }
 })

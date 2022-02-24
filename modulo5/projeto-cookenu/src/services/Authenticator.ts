@@ -15,7 +15,7 @@ export class Authenticator {
         })
         return token;
     }
-    getTokenData = (token: string) => {
+    getTokenData = (token: string): AuthenticationData => {
         try {
             const tokenData = jwt.verify(
                 token,
@@ -23,12 +23,12 @@ export class Authenticator {
             ) as jwt.JwtPayload
 
             return {
-                id:tokenData.id as string,
-                role:tokenData.role
+                id: tokenData.id as string,
+                role: tokenData.role
             }
-        } catch (error) {
+        } catch (error: any) {
             console.log(error)
-            return null
+            return(error.message)
         }
     }
 }

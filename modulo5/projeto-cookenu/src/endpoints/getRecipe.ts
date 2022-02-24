@@ -3,7 +3,7 @@ import { UserDatabase } from "../data/UserDatabase";
 import { Authenticator } from "../services/Authenticator";
 
 
-const getUsers = async (req: Request, res: Response) => {
+const getRecipe = async (req: Request, res: Response) => {
     try {
         const token = req.headers.authorization
         if (!token) {
@@ -27,4 +27,4 @@ const getUsers = async (req: Request, res: Response) => {
         res.status(400).send({ message: err.message })
     }
 }
-export default getUsers;
+export default getRecipe;

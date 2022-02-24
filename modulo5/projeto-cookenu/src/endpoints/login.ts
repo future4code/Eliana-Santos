@@ -12,14 +12,6 @@ const login = async (req: Request, res: Response) => {
             res.status(422).send("Insira corretamente as informações")
         }
 
-        if (email.indexOf("@") === -1) {
-            res.statusCode = 422
-            throw new Error("Invalid email, missing @");
-        }
-        if (password.length < 6) {
-            res.statusCode = 422
-            throw new Error("Invalid password, enter 6 or more characters");
-        }
         const userDatabase = new UserDatabase()
         const user = await userDatabase.findUserByEmail(email)
         if (!user) {
