@@ -23,7 +23,7 @@ export class Authenticator {
             ) as jwt.JwtPayload
 
             return {
-                id:tokenData.id,
+                id:tokenData.id as string,
                 role:tokenData.role
             }
         } catch (error) {
