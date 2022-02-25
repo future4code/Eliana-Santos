@@ -3,7 +3,6 @@ import { UserDatabase } from "../data/UserDatabase";
 import { Authenticator } from "../services/Authenticator";
 import { HashManager } from "../services/HasManager";
 
-
 const login = async (req: Request, res: Response) => {
     try {
 

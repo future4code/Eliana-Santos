@@ -3,11 +3,9 @@ import createRecipe from "./endpoints/createRecipe";
 import getProfile from "./endpoints/getProfile";
 import getProfileUser from "./endpoints/getProfileUser";
 import getRecipe from "./endpoints/getRecipe";
-import getUsers from "./endpoints/getUsers";
 import login from "./endpoints/login";
 import signUp from "./endpoints/signUp";
 
-app.get('/user', getUsers)
 app.get('/user/profile', getProfile)
 app.get('/user/:id', getProfileUser)
 app.get('/recipe/:id', getRecipe)

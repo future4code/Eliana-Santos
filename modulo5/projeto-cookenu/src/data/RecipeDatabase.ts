@@ -2,26 +2,28 @@ import { Recipe } from "../types/Recipes";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class RecipeDatabase extends BaseDatabase {
-    public async createRecipe(recipe: Recipe): Promise<any> {
+    public async createRecipe(recipe: Recipe): Promise<void> {
         try {
-            await BaseDatabase.connection('Recipe')
+            await BaseDatabase.connection('Recipes')
                 .insert({
                     id: recipe.getIdRecipe(),
                     title: recipe.getTitle(),
                     description: recipe.getDescription(),
-                    data_da_criacao: recipe.getData(),
+                    creatAt: recipe.getData(),
+                    id_user: recipe.getIdUser()
                 })
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
         }
     }
 
-    public async getRecipe(): Promise<Recipe[]> {
+    public async getRecipeById(id: string): Promise<Recipe[]> {
         try {
             const recipes = await BaseDatabase.connection('Recipes')
-                .select('id', 'title', 'description', 'data_da_criacao')
+                .select('id', 'title', 'description', 'creatAt')
+                .where({id})
 
-            return recipes.find(recipe => Recipe.toRecipeModel(recipe))
+            return recipes;
 
         } catch (error: any) {
             throw new Error(error.sqlMessage || error.message)
@@ -29,5 +31,5 @@ export class RecipeDatabase extends BaseDatabase {
 
     }
 
-
+ 
 }

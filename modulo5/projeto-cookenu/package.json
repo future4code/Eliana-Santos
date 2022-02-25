@@ -1,5 +1,5 @@
 {
-  "name": "my-server",
+  "name": "projeto-cookenu",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "tsc",
     "test": "echo \"Error:no test specified\"&& exit 1"
   },
-  "author": "Labenu",
+  "author": "ELIANA CRISTINA",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

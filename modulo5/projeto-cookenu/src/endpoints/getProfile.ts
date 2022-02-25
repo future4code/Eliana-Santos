@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { UserDatabase } from "../data/UserDatabase";
 
-
 const getProfile = async (req: Request, res: Response) => {
     try {
         const token = req.headers.authorization

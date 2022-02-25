@@ -3,7 +3,6 @@ import { USER_ROLES } from "../types/User";
 import dotenv from 'dotenv'
 
 dotenv.config()
-
 export interface AuthenticationData {
     id: string,
     role: USER_ROLES
