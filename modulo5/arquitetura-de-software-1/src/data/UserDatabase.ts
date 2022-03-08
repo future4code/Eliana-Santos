@@ -30,7 +30,7 @@ export class UserDatabase extends BaseDatabase {
     public async getUser(): Promise<User[]> {
         try {
             const users = await BaseDatabase.connection('User_Arq')
-                .select('id', 'name', 'email')
+                .select('*')
 
             return users.find(user => User.toUserModel(user))
 
@@ -38,6 +38,17 @@ export class UserDatabase extends BaseDatabase {
             throw new Error(error.sqlMessage || error.message)
         }
 
+    }
+
+    public async deleteUser(id: string): Promise<void> {
+        try {
+            await BaseDatabase.connection('User_Arq')
+                .where({ id })
+                .del()
+
+        } catch (error: any) {
+            throw new Error(error.sqlMessage || error.message);
+        }
     }
 
 }

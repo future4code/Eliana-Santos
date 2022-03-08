@@ -7,10 +7,10 @@ import { User, USER_ROLES } from "../types/User"
 const userDatabase = new UserDatabase()
 
 export class UserBusiness {
-    
+
     signUp = async (
         name: string,
-        email:string,
+        email: string,
         password: string,
         role: USER_ROLES
     ) => {
@@ -19,11 +19,11 @@ export class UserBusiness {
         }
 
         if (email.indexOf("@") === -1) {
-        
+
             throw new Error("Invalid email, missing @");
         }
         if (password.length < 6) {
-            
+
             throw new Error("Invalid password, enter 6 or more characters");
         }
         const userDatabase = new UserDatabase()
@@ -69,7 +69,34 @@ export class UserBusiness {
 
         const authenticator = new Authenticator()
         const token = authenticator.generateToken({ id: user.getId(), role: user.getRole() })
-        
+
         return token
     }
+
+    getUser = async (token: string) => {
+
+        if (!token) {
+            throw new Error('Esse endepoint exige uma autorização a ser passada nos headers');
+        }
+
+        const userDatabase = new UserDatabase()
+        const users = await userDatabase.getUser()
+
+        return users
+    }
+
+    delete = async (
+        id: string,
+        token: string) => {
+        const getToken = new Authenticator()
+        const verifiedToken = getToken.getTokenData(token);
+
+        if (verifiedToken.role !== "ADMIN") {
+            throw new Error("Apenas administradores podem deletar usuários!")
+        }
+
+        return await userDatabase.deleteUser(id);
+    }
+
+}
 }
