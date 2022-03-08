@@ -2,10 +2,10 @@ POST http://localhost:3003/signup
 Content-Type: application/json
 
 {
-    "name": "Lulu",
-    "email":"lulu@gmail.com",
+    "name": "Lola",
+    "email":"lola@gmail.com",
     "password":"123456",
-    "role":"NORMAL"
+    "role":"ADMIN"
 }
 
 ###
@@ -14,7 +14,7 @@ POST http://localhost:3003/login
 Content-Type: application/json
 
 {
-    "email":"lala1@gmail.com",
+    "email": "lola@gmail.com",
     "password":"123456"
 }
 
