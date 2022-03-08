@@ -1,12 +1,13 @@
 {
-    "name": "to-do-list",
+    "name": "arquitetura-de-software-1",
     "version": "1.0.0",
-    "description": "## ESTRUTURA DE DADOS",
+    "description": "## ARQUITETURA DE SOFTWARE",
     "main": "index.js",
     "scripts": {
-        "start": "tsc && node --inspect ./build/index.js",
         "dev": "ts-node-dev ./src/index.ts",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "tsc && node ./build/index.js",
+        "build": "tsc",
+        "test": "echo \"Error:no test specified\"&& exit 1"
     },
     "keywords": [],
     "author": "",
