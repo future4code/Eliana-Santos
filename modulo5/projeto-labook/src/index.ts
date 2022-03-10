@@ -43,8 +43,8 @@ type user = {
 }
 
 enum POST_TYPES {
-   NORMAL = "normal",
-   EVENT = "event"
+   NORMAL = "NORMAL",
+   EVENT = "EVENT"
 }
 
 type post = {
