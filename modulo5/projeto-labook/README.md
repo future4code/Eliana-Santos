@@ -76,7 +76,7 @@
 1. Buscar Post por id
    * Exemplo de requisição:
       ```bash
-      curl -i http://localhost:3003/posts/$id -H "Content-Type: application/json" -H "authorization:$token" 
+      curl -i http://localhost:3003/posts/$id -H "Content-Type: application/json" -H "Authorization:$token" 
       ```
    * Exemplo de resposta (sucesso):
       ```bash

@@ -1,8 +1,7 @@
-export type authenticationData = {
+export type AuthenticationData = {
     id: string
 }
-
-export default class User{
+export default class User {
     public get password(): string {
         return this._password
     }
@@ -27,11 +26,20 @@ export default class User{
     public set id(value: string) {
         this._id = value
     }
-    
+
     constructor(
         private _id: string,
         private _name: string,
         private _email: string,
         private _password: string
-    ){}
+    ) { }
+}
+export interface SignupInputDTO {
+    name: string,
+    email: string,
+    password: string
+}
+export interface LoginInputDTO {
+    email: string,
+    password: string
 }
