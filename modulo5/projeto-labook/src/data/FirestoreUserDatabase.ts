@@ -1,4 +1,4 @@
-import { UserRepository } from "../business/UserRepository";
+/* import { UserRepository } from "../business/UserRepository";
 import BaseDatabase from "./BaseDatabase";
 import * as admin from "firebase-admin"
 import User from "../model/User";
@@ -42,4 +42,4 @@ export default class FirestoreUserDatabase extends BaseDatabase implements UserR
             throw new Error(e.message)
         }
     }
-}
+} */

@@ -33,6 +33,10 @@ export default class User {
         private _email: string,
         private _password: string
     ) { }
+
+    static toUserModel(data: any): User {
+        return new User(data.id, data.name, data.email, data.password)
+    }
 }
 export interface SignupInputDTO {
     name: string,

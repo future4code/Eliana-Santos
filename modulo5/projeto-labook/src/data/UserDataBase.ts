@@ -9,8 +9,13 @@ export default class UserDataBase extends BaseDatabase implements UserRepository
         try {
             await BaseDatabase
                 .connection(this.TABLE_NAME)
-                .insert(user)
-            return user
+                .insert({
+                    id:user.id,
+                    name:user.name,
+                    email: user.email,
+                    password: user.password
+                })
+                return user
         } catch (error) {
             throw new Error("Erro ao criar usuário no banco de dados")
         }
@@ -22,8 +27,7 @@ export default class UserDataBase extends BaseDatabase implements UserRepository
                 .connection(this.TABLE_NAME)
                 .select("*")
                 .where({ email })
-
-            return queryResult.length ? queryResult[0] : null
+                return queryResult[0] && User.toUserModel(queryResult[0])
         } catch (error) {
             throw new Error("Erro ao buscar usuário no banco")
         }

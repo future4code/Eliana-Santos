@@ -29,11 +29,11 @@ export default class Post {
     public set types(value: POST_TYPES) {
         this.types = value
     }
-    public get creatAt(): Date {
-        return this._creatAt
+    public get createAt(): Date {
+        return this._createAt
     }
-    public set creatAt(value: Date) {
-        this._creatAt = value
+    public set createAt(value: Date) {
+        this._createAt = value
     }
     public get authorId(): string {
         return this._author_id
@@ -54,7 +54,8 @@ export default class Post {
         private _photo: string,
         private _description: string,
         private _types: POST_TYPES,
-        private _creatAt: Date,
+        private _createAt: Date,
         private _author_id: string
     ) { }
+
 } 
