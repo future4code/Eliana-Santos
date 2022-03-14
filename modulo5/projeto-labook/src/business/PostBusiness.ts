@@ -11,6 +11,7 @@ export default class PostBusiness {
     private postData: PostRepository
     private idGenerator: IdGenerator
     private authenticator: Authenticator
+
     constructor(postDataImplementation: PostRepository) {
         this.postData = postDataImplementation
         this.idGenerator = new IdGenerator()
@@ -26,7 +27,6 @@ export default class PostBusiness {
 
         const id = this.idGenerator.generateId()
         const createAt = new Date()
-        const tokenData = this.authenticator.getTokenData(id)
 
         const post = new Post(
             id,
@@ -34,16 +34,17 @@ export default class PostBusiness {
             description,
             type,
             createAt,
-            tokenData.id
+            ""
         )
 
-        if (!tokenData) {
+/*        if (!tokenData) {
             throw new Error('Esse endepoint exige uma autorização a ser passada nos headers')
-        }
+        } 
 
         console.log(post)
         await this.postData.createPost(post)
-        return tokenData
+        return tokenData */
+        return null
     }
 
     getPostById = async () => {

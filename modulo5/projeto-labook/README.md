@@ -17,12 +17,19 @@
    ```
 * Executar `npm run migrations` para adicionar as tabelas ao banco de dados (em caso de sucesso, o servidor já estará pronto para receber requisições )
 
+# Projeto Labook
+
+### Documentação da API 
+[API-labook](https://documenter.getpostman.com/view/18390857/UVsJw7AH)
+
+### Heroku 
+[Clique Aqui](https://github.com/elianacris/projeto-labook)
 ## Endpoints
 
 1. Cadastro
    * Exemplo de requisição:
       ```bash
-      curl -i -X POST http://localhost:3003/users/signup -H "Content-Type: application/json" -d '{"name":"Alice","email":"alice@gmail.com","password":"pass123"}'
+      curl -i -X POST http://localhost:3003/users/signup -H "Content-Type: application/json" -d '{"name":"luna","email":"luna@gmail.com","password":"123456"}'
       ```
    * Exemplo de resposta (sucesso):
       ```bash
@@ -40,7 +47,7 @@
 1. Login
    * Exemplo de requisição:
       ```bash
-      curl -i -X POST http://localhost:3003/users/login -H "Content-Type: application/json" -d '{"email":"alice@gmail.com","password":"pass123"}'
+      curl -i -X POST http://localhost:3003/users/login -H "Content-Type: application/json" -d '{"email":"luna@gmail.com","password":"123456"}'
       ```
    * Exemplo de resposta (sucesso):
       ```bash

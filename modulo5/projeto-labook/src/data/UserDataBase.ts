@@ -29,6 +29,7 @@ export default class UserDataBase extends BaseDatabase implements UserRepository
                 .where({ email })
                 return queryResult[0] && User.toUserModel(queryResult[0])
         } catch (error) {
+            console.log(error)
             throw new Error("Erro ao buscar usuário no banco")
         }
     }

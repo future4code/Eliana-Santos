@@ -26,17 +26,17 @@ export default class UserBusiness {
         if (registeredUser) {
             throw new Error("Email já cadastrado")
         }
-        
+
         const id = this.idGenerator.generateId()
-        
+
         const hashedPassword = await this.hashManager.hash(password)
         const user = new User(
             id,
             name,
             email,
             hashedPassword
-            )
-            
+        )
+
         await this.userData.insert(user)
         const token = this.authenticator.generateToken({ id })
         return token
@@ -60,10 +60,7 @@ export default class UserBusiness {
             throw new Error("Senha incorreta")
         }
 
-        const id = this.idGenerator.generateId()
-
-
-        const token = this.authenticator.generateToken({ id })
+        const token = this.authenticator.generateToken({ id: user.id })
         return token
     }
 }

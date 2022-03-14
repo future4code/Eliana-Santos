@@ -37,6 +37,7 @@ export default class UserController {
                 email,
                 password
             }
+
             const token = await this.userBusiness.login(input)
 
             res.status(200).send({ message: "Usuário logado", token })
