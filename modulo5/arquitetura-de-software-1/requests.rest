@@ -1,0 +1,29 @@
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+    "name": "Lola",
+    "email":"lola@gmail.com",
+    "password":"123456",
+    "role":"ADMIN"
+}
+
+###
+
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+    "email": "lola@gmail.com",
+    "password":"123456"
+}
+
+###
+GET http://localhost:3003/all
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRmZWUxZWRlLTBmZTMtNGUyYy04ZDdhLWUwYjUyNmU5N2NiMiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NjcwODk0MSwiZXhwIjoxNjQ2NzEwMzgxfQ.n_UZqwsbMSH7gv8jVZKKfUpD4fNK_nIQt6H4-iz8_So
+
+###
+DELETE http://localhost:3003/0092c85d-b40b-46fc-99aa-f5acf774bb2a
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRmZWUxZWRlLTBmZTMtNGUyYy04ZDdhLWUwYjUyNmU5N2NiMiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NjcwODk0MSwiZXhwIjoxNjQ2NzEwMzgxfQ.n_UZqwsbMSH7gv8jVZKKfUpD4fNK_nIQt6H4-iz8_So 
