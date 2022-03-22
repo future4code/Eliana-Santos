@@ -32,7 +32,7 @@ export class UserController {
          
 
             const userBusiness = new UserBusiness();
-            const token = await userBusiness.getUserByEmail(loginData);
+            const token = await userBusiness.getUserByEmail();
 
             res.status(200).send({ token });
 
