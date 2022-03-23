@@ -5,6 +5,10 @@ import { BaseDatabase } from "../data/BaseDatabase";
 import { UserDatabase } from "../data/UserDatabase";
 import { IdGenerator } from "../services/IdGenerator";
 
+const userBusiness = new UserBusiness(
+    new UserDatabase(),
+    new IdGenerator()
+);
 export class UserController {
     async createUser(req: Request, res: Response) {
         try {
@@ -14,11 +18,6 @@ export class UserController {
                 lastName: req.body.lastName,
                 participation: req.body.participation,
             }
-
-            const userBusiness = new UserBusiness(
-                new UserDatabase,
-                new IdGenerator
-            );
 
             const result = await userBusiness.createUser(input);
 

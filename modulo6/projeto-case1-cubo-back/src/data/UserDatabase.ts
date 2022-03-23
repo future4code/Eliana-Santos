@@ -5,7 +5,7 @@ export class UserDatabase extends BaseDatabase {
 
   private static TABLE_NAME = "users_cubo";
 
-  public async insert(
+  public async insertUser(
     id: string,
     firstName: string,
     lastName: string,
