@@ -5,11 +5,13 @@ export class UserDatabase extends BaseDatabase {
 
   private static TABLE_NAME = "users_cubo";
 
-  public async insert(user: UserInputDTO): Promise<void> {
+  public async insert(user: UserInputDTO): Promise<string> {
     try {
       await this.getConnection()
         .insert(user)
         .into(UserDatabase.TABLE_NAME);
+        
+      return "Usuario criado com sucesso";
     } catch (error: any) {
       throw new Error(error.sqlMessage || error.message);
     }

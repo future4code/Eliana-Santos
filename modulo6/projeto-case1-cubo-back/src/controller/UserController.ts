@@ -2,9 +2,11 @@ import { Request, Response } from "express";
 import { UserInputDTO } from "../model/User";
 import { UserBusiness } from "../business/UserBusiness";
 import { BaseDatabase } from "../data/BaseDatabase";
+import { UserDatabase } from "../data/UserDatabase";
+import { IdGenerator } from "../services/IdGenerator";
 
 export class UserController {
-    async signup(req: Request, res: Response) {
+    async createUser(req: Request, res: Response) {
         try {
 
             const input: UserInputDTO = {
@@ -13,10 +15,14 @@ export class UserController {
                 participation: req.body.participation,
             }
 
-            const userBusiness = new UserBusiness();
-            const token = await userBusiness.createUser(input);
+            const userBusiness = new UserBusiness(
+                new UserDatabase,
+                new IdGenerator
+            );
 
-            res.status(200).send({ token });
+            const result = await userBusiness.createUser(input);
+
+            res.status(201).send(result);
 
         } catch (error: any) {
             res.status(400).send({ error: error.message });
@@ -29,12 +35,13 @@ export class UserController {
 
         try {
 
-         
+            const userBusiness = new UserBusiness(
+                new UserDatabase,
+                new IdGenerator
+            );
+            const result = await userBusiness.getUser();
 
-            const userBusiness = new UserBusiness();
-            const token = await userBusiness.getUserByEmail();
-
-            res.status(200).send({ token });
+            res.status(200).send(result);
 
         } catch (error: any) {
             res.status(400).send({ error: error.message });

@@ -1,35 +1,31 @@
-import { UserInputDTO} from "../model/User";
+import { User, UserInputDTO } from "../model/User";
 import { UserDatabase } from "../data/UserDatabase";
 import { IdGenerator } from "../services/IdGenerator";
-import { Authenticator } from "../services/Authenticator";
 
 export class UserBusiness {
+    constructor(
+        private userDatabase: UserDatabase,
+        private idGenerator: IdGenerator
+    ) { }
 
     async createUser(user: UserInputDTO) {
+        const id = this.idGenerator.generate()
+        if (!user.firstName || !user.lastName || !user.participation) {
+            throw new Error('Campos inseridos incorretamente')
+        }
 
-        const idGenerator = new IdGenerator();
-        const id = idGenerator.generate();
+        await this.userDatabase.insert(id, user.firstName, user.lastName, user.participation);
 
-        const userDatabase = new UserDatabase();
-        await userDatabase.insert(id, user.firstName, user.lastName, user.participation);
-
-        const authenticator = new Authenticator();
-        const accessToken = authenticator.generateToken({ id});
-
-        return accessToken;
+        const result = await this.userDatabase.insert(user)
+        return result
     }
 
-    async getUserByEmail(user: ) {
+    async getUser() {
 
         const userDatabase = new UserDatabase();
         const userFromDB = await userDatabase.getAllUser();
 
-       
+        return userFromDB
 
-        if (!) {
-            throw new Error("Invalid Password!");
-        }
-
-        return ;
     }
 }
