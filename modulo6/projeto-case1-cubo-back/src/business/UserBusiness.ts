@@ -1,4 +1,4 @@
-import { User, UserInputDTO } from "../model/User";
+import { UserInputDTO } from "../model/User";
 import { UserDatabase } from "../data/UserDatabase";
 import { IdGenerator } from "../services/IdGenerator";
 
@@ -13,10 +13,17 @@ export class UserBusiness {
         if (!user.firstName || !user.lastName || !user.participation) {
             throw new Error('Campos inseridos incorretamente')
         }
+        // usuario tem que colocar sobrenome diferente 
+        if(user.lastName !== user.lastName){
+            throw new Error('Usuário já inserido na tabela')
+        }
 
-        await this.userDatabase.insert(id, user.firstName, user.lastName, user.participation);
+        if (user.participation <= 0) {
+            throw new Error('A participação não pode ser 0')
+        }
 
-        const result = await this.userDatabase.insert(user)
+        const result = await this.userDatabase.insert(id, user.firstName, user.lastName, user.participation);
+
         return result
     }
 

@@ -22,9 +22,9 @@ export class UserController {
 
             const result = await userBusiness.createUser(input);
 
-            res.status(201).send(result);
+            res.status(200).send(result);
 
-        } catch (error: any) {
+        } catch (error) {
             res.status(400).send({ error: error.message });
         }
 
@@ -43,7 +43,7 @@ export class UserController {
 
             res.status(200).send(result);
 
-        } catch (error: any) {
+        } catch (error) {
             res.status(400).send({ error: error.message });
         }
 

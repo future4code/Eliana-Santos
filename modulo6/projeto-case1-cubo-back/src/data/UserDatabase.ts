@@ -1,25 +1,35 @@
 import { BaseDatabase } from "./BaseDatabase";
-import { User, UserInputDTO } from "../model/User";
+import { User } from "../model/User";
 
 export class UserDatabase extends BaseDatabase {
 
   private static TABLE_NAME = "users_cubo";
 
-  public async insert(user: UserInputDTO): Promise<string> {
+  public async insert(
+    id: string,
+    firstName: string,
+    lastName: string,
+    participation: number,
+  ): Promise<string> {
     try {
       await this.getConnection()
-        .insert(user)
+        .insert({
+          id,
+          firstName,
+          lastName,
+          participation
+        })
         .into(UserDatabase.TABLE_NAME);
-        
-      return "Usuario criado com sucesso";
-    } catch (error: any) {
+
+      return "Usuario inserido com sucesso";
+    } catch (error) {
       throw new Error(error.sqlMessage || error.message);
     }
   }
 
-  public async getAllUser() {
+  public async getAllUser(): Promise<User[]> {
     try {
-      const result: User[] = await this.getConnection()
+      const result = await this.getConnection()
         .select("*")
         .from(UserDatabase.TABLE_NAME);
 
@@ -27,7 +37,7 @@ export class UserDatabase extends BaseDatabase {
         return User.toUserModel(user)
       })
       return users
-    } catch (error: any) {
+    } catch (error) {
       throw new Error(error.sqlMessage || error.message);
     }
   }
