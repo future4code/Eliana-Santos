@@ -8,6 +8,7 @@ import { Grafic } from "./components/Grafic/Grafic";
 import InputRHF from "./components/RHF/InputRHF";
 import DenseTable from "./components/Table/DenseTable";
 import { theme } from "./constants/theme";
+import InputPercentageRHF from "./components/RHF/InputPercentageRHF";
 
 function App() {
   const form = useForm();
@@ -21,10 +22,7 @@ function App() {
       <Container
         maxWidth={"lg"}
         disableGutters={false}
-      /*        sx={{
-               display: "grid",
-               gridTemplateColumns: "repeat(12, 1fr)",
-             }} */
+
       >
         <AppBar
           onSubmit={handleSubmit(onSubmitForm)}
@@ -34,25 +32,23 @@ function App() {
             gridTemplateColumns: "repeat(12, 1fr)",
             rowGap: 1,
             columnGap: 2,
-            //mt: 2,
-            //flexDirection: 'row',
+            alignItems: 'center',
             backgroundColor: '#00b8e2',
-            justifyContent: 'center',
-            alignItems: 'stretch',
+            justifyItems: 'center',
             width: '100%',
-            mb: 10
+            p: 6,
+            paddingLeft: 85
           }}>
 
           <InputRHF
             sx={{
               gridColumn: {
-                md: 'span 3',
+                lg: 'span 2',
+                md: 'span 2',
                 sm: 'span 3',
                 xs: 'span 6'
               },
               width: '100%',
-              //mt: 3,
-              //mb: 4
               backgroundColor: '#fff',
               borderRadius: '5px',
               color: '#000'
@@ -64,7 +60,8 @@ function App() {
           <InputRHF
             sx={{
               gridColumn: {
-                md: 'span 3',
+                lg: 'span 2',
+                md: 'span 2',
                 sm: 'span 3',
                 xs: 'span 6'
               },
@@ -77,9 +74,11 @@ function App() {
             name='lastName'
             control={control}>
           </InputRHF>
-          <InputRHF
+
+          <InputPercentageRHF
             sx={{
               gridColumn: {
+                lg: 'span 2',
                 md: 'span 3',
                 sm: 'span 3',
                 xs: 'span 6'
@@ -92,12 +91,17 @@ function App() {
             label="Participation"
             name='participation'
             control={control}>
-          </InputRHF>
+          </InputPercentageRHF>
 
           <Button variant="outlined"
             sx={{
-              gridColumn: 'span 3',
-              width: '50%',
+              gridColumn: {
+                lg: 'span 2',
+                md: 'span 3',
+                sm: 'span 3',
+                xs: 'span 6'
+              },
+              width: '100%',
               height: '50px',
               fontWeight: 'bold',
               fontSize: '16px',
@@ -113,33 +117,72 @@ function App() {
           </Button>
         </AppBar>
 
-        <Typography
-          variant="h2"
-          textAlign={"center"}>
-          Data
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          textAlign={"center"}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </Typography>
 
         <Box sx={{
+          display: "grid",
+        //gridTemplateColumns: "repeat(12, 1fr)",
+          rowGap: 1,
+          columnGap: 2,
+          alignItems: 'center',
+          justifyItems: 'center',
+          justifyContent:'space-between',
           width: '100%',
+          pt: '18%'
 
         }}>
-          <Box>
+          <Typography
+            variant="h2"
+            textAlign={"center"}
+            sx={{
+              gridColumn: 'span 6',
+              fontWeight: 'bold',
+              fontSize: '40px',
+              color:'hsl(193deg 17% 26%)'
+                       }}>
+            DATA
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            textAlign={"center"}
+            sx={{
+              gridColumn: 'span 6',
+              gap:2,
+              color:'hsl(193deg 17% 26%)',
+              fontSize:'20px'
+            }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </Typography>
+          <Box
+            sx={{
+              gridColumn: {
+                lg: 'span 2',
+                md: 'span 3',
+                sm: 'span 3',
+                xs: 'span 6'
+              },
+              width:'100%',
+              p: 6,
+              rowGap: 8
+            }}>
             <DenseTable />
           </Box>
 
-          <Box>
+          <Box
+            sx={{
+              gridColumn: {
+                lg: 'span 2',
+                md: 'span 3',
+                sm: 'span 3',
+                xs: 'span 6'
+              },
+              rowGap: 8,
+              columnGap: 6
+            }}>
             <Grafic
               /*            labels={result.graficoValores.labels}
                          dataSetComAporte={result.graficoValores.dataSetComAporte}
                          dataSetSemAporte={result.graficoValores.dataSetSemAporte} */
-              sx={{
-                gridColumn: 'span 6',
-              }} />
+               />
           </Box>
         </Box>
 

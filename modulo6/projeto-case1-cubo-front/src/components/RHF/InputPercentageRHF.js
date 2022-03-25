@@ -46,7 +46,7 @@ const InputPercentageRHF = (props) => {
       helperText={error?.message}
       required={Boolean(required)}
       placeholder={placeholder}
-      variant="standard"
+      variant='outlined'
       sx={{ ...sx }}
     />
 
