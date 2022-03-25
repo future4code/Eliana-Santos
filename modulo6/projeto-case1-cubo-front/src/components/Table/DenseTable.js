@@ -5,33 +5,40 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { getAllUser } from '../../services/user';
 
-function createData(id, firstName, lastName, participation) {
+ function createData(id, firstName, lastName, participation) {
   return { id, firstName, lastName, participation };
-}
+} 
 
-const rows = [
+/*  const rows = [
   createData(1, 'Ana', 'Santos', 6),
   createData(2, 'Luna', 'Deus', 10),
   createData(3, 'Haryel', 'Fernandes', 20),
   createData(4, 'Marcia', 'Deus', 55),
   createData(5, 'Joana', 'Silva', 25)
-];
+];  */
 
+const users = () => {
+  createData(getAllUser())
+}
 export default function DenseTable() {
+
+
+
   return (
     <TableContainer>
       <Table sx={{ width: 650 }} size="small" aria-label="a dense table">
         <TableHead sx={{ fontWeight: 'bold' }}>
           <TableRow sx={{
             border: 1,
-            borderColor: '#D3D3D3',
+            borderColor: '#D3D3D3'
 
           }}
           >
             <TableCell sx={{
               borderRight: 1,
-              borderColor: '#D3D3D3',
+              borderColor: '#D3D3D3'
             }}
               align="center"></TableCell>
             <TableCell sx={{
@@ -60,9 +67,9 @@ export default function DenseTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {users.map((user) => (
             <TableRow
-              key={row.users}
+              key={user.user}
               sx={{
                 border: 1,
                 borderColor: '#D3D3D3',
@@ -77,21 +84,21 @@ export default function DenseTable() {
                 color: '#808080'
 
               }}
-                align="center">{row.id}</TableCell>
+                align="center">{user.id}</TableCell>
               <TableCell sx={{
                 borderRight: 1,
                 borderColor: '#D3D3D3',
                 color: '#808080'
 
               }}
-                align="left">{row.firstName}</TableCell>
+                align="left">{user.firstName}</TableCell>
               <TableCell sx={{
                 borderRight: 1,
                 borderColor: '#D3D3D3',
                 color: '#808080'
 
               }}
-                align="left">{row.lastName}</TableCell>
+                align="left">{user.lastName}</TableCell>
               <TableCell sx={{
                 borderRight: 1,
                 borderColor: '#D3D3D3',
@@ -99,7 +106,7 @@ export default function DenseTable() {
                 color: '#808080'
 
               }}
-                align="center">{`${row.participation}%`}</TableCell>
+                align="center">{`${user.participation}%`}</TableCell>
             </TableRow>
           ))}
         </TableBody>

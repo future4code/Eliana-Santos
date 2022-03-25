@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useForm } from "react-hook-form";
 import { ThemeProvider } from "styled-components";
@@ -9,14 +9,22 @@ import InputRHF from "./components/RHF/InputRHF";
 import DenseTable from "./components/Table/DenseTable";
 import { theme } from "./constants/theme";
 import InputPercentageRHF from "./components/RHF/InputPercentageRHF";
+import formSchemaValidation from "./util/formSchemaValidation";
+import { createUser, getAllUser } from "./services/user";
 
 function App() {
-  const form = useForm();
+  const form = useForm(formSchemaValidation);
   const { control, handleSubmit, reset } = form;
   const onSubmitForm = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
+    createUser(form.getValues())
     reset()
   }
+  
+  useEffect(() => {
+    getAllUser()
+  }, [])
+
   return (
     <ThemeProvider theme={theme}>
       <Container
@@ -93,7 +101,9 @@ function App() {
             control={control}>
           </InputPercentageRHF>
 
-          <Button variant="outlined"
+          <Button
+            type='submit'
+            variant="outlined"
             sx={{
               gridColumn: {
                 lg: 'span 2',
@@ -120,12 +130,12 @@ function App() {
 
         <Box sx={{
           display: "grid",
-        //gridTemplateColumns: "repeat(12, 1fr)",
+          //gridTemplateColumns: "repeat(12, 1fr)",
           rowGap: 1,
           columnGap: 2,
           alignItems: 'center',
           justifyItems: 'center',
-          justifyContent:'space-between',
+          justifyContent: 'space-between',
           width: '100%',
           pt: '18%'
 
@@ -137,8 +147,8 @@ function App() {
               gridColumn: 'span 6',
               fontWeight: 'bold',
               fontSize: '40px',
-              color:'hsl(193deg 17% 26%)'
-                       }}>
+              color: 'hsl(193deg 17% 26%)'
+            }}>
             DATA
           </Typography>
           <Typography
@@ -146,9 +156,9 @@ function App() {
             textAlign={"center"}
             sx={{
               gridColumn: 'span 6',
-              gap:2,
-              color:'hsl(193deg 17% 26%)',
-              fontSize:'20px'
+              gap: 2,
+              color: 'hsl(193deg 17% 26%)',
+              fontSize: '20px'
             }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </Typography>
@@ -160,7 +170,7 @@ function App() {
                 sm: 'span 3',
                 xs: 'span 6'
               },
-              width:'100%',
+              width: '100%',
               p: 6,
               rowGap: 8
             }}>
@@ -179,10 +189,10 @@ function App() {
               columnGap: 6
             }}>
             <Grafic
-              /*            labels={result.graficoValores.labels}
-                         dataSetComAporte={result.graficoValores.dataSetComAporte}
-                         dataSetSemAporte={result.graficoValores.dataSetSemAporte} */
-               />
+            /*            labels={result.graficoValores.labels}
+                       dataSetComAporte={result.graficoValores.dataSetComAporte}
+                       dataSetSemAporte={result.graficoValores.dataSetSemAporte} */
+            />
           </Box>
         </Box>
 
