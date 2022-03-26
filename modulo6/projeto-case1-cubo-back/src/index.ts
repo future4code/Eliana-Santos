@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("/user", userRouter);
+app.use("/users", userRouter);
 
 const server = app.listen(3000, () => {
     if (server) {
