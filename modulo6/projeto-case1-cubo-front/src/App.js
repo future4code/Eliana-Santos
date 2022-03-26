@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { ThemeProvider } from "styled-components";
@@ -10,27 +10,39 @@ import DenseTable from "./components/Table/DenseTable";
 import { theme } from "./constants/theme";
 import InputPercentageRHF from "./components/RHF/InputPercentageRHF";
 import formSchemaValidation from "./util/formSchemaValidation";
-import { createUser, getAllUser } from "./services/user";
+import { create, getAll } from "./services/user";
 
 function App() {
   const form = useForm(formSchemaValidation);
   const { control, handleSubmit, reset } = form;
-  const onSubmitForm = (event) => {
-    //event.preventDefault();
-    createUser(form.getValues())
-    reset()
+  const [users, setUsers] = useState([]);
+
+  const loadUsers = () => {
+    getAll().then((list) => {
+      setUsers(list)
+    })
   }
-  
+
   useEffect(() => {
-    getAllUser()
+    loadUsers();
   }, [])
+
+  const onSubmitForm = () => {
+    create(form.getValues()).then(() => {
+      loadUsers();
+      reset();
+    })
+      .catch((err) => {
+        console.log(err);
+        alert(err.message)
+      });
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <Container
         maxWidth={"lg"}
         disableGutters={false}
-
       >
         <AppBar
           onSubmit={handleSubmit(onSubmitForm)}
@@ -127,7 +139,6 @@ function App() {
           </Button>
         </AppBar>
 
-
         <Box sx={{
           display: "grid",
           //gridTemplateColumns: "repeat(12, 1fr)",
@@ -174,7 +185,7 @@ function App() {
               p: 6,
               rowGap: 8
             }}>
-            <DenseTable />
+            <DenseTable data={users} />
           </Box>
 
           <Box
@@ -189,6 +200,7 @@ function App() {
               columnGap: 6
             }}>
             <Grafic
+              users={users}
             /*            labels={result.graficoValores.labels}
                        dataSetComAporte={result.graficoValores.dataSetComAporte}
                        dataSetSemAporte={result.graficoValores.dataSetSemAporte} */

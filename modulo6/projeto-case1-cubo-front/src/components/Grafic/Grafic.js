@@ -1,27 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 
-export function Grafic() {
-  const data = {
-    labels: ["Red", "Green", "Yellow"],
-    weight: 0.5,
-    datasets: [
-      {
-        data: [300, 50, 100],
-        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-        hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
-      }
-    ]
-  };
+
+export function Grafic(props) {
+  const [data, setData] = useState({})
+
+  useEffect(() => {
+    setData({
+      labels: props.users?.map(user => `${user.firstName} ${user.lastName}`),
+      weight: 0.5,
+      datasets: [
+        {
+          data: props.users?.map(user => (user.participation)),
+          backgroundColor: props.users?.map(() => `${'#' + (Math.random().toString(16) + '00000').slice(2, 8)}`),
+          hoverBackgroundColor: props.users?.map(() => `${'#' + (Math.random().toString(16) + '00000').slice(2, 8)}`)
+        }
+      ]
+    })
+  }, [props])
+
   return (
     <div >
-      <Doughnut data={data}
-              options={{
-         // maintainAspectRatio: false,
-          legend: {
-            position: "right"
-          }
-        }} />
+      {data &&
+        <Doughnut data={data}
+          options={{
+            // maintainAspectRatio: false,
+            legend: {
+              position: "right"
+            }
+          }} />
+      }
     </div>
   );
 }

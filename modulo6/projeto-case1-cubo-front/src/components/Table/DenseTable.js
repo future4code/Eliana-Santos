@@ -1,30 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { getAllUser } from '../../services/user';
-
- function createData(id, firstName, lastName, participation) {
-  return { id, firstName, lastName, participation };
-} 
-
-/*  const rows = [
-  createData(1, 'Ana', 'Santos', 6),
-  createData(2, 'Luna', 'Deus', 10),
-  createData(3, 'Haryel', 'Fernandes', 20),
-  createData(4, 'Marcia', 'Deus', 55),
-  createData(5, 'Joana', 'Silva', 25)
-];  */
-
-const users = () => {
-  createData(getAllUser())
-}
-export default function DenseTable() {
 
 
+export default function DenseTable(props) {
 
   return (
     <TableContainer>
@@ -67,7 +50,7 @@ export default function DenseTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users.map((user) => (
+          {props.data?.map((user, index) => (
             <TableRow
               key={user.user}
               sx={{
@@ -84,7 +67,7 @@ export default function DenseTable() {
                 color: '#808080'
 
               }}
-                align="center">{user.id}</TableCell>
+                align="center">{index + 1}</TableCell>
               <TableCell sx={{
                 borderRight: 1,
                 borderColor: '#D3D3D3',
