@@ -29,7 +29,9 @@ function App() {
 
   const onSubmitForm = () => {
     create(form.getValues()).then(() => {
-      loadUsers();
+      setTimeout(() => {
+        loadUsers();
+      }, 1000);
       reset();
     })
       .catch((err) => {
@@ -51,13 +53,13 @@ function App() {
             display: "grid",
             gridTemplateColumns: "repeat(12, 1fr)",
             rowGap: 1,
-            columnGap: 2,
+            columnGap: 1,
             alignItems: 'center',
             backgroundColor: '#00b8e2',
             justifyItems: 'center',
             width: '100%',
             p: 6,
-            paddingLeft: 85
+            paddingLeft: '20%'
           }}>
 
           <InputRHF
@@ -88,7 +90,8 @@ function App() {
               width: '100%',
               backgroundColor: '#fff',
               borderRadius: '5px',
-              color: '#000'
+              color: '#000',
+              rowGap: 7
             }}
             label="Last name"
             name='lastName'
@@ -99,14 +102,14 @@ function App() {
             sx={{
               gridColumn: {
                 lg: 'span 2',
-                md: 'span 3',
+                md: 'span 2',
                 sm: 'span 3',
                 xs: 'span 6'
               },
               width: '100%',
               backgroundColor: '#fff',
               borderRadius: '5px',
-              color: '#000'
+              color: '#000',
             }}
             label="Participation"
             name='participation'
@@ -118,12 +121,11 @@ function App() {
             variant="outlined"
             sx={{
               gridColumn: {
-                lg: 'span 2',
-                md: 'span 3',
-                sm: 'span 3',
-                xs: 'span 6'
+                md: 'span 2',
+                sm: 'span 2',
+                xs: 'span 3'
               },
-              width: '100%',
+              width: '85%',
               height: '50px',
               fontWeight: 'bold',
               fontSize: '16px',
@@ -141,9 +143,8 @@ function App() {
 
         <Box sx={{
           display: "grid",
-          //gridTemplateColumns: "repeat(12, 1fr)",
           rowGap: 1,
-          columnGap: 2,
+          columnGap: 1,
           alignItems: 'center',
           justifyItems: 'center',
           justifyContent: 'space-between',
@@ -173,39 +174,10 @@ function App() {
             }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </Typography>
-          <Box
-            sx={{
-              gridColumn: {
-                lg: 'span 2',
-                md: 'span 3',
-                sm: 'span 3',
-                xs: 'span 6'
-              },
-              width: '100%',
-              p: 6,
-              rowGap: 8
-            }}>
-            <DenseTable data={users} />
-          </Box>
 
-          <Box
-            sx={{
-              gridColumn: {
-                lg: 'span 2',
-                md: 'span 3',
-                sm: 'span 3',
-                xs: 'span 6'
-              },
-              rowGap: 8,
-              columnGap: 6
-            }}>
-            <Grafic
-              users={users}
-            /*            labels={result.graficoValores.labels}
-                       dataSetComAporte={result.graficoValores.dataSetComAporte}
-                       dataSetSemAporte={result.graficoValores.dataSetSemAporte} */
-            />
-          </Box>
+          <DenseTable data={users} />
+
+          <Grafic users={users} />
         </Box>
 
       </Container>

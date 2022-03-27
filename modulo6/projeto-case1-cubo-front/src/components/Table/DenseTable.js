@@ -10,8 +10,8 @@ import TableRow from '@mui/material/TableRow';
 export default function DenseTable(props) {
 
   return (
-    <TableContainer>
-      <Table sx={{ width: 650 }} size="small" aria-label="a dense table">
+    <TableContainer sx={{gridColumn:'span 4'}}>
+      <Table  aria-label="a dense table">
         <TableHead sx={{ fontWeight: 'bold' }}>
           <TableRow sx={{
             border: 1,
@@ -52,7 +52,7 @@ export default function DenseTable(props) {
         <TableBody>
           {props.data?.map((user, index) => (
             <TableRow
-              key={user.user}
+              key={user.id}
               sx={{
                 border: 1,
                 borderColor: '#D3D3D3',
@@ -86,6 +86,7 @@ export default function DenseTable(props) {
                 borderRight: 1,
                 borderColor: '#D3D3D3',
                 width: 2,
+                height: 2,
                 color: '#808080'
 
               }}

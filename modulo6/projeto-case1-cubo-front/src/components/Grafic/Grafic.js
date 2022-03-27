@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 
@@ -7,6 +8,7 @@ export function Grafic(props) {
 
   useEffect(() => {
     setData({
+
       labels: props.users?.map(user => `${user.firstName} ${user.lastName}`),
       weight: 0.5,
       datasets: [
@@ -20,17 +22,22 @@ export function Grafic(props) {
   }, [props])
 
   return (
-    <div >
+    <Box 
+    sx={{
+      gridColumn:'span 2',
+      width:'100%',
+  
+    }} >
       {data &&
         <Doughnut data={data}
           options={{
-            // maintainAspectRatio: false,
             legend: {
-              position: "right"
+              position: "right",
+            
             }
           }} />
       }
-    </div>
+    </Box>
   );
 }
 

@@ -6,7 +6,7 @@ export const getAll = async () => {
         const res = await axios.get(`${BASE_URL}/users`);
         return res.data;
     } catch (err) {
-        alert(err.message);
+        console.log(err.message);
     }
 }
 
@@ -14,6 +14,6 @@ export const create = async (body) => {
     try {
         return await axios.post(`${BASE_URL}/users`, body);
     } catch (err) {
-        alert(err.message);
+        console.log(err.message);
     }
 }

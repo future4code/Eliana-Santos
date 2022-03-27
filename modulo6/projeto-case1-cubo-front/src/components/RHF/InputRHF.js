@@ -11,6 +11,7 @@ const InputRHF = (props) => {
     return (
         <TextField
             {...field}
+            autoComplete="off"
             disabled={disabled ? true : false}
             inputProps={{ ...inputProps }}
             inputRef={ref}
@@ -19,7 +20,6 @@ const InputRHF = (props) => {
             helperText={error?.message}
             required={Boolean(required)}
             placeholder={placeholder}
-            variant='outlined'
             sx={{ ...sx }}
             color={color}
         />

@@ -47,6 +47,7 @@ const InputPercentageRHF = (props) => {
       required={Boolean(required)}
       placeholder={placeholder}
       variant='outlined'
+      autoComplete="off"
       sx={{ ...sx }}
     />
 
