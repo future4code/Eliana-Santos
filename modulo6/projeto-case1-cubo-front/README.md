@@ -1,7 +1,7 @@
 ### Projeto Cubo (Full Stack)
 [Link do repositório do Case 1° semana](https://github.com/cubonetwork/fullstack-challenge)
 ### Iniciando Projeto
-O projeto tem cmom finalidade inserir usuários em uma tabela e renderizar a porcentagem da participação no gráfico.
+O projeto tem como finalidade inserir usuários em uma tabela e renderizar a porcentagem da participação no gráfico.
 
 [Organização](https://trello.com/b/UCfoAykS/case-1-cubo)
 ## Começando
