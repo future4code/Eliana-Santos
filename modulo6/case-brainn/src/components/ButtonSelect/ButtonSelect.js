@@ -137,20 +137,14 @@ const CustomSelect = forwardRef(function CustomSelect(props, ref) {
   return <SelectUnstyled {...props} ref={ref} components={components} />;
 });
 
-export default function ButtonSelect() {
-  const [loterias, setLoterias] = useState([]);
-
-  useEffect(() => {
-    getLoterias().then((list) => {
-      setLoterias(list);
-    });
-  }, []);
+export default function ButtonSelect(props) {
 
   return (
-    <CustomSelect defaultValue={"MEGA-SENA"}>
-      {loterias.map((loteria) => {
+    <CustomSelect 
+    onChange={props.onChangeSelect}>
+      {props.loterias.map((loteria) => {
         return (
-          <StyledOption key={loteria.id} value={loteria.id}>
+          <StyledOption >
             {loteria.nome.toUpperCase()}
           </StyledOption>
         );
