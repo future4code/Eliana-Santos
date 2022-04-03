@@ -8,9 +8,9 @@ import theme from "./constants/theme";
 import Trevo from "./assets/trevo.png";
 import { DIA, LOTOF, LOTOM, MEGA, QUINA, TIME } from "./constants/color";
 import {
-getConcursos,
-getConcursosById,
-getLoterias,
+  getConcursos,
+  getConcursosById,
+  getLoterias,
 } from "./services/loterias";
 
 function App() {
@@ -91,6 +91,11 @@ function App() {
       <Box
         sx={{
           display: "flex",
+          flexDirection: {
+            xs: "column",
+            sm: "column",
+            md: "row",
+          },
           backgroundColor: { background },
         }}
       >
@@ -111,7 +116,11 @@ function App() {
               sx={{
                 backgroundColor: "#fff",
                 borderRadius: "15px",
-                width: "50%",
+                width: {
+                  xs: "50%",
+                  sm: "50%",
+                  md: "50%",
+                },
               }}
             >
               {loterias.map((lot) => {
