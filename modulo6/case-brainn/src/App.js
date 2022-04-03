@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
+
 import { Box, FormControl, MenuItem, Select, Typography } from "@mui/material";
-import Trevo from "./assets/trevo.png";
-import {
-  getConcursos,
-  getConcursosById,
-  getLoterias,
-} from "./services/loterias";
 import { ThemeProvider } from "@material-ui/styles";
+import moment from "moment";
+
 import theme from "./constants/theme";
+import Trevo from "./assets/trevo.png";
+import { DIA, LOTOF, LOTOM, MEGA, QUINA, TIME } from "./constants/color";
+import {
+getConcursos,
+getConcursosById,
+getLoterias,
+} from "./services/loterias";
 
 function App() {
   const [loterias, setLoterias] = useState([]);
@@ -17,8 +21,9 @@ function App() {
     id: "2359",
     loteria: 0,
     numeros: ["31", "32", "39", "42", "43", "51"],
-    data: "27/03/2022",
+    data: new Date(),
   });
+  const [background, setBackground] = useState(MEGA);
 
   useEffect(() => {
     getLoterias().then((list) => {
@@ -42,9 +47,42 @@ function App() {
   }, [loteria]);
 
   const onChangeSelect = (e) => {
-    console.log(e.target.value);
     if (e.target.value >= 0) {
       setLoteria(loterias.find((loteria) => loteria.id === e.target.value));
+      changeBackgroundColor(e.target.value);
+    }
+  };
+
+  const changeBackgroundColor = (number) => {
+    switch (number) {
+      case 0:
+        setBackground(MEGA);
+        break;
+      case 1:
+        setBackground(QUINA);
+        break;
+      case 2:
+        setBackground(LOTOF);
+        break;
+      case 3:
+        setBackground(LOTOM);
+        break;
+      case 4:
+        setBackground(TIME);
+        break;
+      case 5:
+        setBackground(DIA);
+        break;
+      default:
+        setBackground(MEGA);
+    }
+  };
+
+  const dateToString = (value) => {
+    if (value) {
+      return moment(value).format("DD-MM-YYYY");
+    } else {
+      return "";
     }
   };
 
@@ -53,25 +91,28 @@ function App() {
       <Box
         sx={{
           display: "flex",
-          backgroundColor: "#6BEFA3",
+          backgroundColor: { background },
         }}
       >
         <Box
           sx={{
-             display:'grid',
+            display: "grid",
             gridColumn: "span 6",
-            backgroundColor: "#6BEFA3",
+            backgroundColor: { background },
             width: "50vw",
             height: "100vh",
-            m:'5px'
+            m: "5px",
           }}
         >
-          
-          <FormControl>
+          <FormControl sx={{ display: "flex", ml: 11, mt: 10 }}>
             <Select
               onChange={onChangeSelect}
               value={loteria.id}
-              sx={{ backgroundColor: "#fff", borderRadius:'15px'}}
+              sx={{
+                backgroundColor: "#fff",
+                borderRadius: "15px",
+                width: "50%",
+              }}
             >
               {loterias.map((lot) => {
                 return (
@@ -82,47 +123,66 @@ function App() {
               })}
             </Select>
           </FormControl>
-
-          <img src={Trevo} alt="trevo" />
-
-          <Typography
+          <Box
             sx={{
-              fontFamily: "Open Sans",
-              fontSize: "30px",
-              color: "#fff",
-              fontStyle: "normal",
-              lineHeight: "37px",
-              fontWeight: 700,
+              display: "flex",
+              alignContent: "center",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "20px",
             }}
           >
-            {loteria.nome.toUpperCase()}
-          </Typography>
+            <img src={Trevo} alt="trevo" />
 
-          <Typography
-            variant="subtitle1"
+            <Typography
+              sx={{
+                fontFamily: "Open Sans",
+                fontSize: "30px",
+                color: "#fff",
+                fontStyle: "normal",
+                lineHeight: "37px",
+                fontWeight: 700,
+              }}
+            >
+              {loteria.nome.toUpperCase()}
+            </Typography>
+          </Box>
+          <Box
             sx={{
-              fontFamily: "Open Sans",
-              color: "#fff",
-              fontStyle: "normal",
-              lineHeight: "17px",
-              fontWeight: 500,
-              fontSize: "14px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              justifyContent: "center",
+              ml: 11,
+              gap: "10px",
             }}
           >
-            CONCURSO
-          </Typography>
-          <Typography
-            sx={{
-              fontFamily: "Open Sans",
-              color: "#fff",
-              fontStyle: "normal",
-              lineHeight: "24px",
-              fontWeight: 700,
-              fontSize: "20px",
-            }}
-          >
-            {concurso.id} – {concurso.data}
-          </Typography>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                fontFamily: "Open Sans",
+                color: "#fff",
+                fontStyle: "normal",
+                lineHeight: "17px",
+                fontWeight: 500,
+                fontSize: "14px",
+              }}
+            >
+              CONCURSO
+            </Typography>
+            <Typography
+              sx={{
+                fontFamily: "Open Sans",
+                color: "#fff",
+                fontStyle: "normal",
+                lineHeight: "24px",
+                fontWeight: 700,
+                fontSize: "20px",
+              }}
+            >
+              {concurso.id} – {dateToString(concurso.data)}
+            </Typography>
+          </Box>
         </Box>
         <Box
           sx={{
