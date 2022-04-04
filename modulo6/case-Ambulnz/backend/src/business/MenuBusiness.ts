@@ -6,7 +6,7 @@ import { MenuInputDTO } from "../model/Menu";
 
 export class MenuBusiness {
     constructor(
-        private userDatabase: MenuDatabase,
+        private menuDatabase: MenuDatabase,
         private idGenerator: IdGenerator
     ) { }
 
@@ -20,7 +20,7 @@ export class MenuBusiness {
             throw new Error('O preço não pode ser menor ou igual a 0')
         }
 
-        const result = await this.userDatabase.insertProduct(id, menu.name, menu.price, menu.ingredients);
+        const result = await this.menuDatabase.insertProduct(id, menu.name, menu.price, menu.ingredients);
 
         return result
     }

@@ -26,7 +26,7 @@ export class MenuDatabase extends BaseDatabase {
     id: string,
     name: string,
     price: number,
-    ingredients: string
+    ingredients: string[]
   ): Promise<string> {
     try {
       await this.getConnection()
@@ -34,12 +34,12 @@ export class MenuDatabase extends BaseDatabase {
           id,
           name,
           price,
-          ingredients,
+          ingredients: ingredients.join()
         })
         .into(MenuDatabase.TABLE_NAME);
 
       return "Pizza inserida com sucesso";
-    } catch (error:any) {
+    } catch (error: any) {
       throw new Error(error.sqlMessage || error.message);
     }
   }

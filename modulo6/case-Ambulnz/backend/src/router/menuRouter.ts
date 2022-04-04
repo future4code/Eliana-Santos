@@ -7,4 +7,4 @@ export const menuRouter = express.Router();
 const menuController = new MenuController();
 
 menuRouter.get("/", menuController.getMenu);
-menuRouter.post("/",) ;
+menuRouter.post("/", menuController.createMenu) ;

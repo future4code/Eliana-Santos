@@ -3,18 +3,18 @@ export class Menu {
         private id: string,
         private name: string,
         private price: number,
-        private ingredients: string,
+        private ingredients: string[],
 
     ) { }
 
-    static toMenuModel(user: any): Menu {
-        return new Menu(user.id, user.name, user.price, user.ingredients);
+    static toMenuModel(menu: any): Menu {
+        return new Menu(menu.id, menu.name, menu.price, menu.ingredients);
     }
 }
 export interface MenuInputDTO {
     name: string;
     price: number;
-    ingredients: string;
+    ingredients: string[];
 
 }
 export interface MenuInsertDTO extends MenuInputDTO {
