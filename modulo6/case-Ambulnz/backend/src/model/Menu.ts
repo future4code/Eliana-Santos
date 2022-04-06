@@ -2,13 +2,13 @@ export class Menu {
   public getId(): string {
     return this.id;
   }
-  public getName() {
+  public getName():string {
     return this.name;
   }
-  public getPrice() {
+  public getPrice():number {
     return this.price;
   }
-  public getIngredients() {
+  public getIngredients():string[] {
     return this.ingredients;
   }
   constructor(

@@ -1,21 +1,53 @@
-
 import { IdGenerator } from "../services/IdGenerator";
 import { FieldsToComplet } from "../error/FieldsToComplet";
 import { OrderDatabase } from "../data/OrderDatabase";
+import { OrderInputDTO } from "../model/Order";
+import { ItemDatabase } from "../data/ItemDatabase";
 
 export class OrderBusiness {
-    constructor(
-        private oderDatabase: OrderDatabase,
-        private idGenerator: IdGenerator
-    ) { }
+  constructor(
+    private idGenerator: IdGenerator,
+    private orderDatabase: OrderDatabase,
+    private itemDataBase: ItemDatabase
+  ) {}
 
-
-    async getMenu() {
-
-        const menuDatabase = new MenuDatabase();
-        const menuFromDB = await menuDatabase.getAllMenu();
-
-        return menuFromDB
-
+  async create(order: OrderInputDTO) {
+    const id = this.idGenerator.generate();
+    if (!order.clientName || (!order.items && order.items !== 0)) {
+      throw new FieldsToComplet();
     }
+
+    if (Number(order.items) <= 0) {
+      throw new Error("A quantidade não pode ser menor ou igual a 0");
+    }
+
+    const result = await this.orderDatabase.createOrder(
+      id,
+      order.clientName,
+      new Date()
+    );
+
+    order.items.forEach(async (item) => {
+
+      await this.itemDataBase.createItem(
+        this.idGenerator.generate(),
+        item.qantity,
+        item.pizzaId,
+        id
+      );
+
+    });
+
+    return result;
+  }
+
+  /*   async getById() {
+    
+
+        const orderDatabase = new OrderDatabase();
+        const orderFromDB = await orderDatabase.getOrderById();
+
+        return orderFromDB
+
+    } */
 }

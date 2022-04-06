@@ -2,6 +2,7 @@ import express, { Express } from "express";
 import cors from "cors";
 import { AddressInfo } from "net";
 import { menuRouter } from "./router/menuRouter";
+import { orderRouter } from "./router/orderRouter";
 
 const app: Express = express();
 

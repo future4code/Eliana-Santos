@@ -19,16 +19,14 @@ export class OrderDatabase extends BaseDatabase {
   public async createOrder(
     id: string,
     clientName: string,
-    date: Date,
-    itemRequestId: string
+    date: Date
   ): Promise<string> {
     try {
       await this.getConnection()
         .insert({
           id,
-          clientName,
-          date,
-          itemRequestId,
+          client_Name: clientName,
+          create_at: date,
         })
         .into(OrderDatabase.TABLE_NAME);
 

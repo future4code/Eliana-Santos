@@ -1,36 +1,40 @@
+import { Item, ItemInputDTO } from "./Item";
+
 export class Order {
+
   public getId(): string {
     return this.id;
   }
-  public getClientName() {
+
+  public getClientName(): string {
     return this.clientName;
   }
-  public getDate() {
+
+  public getDate(): Date {
     return this.date;
   }
-  public getItemRequestId() {
-    return this.itemRequestId;
+
+  public getItems(): Item[] {
+    return this.items;
   }
+
   constructor(
     private id: string,
     private clientName: string,
     private date: Date,
-    private itemRequestId: string
+    private items: Item[]
   ) {}
 
   static toOrderRequestModel(order: any): Order {
-    return new Order(
-      order.id,
-      order.clientName,
-      order.date,
-      order.itemRequestId
-    );
+    return new Order(order.id, order.clientName, order.date, order.items);
   }
 }
-export interface OrderRequestInputDTO {
+
+export interface OrderInputDTO {
   clientName: string;
-  date: Date;
+  items: ItemInputDTO[];
 }
-export interface OrderRequestInsertDTO extends OrderRequestInputDTO {
+
+export interface OrderInsertDTO extends OrderInputDTO {
   id: string;
 }

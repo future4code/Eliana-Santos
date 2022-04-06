@@ -1,33 +1,34 @@
 import { BaseDatabase } from "./BaseDatabase";
-import { ItemRequest } from "../model/ItemRequest";
+import { Item } from "../model/Item";
 
 export class ItemDatabase extends BaseDatabase {
-  private static TABLE_NAME = "ITEM_REQUEST";
+  private static TABLE_NAME = "ITEM";
 
-  public async getItem(id: string): Promise<ItemRequest[]> {
+  public async getItem(): Promise<Item[]> {
     try {
       const itemRequest = await this.getConnection()
         .select("*")
-        .from(ItemDatabase.TABLE_NAME)
-        .where({ id });
+        .from(ItemDatabase.TABLE_NAME);
 
       return itemRequest;
     } catch (error: any) {
       throw new Error(error.sqlMessage || error.message);
     }
   }
-  
+
   public async createItem(
     id: string,
-    quantity: number,
-    pizzaId: string
+    qantity: number,
+    pizzaId: string,
+    orderId: string
   ): Promise<string> {
     try {
       await this.getConnection()
         .insert({
           id,
-          quantity,
-          pizzaId,
+          qantity,
+          id_pizza: pizzaId,
+          id_order: orderId,
         })
         .into(ItemDatabase.TABLE_NAME);
 

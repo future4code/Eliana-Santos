@@ -1,7 +1,7 @@
 import { IdGenerator } from "../services/IdGenerator";
 import { FieldsToComplet } from "../error/FieldsToComplet";
 import { ItemDatabase } from "../data/ItemDatabase";
-import { ItemRequestInputDTO } from "../model/ItemRequest";
+import { ItemInputDTO } from "../model/Item";
 
 export class ItemBusiness {
   constructor(
@@ -9,7 +9,7 @@ export class ItemBusiness {
     private idGenerator: IdGenerator
   ) {}
 
-  async createMenu(item: ItemRequestInputDTO) {
+/*   async createMenu(item: ItemInputDTO) {
     const id = this.idGenerator.generate();
     if (!item.pizzaId || !item.quantity && item.quantity !== 0) {
       throw new FieldsToComplet();
@@ -26,9 +26,9 @@ export class ItemBusiness {
     );
 
     return result;
-  }
+  } */
 
-  async getItemRequest() {
+  async getItem() {
     const itemDatabase = new ItemDatabase();
     const itemFromDB = await itemDatabase.getItem();
 
