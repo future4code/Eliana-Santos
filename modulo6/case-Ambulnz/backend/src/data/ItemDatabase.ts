@@ -3,12 +3,20 @@ import { Item } from "../model/Item";
 
 export class ItemDatabase extends BaseDatabase {
   private static TABLE_NAME = "ITEM";
+  private static TABLE_MENU = "MENU";
+  private static TABLE_ORDER = "ORDER_REQUEST";
 
-  public async getItem(): Promise<Item[]> {
+  public async getAllByOrderId(orderId: string): Promise<Item[]> {
     try {
       const itemRequest = await this.getConnection()
-        .select("*")
-        .from(ItemDatabase.TABLE_NAME);
+        .select("o.client_Name", "m.name", "i.qantity", "o.create_at")
+        .from(`ORDER_REQUEST`)
+        .innerJoin(`ITEM`, function () {
+          this.on("i.id_order", "=", "o.id");
+        })
+        .innerJoin(`MENU `, function () {
+          this.on("m.id", "=", "i.id.pizza");
+        });
 
       return itemRequest;
     } catch (error: any) {

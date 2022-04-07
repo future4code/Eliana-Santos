@@ -1,7 +1,7 @@
 import { IdGenerator } from "../services/IdGenerator";
 import { FieldsToComplet } from "../error/FieldsToComplet";
 import { OrderDatabase } from "../data/OrderDatabase";
-import { OrderInputDTO } from "../model/Order";
+import { OrderInputDTO, OrderInsertDTO } from "../model/Order";
 import { ItemDatabase } from "../data/ItemDatabase";
 
 export class OrderBusiness {
@@ -41,13 +41,14 @@ export class OrderBusiness {
     return result;
   }
 
-  /*   async getById() {
-    
+     async getById(input: string) {
 
-        const orderDatabase = new OrderDatabase();
-        const orderFromDB = await orderDatabase.getOrderById();
+        const id = input
+
+        const itemDatabase = new ItemDatabase();
+        const orderFromDB = await itemDatabase.getAllByOrderId(id);
 
         return orderFromDB
 
-    } */
+    } 
 }
