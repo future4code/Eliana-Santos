@@ -1,10 +1,13 @@
-import { Box, Divider, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { Box, Divider, Typography } from "@mui/material";
 import CardP from "../components/Card/Card";
 import pizza from "../assets/pizza.png";
 import SplashScreen from "../components/SplashScreen/SplashScreen";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
+import { goToRequest } from "../routes/coordinator";
 const Home = () => {
+  const history = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -40,13 +43,13 @@ const Home = () => {
         }}
       >
         <Typography
-          color={"#fff"}
+          color="#fff"
           sx={{ mr: 4 }}
-          textAlign={"center"}
-          variant={"h4"}
-          fontFamily={"Nunito"}
-          fontWeight={"bold"}
-          borderRadius={"20px"}
+          textAlign="center"
+          variant="h4"
+          fontFamily="Nunito"
+          fontWeight="bold"
+          borderRadius="20px"
         >
           Escolha a sua pizza!
         </Typography>
@@ -71,9 +74,9 @@ const Home = () => {
       >
         <Typography
           sx={{ mt: 1, mb: 1 }}
-          fontFamily={"Nunito"}
-          textAlign={"center"}
-          variant={"h4"}
+          fontFamily="Nunito"
+          textAlign="center"
+          variant="h4"
         >
           MENU
         </Typography>
@@ -87,18 +90,29 @@ const Home = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
           backgroundColor: "#9c27b0",
           width: "100%",
-          height: "49px",
-          p: 0,
-          m: 0,
-          boxSizing: 'border-box',
-          position: 'fixed',
+          height: "75px",
+          position: "fixed",
           bottom: 0,
-        
         }}
       >
-        <Button variant={'text'} sx={{width:'50%'}}>Ver Pedidos</Button>
+        <Button
+          onClick={() => goToRequest(history)}
+          type="submit"
+          variant="text"
+          sx={{
+            width: "50%",
+            color: "#ffff",
+            fontSize: " 22px",
+            fontFamily: "Nunito",
+            fontWeight: "15%",
+          }}
+        >
+          Ver Pedidos
+        </Button>
       </Box>
     </Box>
   );

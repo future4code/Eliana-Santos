@@ -1,5 +1,5 @@
 export function goToHome(history) {
- history('/')
+ history('/pizzas')
 }
 export function goToRequest(history) {
  history('/carrinho')

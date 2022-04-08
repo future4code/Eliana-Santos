@@ -1,11 +1,10 @@
 import React from "react";
 
 import { Box, Button, CardContent, Typography } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
+import ClearIcon from "@mui/icons-material/Clear";
 import Paper from "@mui/material/Paper";
 
-const CardP = () => {
+const Cart = () => {
   return (
     <Paper
       elevation={5}
@@ -21,7 +20,7 @@ const CardP = () => {
       <CardContent sx={{ display: "flex", flexDirection: "column" }}>
         <Typography
           textAlign="center"
-          color={"#9c27b0"}
+          color="#9c27b0"
           variant="h4"
           fontFamily="Nunito"
         >
@@ -33,7 +32,7 @@ const CardP = () => {
           variant="subtitle1"
           fontSize="18px"
         >
-          Molho de tomate, calabresa, cebola, queijo mozzarela
+          R$ 45,0
         </Typography>
       </CardContent>
       <Box
@@ -63,24 +62,12 @@ const CardP = () => {
             mb: 1,
           }}
         >
-          <Button
-            size="small"
-            color="secondary"
-          >
-            <RemoveIcon />
-          </Button>
-
-          <Typography
-            sx={{ fontFamily: "Nunito", fontSize: "22px", fontWeight: "bold" }}
-          >
-            2
-          </Typography>
-          <Button color="secondary">
-            <AddIcon />
+          <Button size="small" color="secondary">
+            <ClearIcon />
           </Button>
         </Box>
       </Box>
     </Paper>
   );
 };
-export default CardP;
+export default Cart;
