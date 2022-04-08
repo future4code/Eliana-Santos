@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Box, Divider, Typography } from "@mui/material";
-import CardP from "../components/Card/Card";
+import CardP from "../components/Card/CardP";
 import pizza from "../assets/pizza.png";
 import SplashScreen from "../components/SplashScreen/SplashScreen";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { goToRequest } from "../routes/coordinator";
+import { getMenu } from "../services/Menu";
 const Home = () => {
   const history = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
+  const [menu, setMenu] = useState();
 
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
   }, []);
+
+  useEffect(() => {
+    getMenu().then((list) => {
+      setMenu(list);
+    });
+  });
 
   return isLoading ? (
     <SplashScreen />
@@ -81,10 +89,8 @@ const Home = () => {
           MENU
         </Typography>
         <Divider />
-        <CardP />
-        <CardP />
-        <CardP />
-        <CardP />
+
+        <CardP menu={menu} />
       </Box>
       <Box
         sx={{
@@ -108,7 +114,7 @@ const Home = () => {
             color: "#ffff",
             fontSize: " 22px",
             fontFamily: "Nunito",
-            fontWeight: "15%",
+            fontWeight: "bold",
           }}
         >
           Ver Pedidos

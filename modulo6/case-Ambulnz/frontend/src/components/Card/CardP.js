@@ -5,7 +5,8 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import Paper from "@mui/material/Paper";
 
-const CardP = () => {
+const CardP = (props) => {
+  
   return (
     <Paper
       elevation={5}
@@ -21,7 +22,7 @@ const CardP = () => {
       <CardContent sx={{ display: "flex", flexDirection: "column" }}>
         <Typography
           textAlign="center"
-          color={"#9c27b0"}
+          color="#9c27b0"
           variant="h4"
           fontFamily="Nunito"
         >
@@ -31,7 +32,8 @@ const CardP = () => {
         <Typography
           textAlign="justify"
           variant="subtitle1"
-          fontSize="18px"
+          fontSize="20px"
+          fontFamily="Nunito"
         >
           Molho de tomate, calabresa, cebola, queijo mozzarela
         </Typography>

@@ -28,11 +28,11 @@ const Cart = () => {
         </Typography>
 
         <Typography
-          textAlign="justify"
+          textAlign="center"
           variant="subtitle1"
-          fontSize="18px"
+          sx={{ fontFamily: "Nunito", fontSize: "22px", fontWeight: "bold" }}
         >
-          R$ 45,0
+          Quantidade: 1
         </Typography>
       </CardContent>
       <Box

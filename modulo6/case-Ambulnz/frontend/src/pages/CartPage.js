@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Divider, Typography } from "@mui/material";
+import { Box, Button, Divider, TextField, Typography } from "@mui/material";
 import Cart from "../components/Cart/Cart";
 import { useNavigate } from "react-router-dom";
 import { goToHome } from "../routes/coordinator";
@@ -25,25 +25,9 @@ const CartPage = () => {
           alignContent: "center",
           justifyContent: "space-around",
           mb: 1,
+          mt: 5,
         }}
-      >
-    {/*     <Typography
-          color={"#fff"}
-          sx={{ mr: 4 }}
-          textAlign={"center"}
-          variant={"h4"}
-          fontFamily={"Nunito"}
-          fontWeight={"bold"}
-          borderRadius={"20px"}
-        >
-          Resumo do Pedido
-        </Typography>
-        <img
-          src={pizza}
-          alt="pizza"
-          style={{ width: "100px", height: "100px" }}
-        /> */}
-      </Box>
+      ></Box>
       <Box
         sx={{
           display: "flex",
@@ -63,9 +47,13 @@ const CartPage = () => {
           textAlign="center"
           variant="h4"
         >
-          Pedidos
+          Resumo do Pedido
         </Typography>
         <Divider />
+        <TextField autoComplete={false} label='Digite seu nome' sx={{ m: 0, p: 0, ml: 10, mr: 10, mt: 2, mb: 2 }}>
+          {" "}
+          Digite seu Nome
+        </TextField>
         <Cart />
       </Box>
       <Box
@@ -93,7 +81,7 @@ const CartPage = () => {
             color: "#ffff",
             fontSize: " 22px",
             fontFamily: "Nunito",
-            fontWeight: "15%",
+            fontWeight: "bold",
           }}
         >
           Finalizar
