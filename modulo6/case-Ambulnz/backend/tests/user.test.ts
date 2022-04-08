@@ -1,4 +1,4 @@
-import { UserBusiness } from "../src/business/MenuBusiness";
+/* import { UserBusiness } from "../src/business/MenuBusiness";
 import { IdGeneratorMock } from "./mock/IdGeneratorMock";
 import { UserDataBaseMock } from "./mock/UserDatabaseMock";
 
@@ -86,4 +86,4 @@ describe("Buscar todos os usuários", () => {
             console.log(e)
         }
     })
-})
+}) */

@@ -12,7 +12,7 @@ app.use(cors());
 app.use("/pizzas", menuRouter);
 app.use("/orders", orderRouter);
 
-const server = app.listen(process.env.PORT || 3003, () => {
+const server = app.listen(process.env.PORT || 3000, () => {
   if (server) {
     const address = server.address() as AddressInfo;
     console.log(`Server is running in http://localhost: ${address.port}`);

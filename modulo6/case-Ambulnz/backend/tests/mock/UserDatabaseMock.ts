@@ -1,4 +1,4 @@
-import { User, UserInputDTO } from "../../src/model/Menu";
+/* import { User, UserInputDTO } from "../../src/model/Menu";
 import { userMock, userMock2 } from "./userMock";
 
 export class UserDataBaseMock{
@@ -9,4 +9,4 @@ export class UserDataBaseMock{
     public async getAllUsers(): Promise<User[]> {
         return [userMock, userMock2]
     }
-}
+} */

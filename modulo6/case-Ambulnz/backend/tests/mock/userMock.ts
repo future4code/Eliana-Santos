@@ -1,4 +1,4 @@
-import { User } from "../../src/model/Menu";
+/* import { User } from "../../src/model/Menu";
 
 export const userMock = new User(
     "id_mockado_1",
@@ -11,4 +11,4 @@ export const userMock2 = new User(
     "Joana",
     "Silva",
     33
-)
+) */

@@ -9,28 +9,10 @@ export class ItemBusiness {
     private idGenerator: IdGenerator
   ) {}
 
-/*   async createMenu(item: ItemInputDTO) {
-    const id = this.idGenerator.generate();
-    if (!item.pizzaId || !item.quantity && item.quantity !== 0) {
-      throw new FieldsToComplet();
-    }
-
-    if (item.quantity <= 0) {
-      throw new Error("O preço não pode ser menor ou igual a 0");
-    }
-
-    const result = await this.itemDatabase.createItem(
-      id,
-      item.quantity,
-      item.pizzaId
-    );
-
-    return result;
-  } */
-
   async getItem() {
+ 
     const itemDatabase = new ItemDatabase();
-    const itemFromDB = await itemDatabase.getItem();
+    const itemFromDB = await itemDatabase.getAllByOrderId("");
 
     return itemFromDB;
   }
