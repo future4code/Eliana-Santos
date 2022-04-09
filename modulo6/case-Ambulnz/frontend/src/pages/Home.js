@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Box, Divider, Typography } from "@mui/material";
 import CardP from "../components/Card/CardP";
 import pizza from "../assets/pizza.png";
@@ -7,22 +7,22 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { goToRequest } from "../routes/coordinator";
 import { getMenu } from "../services/Menu";
+import { GlobalContext } from "../contexts/GlobalContext";
 const Home = () => {
   const history = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-  const [menu, setMenu] = useState();
-
+  const [menu, setMenu] = useState([]);
+  const { states, setters } = useContext(GlobalContext);
+  
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
-  }, []);
 
-  useEffect(() => {
     getMenu().then((list) => {
       setMenu(list);
     });
-  });
+  }, []);
 
   return isLoading ? (
     <SplashScreen />
@@ -90,7 +90,11 @@ const Home = () => {
         </Typography>
         <Divider />
 
-        <CardP menu={menu} />
+        {menu.map((itemMenu) => {
+          return (
+            <CardP key={itemMenu.id} value={itemMenu.id} itemMenu={itemMenu} />
+          );
+        })}
       </Box>
       <Box
         sx={{

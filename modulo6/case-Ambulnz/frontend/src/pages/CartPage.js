@@ -1,10 +1,21 @@
 import React from "react";
-import { Box, Button, Divider, TextField, Typography } from "@mui/material";
+import { Box, Button, Divider, Typography } from "@mui/material";
 import Cart from "../components/Cart/Cart";
 import { useNavigate } from "react-router-dom";
 import { goToHome } from "../routes/coordinator";
+import InputRHF from "../components/RHF/InputRHF";
+import { useForm } from "react-hook-form";
+import validation from "../util/validation";
+
 const CartPage = () => {
   const history = useNavigate();
+  const form = useForm(validation);
+  const { control, handleSubmit } = form;
+
+   const onSubmit = () => {
+   // signUp(form.getValues(), history);
+  }; 
+
   return (
     <Box
       sx={{
@@ -29,6 +40,7 @@ const CartPage = () => {
         }}
       ></Box>
       <Box
+      onSubmit={handleSubmit(onSubmit)}
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -50,10 +62,15 @@ const CartPage = () => {
           Resumo do Pedido
         </Typography>
         <Divider />
-        <TextField autoComplete={false} label='Digite seu nome' sx={{ m: 0, p: 0, ml: 10, mr: 10, mt: 2, mb: 2 }}>
-          {" "}
+        <InputRHF
+          name="name"
+          control={control}
+          autoComplete={false}
+          label="Digite seu nome"
+          sx={{ m: 0, p: 0, ml: 10, mr: 10, mt: 2, mb: 2 }}
+        >
           Digite seu Nome
-        </TextField>
+        </InputRHF>
         <Cart />
       </Box>
       <Box
@@ -83,6 +100,7 @@ const CartPage = () => {
             fontFamily: "Nunito",
             fontWeight: "bold",
           }}
+          
         >
           Finalizar
         </Button>

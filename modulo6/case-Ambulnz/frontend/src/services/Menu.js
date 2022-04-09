@@ -10,7 +10,7 @@ export const getMenu = async () => {
   }
 };
 
-export const getPizzaById = async (id) => {
+export const getOrderById = async (id) => {
   try {
     const res = await axios.get(`${BASE_URL}/order/${id}`);
     return res.data;
@@ -19,3 +19,11 @@ export const getPizzaById = async (id) => {
   }
 };
 
+export const getOrder = async () => {
+  try {
+    const res = await axios.get(`${BASE_URL}/order`);
+    return res.data;
+  } catch (err) {
+    alert(err.message);
+  }
+};
