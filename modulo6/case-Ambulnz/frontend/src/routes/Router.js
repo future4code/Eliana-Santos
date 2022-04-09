@@ -8,7 +8,7 @@ import Home from "../pages/Home";
 export default function Router() {
   return (
     <Routes>
-      <Route path="/pizzas" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/carrinho" element={<CartPage />} />
     </Routes>
   );
