@@ -3,6 +3,10 @@ import cors from "cors";
 import { AddressInfo } from "net";
 import { menuRouter } from "./router/menuRouter";
 import { orderRouter } from "./router/orderRouter";
+import dotenv from "dotenv";
+
+dotenv.config();
+
 
 const app: Express = express();
 
