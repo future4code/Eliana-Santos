@@ -1,8 +1,9 @@
 # Projeto App Pizza Delivery
 ### Objetivo
 Projeto full-stack com o objetivo de desenvolver um app delivey pizza, onde o usuário consiga ver o cardápio de todas as pizzas, selicionar a quantidade desejada e finalizar o pedido colocando o nome e vendo o valor total do pedido, 
-[API-HEROKU]()
+[API-HEROKU](https://github.com/elianacris/backend)
 [Documentação da API](https://documenter.getpostman.com/view/18390857/UVyxRZqh) 
+[Link Surge](app-pizza.surge.sh)
 ### Projeto Construído com  
 - [React.js](https://reactjs.org/)
 
