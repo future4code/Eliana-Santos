@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { AppBar, Box, Button, Typography } from "@mui/material";
 import logo from "../../assets/logo.png";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { getGenres } from "../../services/filmes";
+import CancelSharpIcon from "@mui/icons-material/CancelSharp";
+import { getGenres } from "../../services/Movies";
 
 const Home = () => {
   const [genres, setGenres] = useState([]);
-  const [select, setSelect] = useState("");
+  const [select, setSelect] = useState([]);
 
   const handleSelect = (event, newSelect) => {
+    console.log(newSelect);
     if (newSelect !== null) {
       setSelect(newSelect);
     }
   };
+  const onSubmit = () => {};
 
   useEffect(() => {
     getGenres().then((list) => {
@@ -77,6 +79,7 @@ const Home = () => {
           FILTRE POR:
         </Typography>
         <Box
+          onSubmit={onSubmit}
           sx={{
             display: "flex",
             flexDirection: "row",
@@ -88,10 +91,11 @@ const Home = () => {
           {genres.map((genre) => {
             return (
               <Button
+                type="submit"
                 onChange={handleSelect}
                 key={genre.id}
                 value={genres}
-                endIcon={<HighlightOffIcon />}
+                endIcon={select === genre.name && <CancelSharpIcon />}
                 sx={{
                   backgroundColor: "#fff",
                   color: "#323232",
