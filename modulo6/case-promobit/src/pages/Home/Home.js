@@ -39,10 +39,19 @@ const Home = () => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          alignItems: "center",
+          alignItems: {
+            lg: "flex-start",
+            md: "flex-start",
+            xs: "center",
+            sm: "center",
+          },
           backgroundColor: "#5C16C5",
           width: "100%",
           height: "56px",
+          pl: {
+            lg: 15,
+            md: 15,
+          },
           m: 0,
           p: 0,
         }}
@@ -76,12 +85,27 @@ const Home = () => {
         <Typography
           sx={{
             color: "#fff",
-            fontSize: "24px",
+            fontSize: {
+              lg: "48px",
+              md: "48px",
+              xs: "24px",
+              sm: "24px",
+            },
             fontWeight: "700",
-            lineHeight: "28px",
+            lineHeight: {
+              lg: "56px",
+              md: "56px",
+              xs: "28px",
+              sm: "28px",
+            },
             mr: "115px",
             ml: 2,
-            mt: 13,
+            mt: {
+              lg: 15,
+              md: 15,
+              xs: 13,
+              sm: 13,
+            },
           }}
         >
           Milhões de filmes, séries e pessoas para descobrir. Explore já.
@@ -90,7 +114,8 @@ const Home = () => {
           sx={{
             color: "#fff",
             fontSize: "14px",
-            fontWeight: "400",
+            fontWeight: 700,
+            fontStyle: "normal",
             lineHeight: "20px",
             ml: 2,
             mt: 5,
@@ -104,12 +129,10 @@ const Home = () => {
           value={select}
           sx={{
             display: "grid",
-            gridTemplateColumns: "repeat(12, 1fr)",
+            gridTemplateColumns: "repeat(10, 1fr)",
             rowGap: 1,
             columnGap: 2,
-            // gap: "10px",
-            ml: 2,
-            mt: 1,
+            mt: 2,
           }}
         >
           {genres.map((genre) => {
@@ -168,18 +191,55 @@ const Home = () => {
                   },
                 }}
               >
-                <img src={`${BASE_IMG}${movie.poster_path}`} alt="movie" />
+                <img
+                  src={`${BASE_IMG}${movie.poster_path}`}
+                  alt="movie"
+                  style={{ borderRadius: "4px" }}
+                />
 
                 <Box sx={{}}>
                   <Typography
                     sx={{
                       gridColumn: "span 8",
                       width: "185px",
+                      fontSize: {
+                        lg: "16px",
+                        md: "16px",
+                        xs: "14px",
+                        sm: "14px",
+                      },
+                      lineWeight: {
+                        lg: "24px",
+                        md: "24px",
+                        xs: "20px",
+                        sm: "20px",
+                      },
+                      fontWeight: 700,
+                      fontStyle: "normal",
                     }}
                   >
                     {movie.title}
                   </Typography>
-                  <Typography sx={{ gridColumn: "span 8" }}>
+                  <Typography
+                    sx={{
+                      gridColumn: "span 8",
+                      color: "#646464",
+                      fontSize: {
+                        lg: "14px",
+                        md: "14px",
+                        xs: "12px",
+                        sm: "12px",
+                      },
+                      lineWeight: {
+                        lg: "24px",
+                        md: "24px",
+                        xs: "18px",
+                        sm: "18px",
+                      },
+                      fontWeight: 700,
+                      fontStyle: "normal",
+                    }}
+                  >
                     {formatDate(movie.release_date)}
                   </Typography>
                 </Box>
@@ -187,6 +247,20 @@ const Home = () => {
             </>
           );
         })}
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          mb: 8,
+          mt: 2,
+          color: "#2D0C5E",
+          fontSize: "16px",
+          fontWeight: 700,
+          lineHeight: "24px",
+        }}
+      >
+        <Pagination />
       </Box>
     </Box>
   );
