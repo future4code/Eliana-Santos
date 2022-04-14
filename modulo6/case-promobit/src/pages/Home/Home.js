@@ -11,6 +11,8 @@ import {
 import logo from "../../assets/logo.png";
 import CancelSharpIcon from "@mui/icons-material/CancelSharp";
 import { getGenres, getMovie } from "../../services/Movies";
+import { formatDate } from "../../util/formatDate";
+import { BASE_IMG } from "../../constants/url";
 
 const Home = () => {
   const [genres, setGenres] = useState([]);
@@ -27,7 +29,6 @@ const Home = () => {
       setGenres(list.genres);
     });
     getMovie().then((list) => {
-      console.log(list);
       setMovies(list.results);
     });
   }, []);
@@ -56,9 +57,18 @@ const Home = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
+          alignItems: {
+            md: "center",
+            lg: "center",
+          },
           backgroundColor: "#2D0C5E",
           width: "100%",
-          height: "92vh",
+          height: {
+            xs: "759.92px",
+            sm: "759.92px",
+            md: "449px",
+            lg: "449px",
+          },
           m: 0,
           p: 0,
         }}
@@ -93,10 +103,11 @@ const Home = () => {
           onSubmit={onSubmit}
           value={select}
           sx={{
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            gap: "10px",
+            display: "grid",
+            gridTemplateColumns: "repeat(12, 1fr)",
+            rowGap: 1,
+            columnGap: 2,
+            // gap: "10px",
             ml: 2,
             mt: 1,
           }}
@@ -110,6 +121,12 @@ const Home = () => {
                 key={genre.id}
                 value={select}
                 sx={{
+                  gridColumn: {
+                    xs: "span 2",
+                    sm: "span 3",
+                    md: "span 3",
+                    lg: "span 1",
+                  },
                   backgroundColor: "#fff",
                   color: "#323232",
                   fontSize: "14px",
@@ -128,16 +145,48 @@ const Home = () => {
           })}
         </FormControl>
       </Box>
-      <Box>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(12, 1fr)",
+          rowGap: 1,
+          justifyItems: "center",
+          alignItems: "center",
+          mt: 4,
+        }}
+      >
         {movies.map((movie) => {
-          return  <><Card>
-            <img src={movie.poster_path} alt="movie" />
-          </Card>
-          <Typography>{movie.title}</Typography>
-          <Typography>{movie.release_date}</Typography>
-       </>
+          return (
+            <>
+              <Box
+                sx={{
+                  gridColumn: {
+                    xs: "span 6",
+                    sm: "span 4",
+                    md: "span 3",
+                    lg: "span 2",
+                  },
+                }}
+              >
+                <img src={`${BASE_IMG}${movie.poster_path}`} alt="movie" />
+
+                <Box sx={{}}>
+                  <Typography
+                    sx={{
+                      gridColumn: "span 8",
+                      width: "185px",
+                    }}
+                  >
+                    {movie.title}
+                  </Typography>
+                  <Typography sx={{ gridColumn: "span 8" }}>
+                    {formatDate(movie.release_date)}
+                  </Typography>
+                </Box>
+              </Box>
+            </>
+          );
         })}
-       
       </Box>
     </Box>
   );
