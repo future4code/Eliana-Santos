@@ -1,35 +1,16 @@
 import React, { useEffect, useState } from "react";
-import {
-  AppBar,
-  Box,
-  Button,
-  Card,
-  FormControl,
-  Pagination,
-  Typography,
-} from "@mui/material";
+import { AppBar, Box, Card, Typography } from "@mui/material";
 import logo from "../../assets/logo.png";
-import CancelSharpIcon from "@mui/icons-material/CancelSharp";
-import { getGenres, getMovie } from "../../services/Movies";
-import { formatDate } from "../../util/formatDate";
 import { BASE_IMG } from "../../constants/url";
+import { getMovieById } from "../../services/Movies";
+import { formatDate } from "../../util/formatDate";
 
 const DetailsPage = () => {
-  const [genres, setGenres] = useState([]);
-  const [select, setSelect] = useState([]);
-  const [movies, setMovies] = useState([]);
-
-  const handleSelect = (event, newSelect) => {
-    setSelect(event.target.value, newSelect);
-  };
-  const onSubmit = () => {};
+  const [details, setDetails] = useState([]);
 
   useEffect(() => {
-    getGenres().then((list) => {
-      setGenres(list.genres);
-    });
-    getMovie().then((list) => {
-      setMovies(list.results);
+    getMovieById().then((list) => {
+      setDetails(list);
     });
   }, []);
 
@@ -82,185 +63,233 @@ const DetailsPage = () => {
           p: 0,
         }}
       >
-        <Typography
-          sx={{
-            color: "#fff",
-            fontSize: {
-              lg: "48px",
-              md: "48px",
-              xs: "24px",
-              sm: "24px",
-            },
-            fontWeight: "700",
-            lineHeight: {
-              lg: "56px",
-              md: "56px",
-              xs: "28px",
-              sm: "28px",
-            },
-            mr: "115px",
-            ml: 2,
-            mt: {
-              lg: 15,
-              md: 15,
-              xs: 13,
-              sm: 13,
-            },
-          }}
-        >
-          Milhões de filmes, séries e pessoas para descobrir. Explore já.
-        </Typography>
-        <Typography
-          sx={{
-            color: "#fff",
-            fontSize: "14px",
-            fontWeight: 700,
-            fontStyle: "normal",
-            lineHeight: "20px",
-            ml: 2,
-            mt: 5,
-          }}
-        >
-          FILTRE POR:
-        </Typography>
-
-        <FormControl
-          onSubmit={onSubmit}
-          value={select}
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "repeat(10, 1fr)",
-            rowGap: 1,
-            columnGap: 2,
-            mt: 2,
-          }}
-        >
-          {genres.map((genre) => {
-            return (
-              <Button
-                onChange={handleSelect}
-                onClick={handleSelect}
-                type="submit"
-                key={genre.id}
-                value={select}
-                sx={{
-                  gridColumn: {
-                    xs: "span 2",
-                    sm: "span 3",
-                    md: "span 3",
-                    lg: "span 1",
-                  },
-                  backgroundColor: "#fff",
-                  color: "#323232",
-                  fontSize: "14px",
-                  lineHeight: "20px",
-                  fontWeight: "700",
-                  textAlign: "center",
-                  p: 1,
-                  pl: 3,
-                  pr: 3,
-                }}
-              >
-                {genre.name}
-                {select === genre.name && <CancelSharpIcon />}
-              </Button>
-            );
-          })}
-        </FormControl>
-      </Box>
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(12, 1fr)",
-          rowGap: 1,
-          justifyItems: "center",
-          alignItems: "center",
-          mt: 4,
-        }}
-      >
-        {movies.map((movie) => {
+        {details.map((detail) => {
           return (
             <>
-              <Box
+              <img
+                src={`${BASE_IMG}${detail.backdrop_path}`}
+                alt="movie"
+                style={{ borderRadius: "4px" }}
+              />
+              <Typography
                 sx={{
-                  gridColumn: {
-                    xs: "span 6",
-                    sm: "span 4",
-                    md: "span 3",
-                    lg: "span 2",
+                  color: "#fff",
+                  fontSize: "32px",
+                  fontWeight: "700",
+                  lineHeight: "38px",
+                  mr: "115px",
+                  ml: 2,
+                  mt: {
+                    lg: 15,
+                    md: 15,
+                    xs: 13,
+                    sm: 13,
                   },
                 }}
               >
-                <img
-                  src={`${BASE_IMG}${movie.poster_path}`}
-                  alt="movie"
-                  style={{ borderRadius: "4px" }}
-                />
-
-                <Box sx={{}}>
-                  <Typography
-                    sx={{
-                      gridColumn: "span 8",
-                      width: "185px",
-                      fontSize: {
-                        lg: "16px",
-                        md: "16px",
-                        xs: "14px",
-                        sm: "14px",
-                      },
-                      lineWeight: {
-                        lg: "24px",
-                        md: "24px",
-                        xs: "20px",
-                        sm: "20px",
-                      },
-                      fontWeight: 700,
-                      fontStyle: "normal",
-                    }}
-                  >
-                    {movie.title}
-                  </Typography>
-                  <Typography
-                    sx={{
-                      gridColumn: "span 8",
-                      color: "#646464",
-                      fontSize: {
-                        lg: "14px",
-                        md: "14px",
-                        xs: "12px",
-                        sm: "12px",
-                      },
-                      lineWeight: {
-                        lg: "24px",
-                        md: "24px",
-                        xs: "18px",
-                        sm: "18px",
-                      },
-                      fontWeight: 700,
-                      fontStyle: "normal",
-                    }}
-                  >
-                    {formatDate(movie.release_date)}
-                  </Typography>
-                </Box>
-              </Box>
+                {detail.original_title}
+              </Typography>
+              <Typography
+                sx={{
+                  color: "#fff",
+                  fontSize: "18px",
+                  fontWeight: 400,
+                  fontStyle: "normal",
+                  lineHeight: "24px",
+                  ml: 2,
+                  mt: 5,
+                }}
+              >
+                {detail.release_date}-{detail.genres.name}-{detail.runtime}
+              </Typography>
+              <Typography
+                sx={{
+                  color: "#fff",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                  fontStyle: "normal",
+                  lineHeight: "20px",
+                  ml: 2,
+                  mt: 5,
+                }}
+              >
+                Avaliação dos Usuários {}
+              </Typography>
+              <Typography
+                sx={{
+                  color: "#fff",
+                  fontSize: "20px",
+                  fontWeight: 700,
+                  fontStyle: "normal",
+                  lineHeight: "24px",
+                  ml: 2,
+                  mt: 5,
+                }}
+              >
+                Sinopse
+              </Typography>
+              <Typography
+                sx={{
+                  color: "#fff",
+                  fontSize: "16px",
+                  fontWeight: 400,
+                  fontStyle: "normal",
+                  lineHeight: "24px",
+                  ml: 2,
+                  mt: 5,
+                }}
+              >
+                {detail.overview}
+              </Typography>
             </>
           );
         })}
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          mb: 8,
-          mt: 2,
-          color: "#2D0C5E",
-          fontSize: "16px",
-          fontWeight: 700,
-          lineHeight: "24px",
-        }}
-      >
-        <Pagination />
+
+      <Box>
+        <Box>
+          <Typography
+            sx={{
+              color: "#fff",
+              fontSize: "28px",
+              fontWeight: 700,
+              fontStyle: "normal",
+              lineHeight: "32px",
+              ml: 2,
+              mt: 5,
+            }}
+          >
+            Elenco original
+          </Typography>
+          <Card>
+            <img
+              src={`${BASE_IMG}`}
+              alt="movie"
+              style={{ borderRadius: "4px" }}
+            />
+            <Typography
+              sx={{
+                color: "#fff",
+                fontSize: "18px",
+                fontWeight: 700,
+                fontStyle: "normal",
+                lineHeight: "30px",
+                ml: 2,
+                mt: 5,
+              }}
+            >
+              Nome{}
+            </Typography>
+            <Typography
+              sx={{
+                color: "#fff",
+                fontSize: "16px",
+                fontWeight: 400,
+                fontStyle: "normal",
+                lineHeight: "24px",
+                ml: 2,
+                mt: 5,
+              }}
+            >
+              atriz(o){}
+            </Typography>
+          </Card>
+
+          <Box>
+            <Typography
+              sx={{
+                color: "#fff",
+                fontSize: "28px",
+                fontWeight: 700,
+                fontStyle: "normal",
+                lineHeight: "32px",
+                ml: 2,
+                mt: 5,
+              }}
+            >
+              Trailer
+            </Typography>
+            <video url={""} />
+          </Box>
+        </Box>
+      </Box>
+      <Box>
+        <Typography
+          sx={{
+            color: "#fff",
+            fontSize: "28px",
+            fontWeight: 700,
+            fontStyle: "normal",
+            lineHeight: "32px",
+            ml: 2,
+            mt: 5,
+          }}
+        >
+          Recomendações
+        </Typography>
+        <Box
+          sx={{
+            gridColumn: {
+              xs: "span 6",
+              sm: "span 4",
+              md: "span 3",
+              lg: "span 2",
+            },
+          }}
+        >
+          <img
+            src={`${BASE_IMG}`}
+            alt="movie"
+            style={{ borderRadius: "4px" }}
+          />
+
+          <Box sx={{}}>
+            <Typography
+              sx={{
+                gridColumn: "span 8",
+                width: "185px",
+                fontSize: {
+                  lg: "16px",
+                  md: "16px",
+                  xs: "14px",
+                  sm: "14px",
+                },
+                lineWeight: {
+                  lg: "24px",
+                  md: "24px",
+                  xs: "20px",
+                  sm: "20px",
+                },
+                fontWeight: 700,
+                fontStyle: "normal",
+              }}
+            >
+              {}
+            </Typography>
+            <Typography
+              sx={{
+                gridColumn: "span 8",
+                color: "#646464",
+                fontSize: {
+                  lg: "14px",
+                  md: "14px",
+                  xs: "12px",
+                  sm: "12px",
+                },
+                lineWeight: {
+                  lg: "24px",
+                  md: "24px",
+                  xs: "18px",
+                  sm: "18px",
+                },
+                fontWeight: 700,
+                fontStyle: "normal",
+              }}
+            >
+              {formatDate()}
+            </Typography>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

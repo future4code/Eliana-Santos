@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import logo from "../../assets/logo.png";
 import CancelSharpIcon from "@mui/icons-material/CancelSharp";
-import { getGenres, getMovie} from "../../services/Movies";
+import { getGenres, getMovie, getMovieById } from "../../services/Movies";
 import { formatDate } from "../../util/formatDate";
 import { BASE_IMG } from "../../constants/url";
 
@@ -24,7 +24,11 @@ const Home = () => {
   const onSubmit = () => {};
 
   const handleClickDetails = (id) => {
-    };
+    console.log(id);
+    getMovieById(id).then((movei) => {
+      console.log(getMovieById(movei));
+    });
+  };
 
   useEffect(() => {
     getGenres().then((list) => {
@@ -184,7 +188,7 @@ const Home = () => {
           return (
             <>
               <Box
-                onClick={() =>{handleClickDetails(movie.id)}}
+                onClick={() => handleClickDetails(movie.id)}
                 sx={{
                   gridColumn: {
                     xs: "span 6",
