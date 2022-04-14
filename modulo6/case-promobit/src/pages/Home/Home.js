@@ -3,14 +3,13 @@ import {
   AppBar,
   Box,
   Button,
-  Card,
   FormControl,
   Pagination,
   Typography,
 } from "@mui/material";
 import logo from "../../assets/logo.png";
 import CancelSharpIcon from "@mui/icons-material/CancelSharp";
-import { getGenres, getMovie } from "../../services/Movies";
+import { getGenres, getMovie} from "../../services/Movies";
 import { formatDate } from "../../util/formatDate";
 import { BASE_IMG } from "../../constants/url";
 
@@ -23,6 +22,9 @@ const Home = () => {
     setSelect(event.target.value, newSelect);
   };
   const onSubmit = () => {};
+
+  const handleClickDetails = (id) => {
+    };
 
   useEffect(() => {
     getGenres().then((list) => {
@@ -182,6 +184,7 @@ const Home = () => {
           return (
             <>
               <Box
+                onClick={() =>{handleClickDetails(movie.id)}}
                 sx={{
                   gridColumn: {
                     xs: "span 6",

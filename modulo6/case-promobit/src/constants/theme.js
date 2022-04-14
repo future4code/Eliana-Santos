@@ -20,11 +20,6 @@ export let theme = createTheme({
     MuiTypography: {
       styleOverrides: {
         root: {
-          // display: 'inline-block',
-          // breakInside:  'avoid-column',
-          // wordWrap: "break-word",
-          //  breakBefore:'region'
-
           wordBreak: "break-all",
         },
       },

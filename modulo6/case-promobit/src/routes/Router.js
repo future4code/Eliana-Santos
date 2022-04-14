@@ -1,12 +1,14 @@
-import { Route, Router } from "react-router-dom";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import DetailsPage from "../pages/Details/DetailsPage";
 import Home from "../pages/Home/Home";
 
-export default Router = () => {
+export default function Router() {
   return (
-    <Router>
+    <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/movie/:id" element={<DetailsPage />} />
-    </Router>
+    </Routes>
   );
-};
+}
+
