@@ -16,11 +16,12 @@ export const getMovieById = async (id) => {
     const res = await axios.get(
       `${BASE_URL}/movie/${id}?api_key=5769528853ac98398327afcd8c85d277&language=pt-PT`
     );
-    return res.data.id;
+    return res.data;
   } catch (error) {
     alert(error.message);
   }
 };
+
 export const getMovie = async () => {
   try {
     const res = await axios.get(

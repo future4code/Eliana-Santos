@@ -24,5 +24,14 @@ export let theme = createTheme({
         },
       },
     },
+    MuiCircularProgress: {
+      styleOverrides: {
+        root: {
+          "&.MuiCircularProgress-determinate": {
+           
+          },
+        },
+      },
+    },
   },
 });

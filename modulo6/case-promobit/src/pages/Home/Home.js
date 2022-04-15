@@ -9,11 +9,15 @@ import {
 } from "@mui/material";
 import logo from "../../assets/logo.png";
 import CancelSharpIcon from "@mui/icons-material/CancelSharp";
-import { getGenres, getMovie, getMovieById } from "../../services/Movies";
+import { getGenres, getMovie} from "../../services/Movies";
 import { formatDate } from "../../util/formatDate";
-import { BASE_IMG } from "../../constants/url";
+import { useNavigate } from "react-router-dom";
+import { goToDetailsPage } from "../../routes/coordinator";
+import { BASE_POSTER } from "../../constants/url";
 
 const Home = () => {
+
+  const history = useNavigate();
   const [genres, setGenres] = useState([]);
   const [select, setSelect] = useState([]);
   const [movies, setMovies] = useState([]);
@@ -21,13 +25,11 @@ const Home = () => {
   const handleSelect = (event, newSelect) => {
     setSelect(event.target.value, newSelect);
   };
+
   const onSubmit = () => {};
 
   const handleClickDetails = (id) => {
-    console.log(id);
-    getMovieById(id).then((movei) => {
-      console.log(getMovieById(movei));
-    });
+    if (id) goToDetailsPage(history, id)
   };
 
   useEffect(() => {
@@ -188,6 +190,7 @@ const Home = () => {
           return (
             <>
               <Box
+                key={movie.id}
                 onClick={() => handleClickDetails(movie.id)}
                 sx={{
                   gridColumn: {
@@ -199,7 +202,7 @@ const Home = () => {
                 }}
               >
                 <img
-                  src={`${BASE_IMG}${movie.poster_path}`}
+                  src={`${BASE_POSTER}${movie.poster_path}`}
                   alt="movie"
                   style={{ borderRadius: "4px" }}
                 />
