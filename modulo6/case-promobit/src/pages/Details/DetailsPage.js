@@ -9,7 +9,11 @@ import {
 } from "@mui/material";
 import logo from "../../assets/logo.png";
 import { BASE_IMG, BASE_POSTER } from "../../constants/url";
-import { getCredits, getMovieById, getRecommendations } from "../../services/Movies";
+import {
+  getCredits,
+  getMovieById,
+  getRecommendations,
+} from "../../services/Movies";
 import { formatDate, formatDateMovie } from "../../util/formatDate";
 import { useParams } from "react-router-dom";
 import { CircularProgressWithLabel } from "../../components/CircularProgress/CircularProgressWithLabel";
@@ -307,7 +311,6 @@ const DetailsPage = () => {
                 flexDirection: "row",
                 overflow: "auto",
                 overflowX: "scroll",
-                //  maxHeight: "350px",
                 columnGap: "50px",
               }}
             >
@@ -323,7 +326,6 @@ const DetailsPage = () => {
                       flexDirection: "row",
                       boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
                       borderRadius: "4px",
-
                     }}
                   >
                     <Card
@@ -399,8 +401,10 @@ const DetailsPage = () => {
               }}
             >
               {recommends.map((recommend) => {
+                console.log(recommend);
                 return (
                   <Box
+                    key={recommend.id}
                     sx={{
                       p: 0,
                       m: 0,
