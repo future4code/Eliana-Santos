@@ -1,6 +1,6 @@
 # Projeto App Movie
 ### Objetivo
-Desenvolver um app movie, onde o usuário consiga vizualizar uma lista de filmes recentes, e ver os detalhes referente aquele filme, foi utiliza uma [API-TMDB](https://www.themoviedb.org/documentation/api) pública, para ver mais detalhes desse APP [Clique-Aqui]()
+Desenvolver um app movie, onde o usuário consiga vizualizar uma lista de filmes recentes, e ver os detalhes referente aquele filme, o app é responsivo, nas requisições foi utilizada uma [API-TMDB](https://www.themoviedb.org/documentation/api) pública, para ver mais detalhes desse APP [Clique-Aqui](app-filmes.surge.sh)
 ### Projeto Construído com  
 - [React.js](https://reactjs.org/)
 
