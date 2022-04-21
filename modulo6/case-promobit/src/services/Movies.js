@@ -52,3 +52,14 @@ export const getCredits = async (id) => {
     alert(error.message);
   }
 };
+
+export const getVideos = async (id) => {
+  try {
+    const res = await axios.get(
+      `${BASE_URL}/movie/${id}/videos?api_key=5769528853ac98398327afcd8c85d277&language=pt-PT`
+    );
+    return res.data;
+  } catch (error) {
+    alert(error.message);
+  }
+};
