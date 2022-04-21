@@ -9,14 +9,13 @@ import {
 } from "@mui/material";
 import logo from "../../assets/logo.png";
 import CancelSharpIcon from "@mui/icons-material/CancelSharp";
-import { getGenres, getMovie} from "../../services/Movies";
+import { getGenres, getMovie } from "../../services/Movies";
 import { formatDate } from "../../util/formatDate";
 import { useNavigate } from "react-router-dom";
 import { goToDetailsPage } from "../../routes/coordinator";
 import { BASE_POSTER } from "../../constants/url";
 
 const Home = () => {
-
   const history = useNavigate();
   const [genres, setGenres] = useState([]);
   const [select, setSelect] = useState([]);
@@ -29,7 +28,7 @@ const Home = () => {
   const onSubmit = () => {};
 
   const handleClickDetails = (id) => {
-    if (id) goToDetailsPage(history, id)
+    if (id) goToDetailsPage(history, id);
   };
 
   useEffect(() => {
@@ -136,11 +135,14 @@ const Home = () => {
           onSubmit={onSubmit}
           value={select}
           sx={{
-            display: "grid",
-            gridTemplateColumns: "repeat(10, 1fr)",
-            rowGap: 1,
-            columnGap: 2,
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: { md: "center", lg: "center" },
+            rowGap: { xs: 1, sm: 1, md: 2, lg: 2 },
+            columnGap: 1,
             mt: 2,
+            ml: 2,
           }}
         >
           {genres.map((genre) => {
@@ -178,29 +180,19 @@ const Home = () => {
       </Box>
       <Box
         sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(12, 1fr)",
-          rowGap: 1,
-          justifyItems: "center",
-          alignItems: "center",
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "flex-start",
+          columnGap: 1,
+          rowGap: 2,
           mt: 4,
+          ml: 4,
         }}
       >
         {movies.map((movie) => {
           return (
             <>
-              <Box
-                key={movie.id}
-                onClick={() => handleClickDetails(movie.id)}
-                sx={{
-                  gridColumn: {
-                    xs: "span 6",
-                    sm: "span 4",
-                    md: "span 3",
-                    lg: "span 2",
-                  },
-                }}
-              >
+              <Box key={movie.id} onClick={() => handleClickDetails(movie.id)}>
                 <img
                   src={`${BASE_POSTER}${movie.poster_path}`}
                   alt="movie"
@@ -210,8 +202,7 @@ const Home = () => {
                 <Box sx={{}}>
                   <Typography
                     sx={{
-                      gridColumn: "span 8",
-                      width: "185px",
+                      width: "175px",
                       fontSize: {
                         lg: "16px",
                         md: "16px",
@@ -232,7 +223,6 @@ const Home = () => {
                   </Typography>
                   <Typography
                     sx={{
-                      gridColumn: "span 8",
                       color: "#646464",
                       fontSize: {
                         lg: "14px",
