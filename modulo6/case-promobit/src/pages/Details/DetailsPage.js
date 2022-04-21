@@ -56,7 +56,7 @@ const DetailsPage = () => {
         setVideos(list.results);
       });
     }
-  }, [id]);
+  }, []);
 
   useEffect(() => {
     window.addEventListener("resize", updateDimensions);
@@ -137,8 +137,15 @@ const DetailsPage = () => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: {
+            xs: "column",
+            sm: "column",
+            md: "row",
+            lg: "row",
+          },
           alignItems: {
+            xs: "center",
+            sm: "center",
             md: "center",
             lg: "center",
           },
@@ -159,85 +166,87 @@ const DetailsPage = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: {
-              md: "center",
-              lg: "center",
               xs: "center",
               sm: "center",
+              md: "flex-start",
+              lg: "flex-start",
             },
+            ml: { md: 5, lg: 5 },
+            mt: { md: 10, lg: 10 },
           }}
         >
           <CardMedia
             component="img"
             src={urlImage}
             sx={{
-              borderRadius: "8px",
+              borderRadius: "10px",
               mt: 15,
               width: { xs: "186px", sm: "186px", md: "383px", lg: "383px" },
-              // ml: "86px",
+              height: { xs: "279px", sm: "279px", md: "574px", lg: "574px" },
             }}
           />
         </Box>
+        <Box sx={{ ml: 1 }}>
+          <Typography
+            sx={{
+              color: "#fff",
+              fontSize: "32px",
+              fontWeight: 700,
+              lineHeight: "38px",
+              mr: 2,
+              ml: 2,
+              mt: {
+                lg: 4,
+                md: 4,
+                xs: 4,
+                sm: 4,
+              },
+            }}
+          >
+            {movie.original_title}
+          </Typography>
+          <Typography
+            sx={{
+              color: "#fff",
+              fontSize: "18px",
+              fontWeight: 400,
+              fontStyle: "normal",
+              lineHeight: "24px",
+              ml: 2,
+              mt: 1,
+            }}
+          >
+            {movie.adult ? "18" : "16"} anos
+          </Typography>
+          <Typography
+            sx={{
+              color: "#fff",
+              fontSize: "18px",
+              fontWeight: 400,
+              fontStyle: "normal",
+              lineHeight: "24px",
+              ml: 2,
+            }}
+          >
+            {`${formatDateMovie(movie.release_date)} (BR)`}
+          </Typography>
 
-        <Typography
-          sx={{
-            color: "#fff",
-            fontSize: "32px",
-            fontWeight: 700,
-            lineHeight: "38px",
-            mr: 2,
-            ml: 2,
-            mt: {
-              lg: 4,
-              md: 4,
-              xs: 4,
-              sm: 4,
-            },
-          }}
-        >
-          {movie.original_title}
-        </Typography>
-        <Typography
-          sx={{
-            color: "#fff",
-            fontSize: "18px",
-            fontWeight: 400,
-            fontStyle: "normal",
-            lineHeight: "24px",
-            ml: 2,
-            mt: 1,
-          }}
-        >
-          {movie.adult ? "18" : "16"} anos
-        </Typography>
-        <Typography
-          sx={{
-            color: "#fff",
-            fontSize: "18px",
-            fontWeight: 400,
-            fontStyle: "normal",
-            lineHeight: "24px",
-            ml: 2,
-          }}
-        >
-          {`${formatDateMovie(movie.release_date)} (BR)`}
-        </Typography>
-
-        <Typography
-          sx={{
-            color: "#fff",
-            fontSize: "18px",
-            fontWeight: 400,
-            fontStyle: "normal",
-            lineHeight: "24px",
-            ml: 2,
-            mb: 5,
-          }}
-        >
-          {movie.genres?.map((genre) => {
-            return `${genre.name}, `;
-          })}
-        </Typography>
-        {/* 
+          <Typography
+            sx={{
+              color: "#fff",
+              fontSize: "18px",
+              fontWeight: 400,
+              fontStyle: "normal",
+              lineHeight: "24px",
+              ml: 2,
+              mb: 5,
+            }}
+          >
+            {movie.genres?.map((genre) => {
+              return `${genre.name}, `;
+            })}
+          </Typography>
+          {/* 
         <Typography
           sx={{
             color: "#fff",
@@ -252,53 +261,53 @@ const DetailsPage = () => {
           {movie.runtime}
         </Typography> */}
 
-        <Box sx={{ display: "flex", alignItems: "center", ml: 2 }}>
-          <CircularProgressWithLabel value={25} />
+          <Box sx={{ display: "flex", alignItems: "center", ml: 2 }}>
+            <CircularProgressWithLabel value={movie.vote_average} />
+            <Typography
+              sx={{
+                width: "102px",
+                color: "#fff",
+                fontSize: "16px",
+                fontWeight: 400,
+                fontStyle: "normal",
+                lineHeight: "20px",
+                ml: 2,
+                mt: 2,
+              }}
+            >
+              Avaliação dos Usuários
+            </Typography>
+          </Box>
+
           <Typography
             sx={{
-              width: "102px",
+              color: "#fff",
+              fontSize: "20px",
+              fontWeight: 700,
+              fontStyle: "normal",
+              lineHeight: "24px",
+              ml: 2,
+              mt: 6,
+            }}
+          >
+            Sinopse
+          </Typography>
+          <Typography
+            textAlign={"left"}
+            sx={{
               color: "#fff",
               fontSize: "16px",
               fontWeight: 400,
               fontStyle: "normal",
-              lineHeight: "20px",
+              lineHeight: "24px",
               ml: 2,
               mt: 2,
+              mr: 2,
             }}
           >
-            Avaliação dos Usuários
+            {movie.overview}
           </Typography>
-        </Box>
-
-        <Typography
-          sx={{
-            color: "#fff",
-            fontSize: "20px",
-            fontWeight: 700,
-            fontStyle: "normal",
-            lineHeight: "24px",
-            ml: 2,
-            mt: 6,
-          }}
-        >
-          Sinopse
-        </Typography>
-        <Typography
-          textAlign={"left"}
-          sx={{
-            color: "#fff",
-            fontSize: "16px",
-            fontWeight: 400,
-            fontStyle: "normal",
-            lineHeight: "24px",
-            ml: 2,
-            mt: 2,
-            mr: 2,
-          }}
-        >
-          {movie.overview}
-        </Typography>
-        {/*        {crews.map((crew) => {
+          {/*        {crews.map((crew) => {
           return (
             <>
               <Typography>{crew.name}</Typography>
@@ -306,6 +315,7 @@ const DetailsPage = () => {
             </>
           );
         })}  */}
+        </Box>
       </Box>
 
       <Box>
