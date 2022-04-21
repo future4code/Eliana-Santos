@@ -7,6 +7,8 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import ReactPlayer from "react-player";
+
 import logo from "../../assets/logo.png";
 import { BASE_IMG, BASE_POSTER, BASE_VIDEO } from "../../constants/url";
 import {
@@ -18,7 +20,6 @@ import {
 import { formatDate, formatDateMovie } from "../../util/formatDate";
 import { useParams } from "react-router-dom";
 import { CircularProgressWithLabel } from "../../components/CircularProgress/CircularProgressWithLabel";
-import ReactPlayer from "react-player";
 
 const DetailsPage = () => {
   const { id } = useParams();
@@ -106,7 +107,7 @@ const DetailsPage = () => {
   }, [width]);
 
   return (
-    <Box>
+    <Box sx={{ m: 0, p: 0 }}>
       <AppBar
         sx={{
           display: "flex",
@@ -179,7 +180,8 @@ const DetailsPage = () => {
             component="img"
             src={urlImage}
             sx={{
-              borderRadius: "10px",
+              borderRadius: "8px",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
               mt: 15,
               width: { xs: "186px", sm: "186px", md: "383px", lg: "383px" },
               height: { xs: "279px", sm: "279px", md: "574px", lg: "574px" },
@@ -317,212 +319,206 @@ const DetailsPage = () => {
         })}  */}
         </Box>
       </Box>
-
-      <Box>
-        <Typography
-          sx={{
-            fontSize: "28px",
-            fontWeight: 700,
-            fontStyle: "normal",
-            lineHeight: "32px",
-            ml: 2,
-            mt: 5,
-          }}
-        >
-          Elenco original
-        </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            overflow: "auto",
-            overflowX: "scroll",
-            columnGap: "50px",
-            ml: 2,
-          }}
-        >
-          {casts?.map((cast) => {
-            return (
-              <Box
-                sx={{
-                  p: 0,
-                  m: 0,
-                  mb: 2,
-                  mt: 2,
-                  display: "flex",
-                  flexDirection: "row",
-                  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-                  borderRadius: "4px",
-                }}
-              >
-                <Card
-                  key={cast.id}
+      <Box
+        sx={{ backgroundColor: "#E5E5E5", pt: { xs: 4, sm: 4, md: 15, lg: 15 } }}
+      >
+        <Box>
+          <Typography
+            sx={{
+              fontSize: "28px",
+              fontWeight: 700,
+              fontStyle: "normal",
+              lineHeight: "32px",
+              ml: { xs: 2, sm: 2, md: 5, lg: 5 },
+              //  mt: { xs: 5, sm: 5, md: 14, lg: 14 },
+            }}
+          >
+            Elenco original
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              overflow: "auto",
+              overflowX: "scroll",
+              columnGap: "50px",
+              ml: { xs: 2, sm: 2, md: 3, lg: 3 },
+              mr: { sx: 2, sm: 2, md: 3, lg: 3 },
+            }}
+          >
+            {casts?.map((cast) => {
+              return (
+                <Box
                   sx={{
-                    width: "191px",
-                    height: "336px",
+                    p: 0,
+                    m: 0,
+                    mb: 2,
+                    mt: 2,
                     display: "flex",
-                    flexDirection: "column",
+                    flexDirection: "row",
+                    boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                    borderRadius: "4px",
                   }}
                 >
-                  <CardContent
+                  <Card
+                    key={cast.id}
                     sx={{
+                      width: "191px",
+                      height: "336px",
                       display: "flex",
                       flexDirection: "column",
-                      alignItems: "center",
                     }}
                   >
-                    <CardMedia
-                      component={"img"}
-                      src={`${BASE_POSTER}${cast.profile_path}`}
-                    />
-                    <Typography
+                    <CardContent
                       sx={{
-                        fontSize: "18px",
-                        fontWeight: 700,
-                        fontStyle: "normal",
-                        lineHeight: "30px",
-                        ml: 2,
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
                       }}
                     >
-                      {cast.original_name}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: "16px",
-                        fontWeight: 400,
-                        fontStyle: "normal",
-                        lineHeight: "24px",
-                        ml: 2,
-                      }}
-                    >
-                      {cast.character}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Box>
-            );
-          })}
-        </Box>
-      </Box>
-
-      <Box>
-        <Typography
-          sx={{
-            fontSize: "28px",
-            fontWeight: 700,
-            fontStyle: "normal",
-            lineHeight: "32px",
-            ml: 2,
-            mt: 5,
-          }}
-        >
-          Trailer
-        </Typography>
-        <Box sx={{ ml: 2 }}>
-          {videos?.map((video) => {
-            return (
-              <ReactPlayer
-                width="360px"
-                height="200px"
-                url={`${BASE_VIDEO}${video.key}`}
-              />
-            );
-          })}
-        </Box>
-      </Box>
-      <Box>
-        <Typography
-          sx={{
-            fontSize: "28px",
-            fontWeight: 700,
-            fontStyle: "normal",
-            lineHeight: "32px",
-            ml: 2,
-            mt: 5,
-          }}
-        >
-          Recomendações
-        </Typography>
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "repeat(12, 1fr)",
-            rowGap: 1,
-            justifyItems: "center",
-            alignItems: "center",
-            mt: 4,
-          }}
-        >
-          {recommends?.map((recommend) => {
-            return (
-              <>
-                <Box
-                  key={recommend.id}
-                  sx={{
-                    gridColumn: {
-                      xs: "span 6",
-                      sm: "span 4",
-                      md: "span 3",
-                      lg: "span 2",
-                    },
-                  }}
-                >
-                  <img
-                    src={`${BASE_POSTER}${recommend.poster_path}`}
-                    alt="movie"
-                    style={{ borderRadius: "4px" }}
-                  />
-
-                  <Box sx={{}}>
-                    <Typography
-                      sx={{
-                        gridColumn: "span 8",
-                        width: "150px",
-                        fontSize: {
-                          lg: "16px",
-                          md: "16px",
-                          xs: "14px",
-                          sm: "14px",
-                        },
-                        lineWeight: {
-                          lg: "24px",
-                          md: "24px",
-                          xs: "20px",
-                          sm: "20px",
-                        },
-                        fontWeight: 700,
-                        fontStyle: "normal",
-                      }}
-                    >
-                      {recommend.title}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        gridColumn: "span 8",
-                        color: "#646464",
-                        fontSize: {
-                          lg: "14px",
-                          md: "14px",
-                          xs: "12px",
-                          sm: "12px",
-                        },
-                        lineWeight: {
-                          lg: "24px",
-                          md: "24px",
-                          xs: "18px",
-                          sm: "18px",
-                        },
-                        fontWeight: 700,
-                        fontStyle: "normal",
-                      }}
-                    >
-                      {formatDate(recommend.release_date)}
-                    </Typography>
-                  </Box>
+                      <CardMedia
+                        component={"img"}
+                        src={`${BASE_POSTER}${cast.profile_path}`}
+                      />
+                      <Typography
+                        sx={{
+                          fontSize: "18px",
+                          fontWeight: 700,
+                          fontStyle: "normal",
+                          lineHeight: "30px",
+                          ml: 2,
+                        }}
+                      >
+                        {cast.original_name}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: "16px",
+                          fontWeight: 400,
+                          fontStyle: "normal",
+                          lineHeight: "24px",
+                          ml: 2,
+                        }}
+                      >
+                        {cast.character}
+                      </Typography>
+                    </CardContent>
+                  </Card>
                 </Box>
-              </>
-            );
-          })}
+              );
+            })}
+          </Box>
+        </Box>
+
+        <Box>
+          <Typography
+            sx={{
+              fontSize: "28px",
+              fontWeight: 700,
+              fontStyle: "normal",
+              lineHeight: "32px",
+              ml: 2,
+              mt: 5,
+            }}
+          >
+            Trailer
+          </Typography>
+          <Box sx={{ ml: 2 }}>
+            {videos?.map((video) => {
+              return (
+                <ReactPlayer
+                  width="360px"
+                  height="200px"
+                  url={`${BASE_VIDEO}${video.key}`}
+                />
+              );
+            })}
+          </Box>
+        </Box>
+        <Box>
+          <Typography
+            sx={{
+              fontSize: "28px",
+              fontWeight: 700,
+              fontStyle: "normal",
+              lineHeight: "32px",
+              ml: 2,
+              mt: 5,
+            }}
+          >
+            Recomendações
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              alignItems: "flex-start",
+              columnGap: 4,
+              rowGap: 2,
+              mt: 4,
+              ml: 3,
+            }}
+          >
+            {recommends?.map((recommend) => {
+              return (
+                <>
+                  <Box key={recommend.id}>
+                    <img
+                      src={`${BASE_POSTER}${recommend.poster_path}`}
+                      alt="movie"
+                      style={{ borderRadius: "4px" }}
+                    />
+
+                    <Box sx={{}}>
+                      <Typography
+                        sx={{
+                          width: "150px",
+                          fontSize: {
+                            lg: "16px",
+                            md: "16px",
+                            xs: "14px",
+                            sm: "14px",
+                          },
+                          lineWeight: {
+                            lg: "24px",
+                            md: "24px",
+                            xs: "20px",
+                            sm: "20px",
+                          },
+                          fontWeight: 700,
+                          fontStyle: "normal",
+                        }}
+                      >
+                        {recommend.title}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          color: "#646464",
+                          fontSize: {
+                            lg: "14px",
+                            md: "14px",
+                            xs: "12px",
+                            sm: "12px",
+                          },
+                          lineWeight: {
+                            lg: "24px",
+                            md: "24px",
+                            xs: "18px",
+                            sm: "18px",
+                          },
+                          fontWeight: 700,
+                          fontStyle: "normal",
+                        }}
+                      >
+                        {formatDate(recommend.release_date)}
+                      </Typography>
+                    </Box>
+                  </Box>
+                </>
+              );
+            })}
+          </Box>
         </Box>
       </Box>
     </Box>
